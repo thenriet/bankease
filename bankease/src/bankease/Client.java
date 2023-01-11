@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 
 public class Client {
 	private int clientId;
@@ -16,9 +18,8 @@ public class Client {
 
 		try {
 
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "thenriet",
-					"thomas1991");
-			java.sql.Statement st = conn.createStatement();
+			Connection conn = Connect.getConnection();
+			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM CLIENT");
 
 			while (rs.next()) {
@@ -39,9 +40,8 @@ public class Client {
 		String request = "INSERT INTO CLIENT VALUES(2, 'nameTest', 'addressTest', 'phoneTest')";
 		try {
 
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "thenriet",
-					"thomas1991");
-			java.sql.Statement st = conn.createStatement();
+			Connection conn = Connect.getConnection();
+			Statement st = conn.createStatement();
 			st.executeUpdate(request);
 
 			conn.close();

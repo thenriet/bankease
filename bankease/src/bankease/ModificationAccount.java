@@ -18,12 +18,12 @@ import javax.swing.JInternalFrame;
 import javax.swing.JSeparator;
 import java.awt.Color;
 
-public class Fenetre extends JFrame {
+public class ModificationAccount extends JFrame {
 	private final JPanel panel = new JPanel();
 	private JTextField txtModifierUnCompte;
 	private JTextField textField;
 	private JTextField textField_1;
-	public Fenetre() {
+	public ModificationAccount() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		panel.setBackground(new Color(255, 128, 128));
