@@ -10,8 +10,6 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			Connection conn = Connect.getConnection();
-		//	Connection conn = DriverManager.getConnection(
-		//			"jdbc:mysql://localhost:3306/gestion_database","thenriet","thomas1991");
 			Statement st = conn.createStatement();
 		    ResultSet rs = st.executeQuery("SELECT * FROM BANK");
 
