@@ -1,36 +1,36 @@
 package bankease;
 
-import java.beans.Statement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Main {
 
 	public static void main(String[] args) {
-//		try {
-//			Connection conn = DriverManager.getConnection(
-//					"jdbc:mysql://localhost:3306/gestion_database","root","9D7896N6");
-//			java.sql.Statement st = conn.createStatement();
-//		    ResultSet rs = st.executeQuery("SELECT * FROM BANK");
-//
-//			while(rs.next()) {
-//				System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+
-//			rs.getString(3));
-//
-//			}
-//			conn.close();
-//			
-//		}
-//		
-//		catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			Connection conn = Connect.getConnection();
+		//	Connection conn = DriverManager.getConnection(
+		//			"jdbc:mysql://localhost:3306/gestion_database","thenriet","thomas1991");
+			Statement st = conn.createStatement();
+		    ResultSet rs = st.executeQuery("SELECT * FROM BANK");
+
+			while(rs.next()) {
+				System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+
+			rs.getString(3));
+
+			}
+			conn.close();
+			
+		}
+		
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		
-		new Fenetre();
+//		new Fenetre();
 		
 //		CheckingAccount a = new CheckingAccount(888888888);
 //		System.out.println(a.getClient_id());

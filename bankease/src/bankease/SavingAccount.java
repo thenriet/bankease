@@ -20,8 +20,8 @@ public class SavingAccount {
 
 		try {
 
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "root",
-					"9D7896N6");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "thenriet",
+					"thomas1991");
 			java.sql.Statement st = conn.createStatement();
 			ResultSet account_id = st.executeQuery("SELECT * FROM SAVING_ACCOUNT");
 			while (account_id.next()) {
