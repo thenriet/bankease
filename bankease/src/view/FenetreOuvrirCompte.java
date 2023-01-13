@@ -15,6 +15,9 @@ import javax.swing.Box;
 import javax.swing.JPanel;
 import java.awt.Color;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+
+import controller.CheckingAccountHandler;
+
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.event.ActionListener;
@@ -41,7 +44,7 @@ public class FenetreOuvrirCompte extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				String chaine = textField.getText();
-				//CheckingAccountHandler.createCheckingAccount()
+				CheckingAccountHandler.createCheckingAccount();
 			}
 		});
 		btnNewButton.setBounds(102, 493, 89, 23);
