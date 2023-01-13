@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import view.FenetreOuvrirCompte;
+import view.OuvrirCompte;
 
 public class Main {
 
@@ -37,10 +37,10 @@ public class Main {
 //		}
 
 		
-		new FenetreOuvrirCompte();
+		new OuvrirCompte();
 		
 		System.out.println(CheckingAccountDAO.OneCheckingAccount(888888888).getClient_id());
-		
+
 	}
 
 }

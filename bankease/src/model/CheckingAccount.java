@@ -9,7 +9,7 @@ public class CheckingAccount {
 	private int client_id;
 	private int bank_id;
 
-	public CheckingAccount(float balance, float transfer_fee, float min_balance, int client_id,
+	public CheckingAccount(int account_id, float balance, float transfer_fee, float min_balance, int client_id,
 			int bank_id) {
 
 		this.balance = balance;

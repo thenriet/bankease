@@ -1,12 +1,13 @@
 
 
 import java.beans.Statement;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import view.FenetreOuvrirCompte;
+import view.OuvrirCompte;
 
 public class Main {
 
@@ -32,7 +33,7 @@ public class Main {
 //		}
 
 		
-		new FenetreOuvrirCompte();
+		new OuvrirCompte();
 		
 //		CheckingAccount a = new CheckingAccount(888888888);
 //		System.out.println(a.getClient_id());
