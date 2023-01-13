@@ -1,4 +1,4 @@
-package bankease;
+package model;
 
 /**
  * Brouillon Saving
@@ -8,6 +8,22 @@ public class SavingAccount extends Account{
 	private float balanceLimit;
 	private float interestRate;
 	
+
+	/**
+	 * Empty constructor
+	 */
+	public SavingAccount() {}
+	
+	/**
+	 * Fields constructor
+	 */
+	public SavingAccount(float balanceLimit, float interestRate) {
+		super();
+		this.balanceLimit = balanceLimit;
+		this.interestRate = interestRate;
+	}
+
+
 	// Getters Setters
 
 	public void setBalanceLimit(float balanceLimit) {

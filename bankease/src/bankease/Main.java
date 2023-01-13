@@ -1,24 +1,19 @@
 package bankease;
 
+import model.AccountList;
+import vue.FrmAccountList;
+import vue.TestBank;
+
 public class Main {
 
 	public static void main(String[] args) {
-//		Account account = new CheckingAccount();
-//		account.setAccountId(123456);
-//		account.setBalance(100);
-//		account.setBankId(0);
-//		account.setClientId(0);
-//
-//		System.out.println(account);
-//		System.out.println(account.accountId);
 		
-		Bank b = new Bank();
+		// Test impression console
+		AccountList b = new AccountList(2);
+		TestBank.showAccounts(b);
+		System.out.println("OK");
 		
-		b.getAccounts();
+		FrmAccountList mainFrame = new FrmAccountList();
 		
-		for (Account element : b.accountList) {
-			System.out.println(element.accountId);
-		}
 	}
-
 }
