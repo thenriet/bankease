@@ -24,11 +24,13 @@ public class ModificationAccount extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	public ModificationAccount() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		panel.setBackground(new Color(255, 128, 128));
 		panel.setBounds(0, 0, 500, 42);
 		getContentPane().add(panel);
+		this.setLocationRelativeTo(null);
 		
 		txtModifierUnCompte = new JTextField();
 		txtModifierUnCompte.setHorizontalAlignment(SwingConstants.CENTER);
