@@ -1,4 +1,4 @@
-package bankease;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SavingAccount {
-
+	
 	private int account_id;
 	private float balance;
 	private float interest_rate;
@@ -14,36 +14,17 @@ public class SavingAccount {
 	private int client_id;
 	private int bank_id;
 
-	public SavingAccount(int id) {
-
+	public SavingAccount(int account_id, float balance, float interest_rate, float balance_limit, int client_id,
+			int bank_id) {
+		super();
 		this.account_id = account_id;
-
-		try {
-
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "root",
-					"9D7896N6");
-			java.sql.Statement st = conn.createStatement();
-			ResultSet account_id = st.executeQuery("SELECT * FROM SAVING_ACCOUNT");
-			while (account_id.next()) {
-				if (id == account_id.getInt(1)) {
-
-					this.balance = account_id.getFloat(2);
-					this.interest_rate = account_id.getFloat(3);
-					this.balance_limit = account_id.getFloat(4);
-					this.client_id = account_id.getInt(5);
-					this.bank_id = account_id.getInt(6);
-					break;
-				}
-			}
-			conn.close();
-
-		}
-
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-
+		this.balance = balance;
+		this.interest_rate = interest_rate;
+		this.balance_limit = balance_limit;
+		this.client_id = client_id;
+		this.bank_id = bank_id;
 	}
+
 
 	public int getAccount_id() {
 		return account_id;

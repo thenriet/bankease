@@ -1,8 +1,3 @@
-package bankease;
-import dao.CheckingAccountDAO;
-import dao.SavingAccountDAO;
-import model.CheckingAccount;
-import model.SavingAccount;
 
 
 import java.beans.Statement;
@@ -39,7 +34,11 @@ public class Main {
 		
 		new FenetreOuvrirCompte();
 		
-		System.out.println(CheckingAccountDAO.OneCheckingAccount(888888888).getClient_id());
+//		CheckingAccount a = new CheckingAccount(888888888);
+//		System.out.println(a.getClient_id());
+//		
+//		SavingAccount s = new SavingAccount(777777777);
+//		System.out.println(s.getClient_id());
 		
 	}
 
