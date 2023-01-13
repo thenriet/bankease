@@ -17,8 +17,6 @@ import controller.ClientHandler;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
-
 import javax.swing.JLabel;
 
 public class ClientCreate extends JFrame {
@@ -61,11 +59,9 @@ public class ClientCreate extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String data = textField.getText();
-				if(validate()) {
-					return null;
-				} else {
 				ClientHandler.createClient(data);
 			}
+			
 		});
 
 		setVisible(true);
@@ -76,22 +72,6 @@ public class ClientCreate extends JFrame {
 				JOptionPane.showConfirmDialog(ClientCreate.this, "Etes-vous certain de vouloir quitter ?");
 			}
 		});
-		
-		private boolean validate(){
-			  StringBuilder errorText = new StringBuilder();
-
-			  if(textField.getText().length() == 0){
-			    errorText.append("Textfield 1 is mandatory\n");
-			    textField.setBackground(Color.red);
-			  }
-
-			
-			  // Show the errorText in a message box, or in a label, or ...
-
-			  return errorText.length() == 0;
-			}
-		}
-		}
 		
 	}
 }
