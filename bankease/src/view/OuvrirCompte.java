@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.Box;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import controller.CheckingAccountHandler;
 
@@ -31,6 +32,7 @@ public class OuvrirCompte extends JFrame implements ActionListener {
 	public OuvrirCompte() {
 		
 		getContentPane().setLayout(null);
+		setSize(660,700);
 		
 		num_compte = new JTextField();
 		
@@ -52,7 +54,6 @@ public class OuvrirCompte extends JFrame implements ActionListener {
 	    Compte_courant.addActionListener(this);
 		
 		setVisible(true); 
-
 
 	}
 
@@ -104,11 +105,14 @@ public class OuvrirCompte extends JFrame implements ActionListener {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					
+					
 				}
+				
 			});
 			btnNewButton.setBounds(102, 493, 89, 23);
 			getContentPane().add(btnNewButton);
-			
+
 			
 			//Affichage des titres
 			
@@ -116,19 +120,17 @@ public class OuvrirCompte extends JFrame implements ActionListener {
 			lblNewLabel.setBounds(320, 205, 73, 14);
 			getContentPane().add(lblNewLabel);
 			
-			
 			JLabel lblNewLabel_1 = new JLabel("n° de compte");
 			lblNewLabel_1.setBounds(58, 205, 82, 14);
 			getContentPane().add(lblNewLabel_1);
-			
 			JLabel lblNewLabel_2 = new JLabel("Type de compte");
 			lblNewLabel_2.setBounds(58, 104, 96, 23);
 			getContentPane().add(lblNewLabel_2);
-			
+ 		
 			JLabel lblNewLabel_3 = new JLabel("Titulaire");
 			lblNewLabel_3.setBounds(59, 286, 49, 14);
 			getContentPane().add(lblNewLabel_3);
-			
+	
 			Box horizontalBox_1 = Box.createHorizontalBox();
 			horizontalBox_1.setBounds(102, 436, 1, 1);
 			getContentPane().add(horizontalBox_1);
@@ -138,15 +140,18 @@ public class OuvrirCompte extends JFrame implements ActionListener {
 			btnNewButton_1.setBackground(new Color(255, 128, 192));
 			btnNewButton_1.setBounds(336, 493, 89, 23);
 			getContentPane().add(btnNewButton_1);
-			
-			setVisible(true); 
+		
+
 		}
 		if(Compte_epargne.isSelected()){    
+			
 
 			
 		}   
-		
-		setVisible(true); 
+		setVisible(true);
+
+		pack();
+		setSize(660,700);
 	}
 
 }

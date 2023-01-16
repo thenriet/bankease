@@ -7,16 +7,20 @@ public class CheckingAccount {
 	private float transfer_fee;
 	private float min_balance;
 	private int client_id;
-	private int bank_id;
+	private String owner_description;
+	
+	public CheckingAccount() {
+	}
+	
 
-	public CheckingAccount(int account_id, float balance, float transfer_fee, float min_balance, int client_id,
-			int bank_id) {
+	public CheckingAccount(int account_id,int client_id, String owner_description,float balance, float min_balance, float transfer_fee) {
 
 		this.balance = balance;
 		this.transfer_fee = transfer_fee;
 		this.min_balance = min_balance;
 		this.client_id = client_id;
-		this.bank_id = bank_id;
+		this.owner_description = owner_description;
+
 	}
 
 
@@ -61,12 +65,12 @@ public class CheckingAccount {
 		this.client_id = client_id;
 	}
 
-	public int getBank_id() {
-		return bank_id;
+	public String getOwner_description() {
+		return owner_description;
 	}
 
-	public void setBank_id(int bank_id) {
-		this.bank_id = bank_id;
+	public void setOwner_description(String owner_description) {
+		this.owner_description = owner_description;
 	}
 
 }

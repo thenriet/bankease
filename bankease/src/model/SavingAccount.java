@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,17 +13,17 @@ public class SavingAccount {
 	private float interest_rate;
 	private float balance_limit;
 	private int client_id;
-	private int bank_id;
+	private String owner_description;
 
-	public SavingAccount(int account_id, float balance, float interest_rate, float balance_limit, int client_id,
-			int bank_id) {
-		super();
+	public SavingAccount(int account_id, int client_id,String owner_description, 
+			float balance, float interest_rate, float balance_limit) {
+
 		this.account_id = account_id;
 		this.balance = balance;
 		this.interest_rate = interest_rate;
 		this.balance_limit = balance_limit;
 		this.client_id = client_id;
-		this.bank_id = bank_id;
+		this.owner_description = owner_description;
 	}
 
 
@@ -66,12 +67,12 @@ public class SavingAccount {
 		this.client_id = client_id;
 	}
 
-	public int getBank_id() {
-		return bank_id;
+	public String getOwner_description() {
+		return owner_description;
 	}
 
-	public void setBank_id(int bank_id) {
-		this.bank_id = bank_id;
+	public void setOwner_description(String owner_description) {
+		this.owner_description = owner_description;
 	}
 
 }

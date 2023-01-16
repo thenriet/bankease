@@ -1,46 +1,67 @@
 package dao;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import model.SavingAccount;
+
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 public class SavingAccountDAO {
 
-	private int account_id;
-	private float balance;
-	private float interest_rate;
-	private float balance_limit;
-	private int client_id;
-	private int bank_id;
 
-	public SavingAccountDAO(int id) {
+	public static SavingAccount OneSavingAccount(int id) {
+			
+	SavingAccount compte = null;
 
-		this.account_id = account_id;
+	try {
 
-		try {
-
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "root",
-					"9D7896N6");
-			java.sql.Statement st = conn.createStatement();
-			ResultSet account_id = st.executeQuery("SELECT * FROM SAVING_ACCOUNT");
-			while (account_id.next()) {
-				if (id == account_id.getInt(1)) {
-
-					this.balance = account_id.getFloat(2);
-					this.interest_rate = account_id.getFloat(3);
-					this.balance_limit = account_id.getFloat(4);
-					this.client_id = account_id.getInt(5);
-					this.bank_id = account_id.getInt(6);
-					break;
-				}
-			}
-			conn.close();
-
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "root",
+				"9D7896N6");
+		java.sql.Statement st = conn.createStatement();
+		ResultSet account_id = st.executeQuery("SELECT * FROM SAVING_ACCOUNT WHERE account_id = '" + id + "'" );
+		
+		while (account_id.next()) {
+				
+				compte = new SavingAccount(id, account_id.getInt(2),account_id.getString(3),
+						account_id.getFloat(4),account_id.getFloat(5),account_id.getFloat(6));
+			
 		}
-
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+		conn.close();
 
 	}
+
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return compte;
+	
+	}
+	
+	public static void CreateSavingAccount(SavingAccount savingaccount) {
+		
+		String sql = "INSERT INTO SAVING_ACCOUNT (owner_description,interest_rate,balance_limit,balance) VALUES('"+ savingaccount.getOwner_description()+"','"+ savingaccount.getInterest_rate() +"','"+savingaccount.getBalance_limit()+"','"+savingaccount.getBalance()+"')";
+				
+		try {
+
+			Connection conn = DriverManager.getConnection(
+			"jdbc:mysql://localhost:3306/gestion_database","root","9D7896N6");
+			Statement st = conn.createStatement();
+			st.executeUpdate(sql);
+          
+			conn.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

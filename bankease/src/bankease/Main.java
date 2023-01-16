@@ -1,5 +1,6 @@
 package bankease;
 import dao.CheckingAccountDAO;
+
 import dao.SavingAccountDAO;
 import model.CheckingAccount;
 import model.SavingAccount;
@@ -11,7 +12,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import view.CheckingAccountView;
 import view.OuvrirCompte;
+import view.SavingAccountView;
 
 public class Main {
 
@@ -37,9 +40,10 @@ public class Main {
 //		}
 
 		
-		new OuvrirCompte();
+		SavingAccountView f = new SavingAccountView();
+		f.setVisible(true);
 		
-		System.out.println(CheckingAccountDAO.OneCheckingAccount(888888888).getClient_id());
+		//System.out.println(CheckingAccountDAO.OneCheckingAccount(444444).getOwner_description());
 
 	}
 

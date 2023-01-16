@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,8 +29,8 @@ public class CheckingAccountDAO {
 
 		while (account_id.next()) {
 				
-				compte = new CheckingAccount(id, account_id.getFloat(3),account_id.getFloat(3),
-						account_id.getFloat(4),account_id.getInt(5),account_id.getInt(6));
+				compte = new CheckingAccount(id, account_id.getInt(2),account_id.getString(3),
+						account_id.getFloat(4),account_id.getFloat(5),account_id.getFloat(6));
 			
 		}
 		conn.close();
@@ -46,17 +47,17 @@ public class CheckingAccountDAO {
 	
 	public static void CreateCheckingAccount(CheckingAccount checkingaccount) {
 		
-		String sql = "INSERT INTO CHECKING_ACCOUNT (client_id) VALUES('"+ checkingaccount.getClient_id()+"')";
-
+		String sql = "INSERT INTO CHECKING_ACCOUNT (owner_description,transfer_fee,min_balance,balance) VALUES('"+ checkingaccount.getOwner_description()+"','"+ checkingaccount.getTransfer_fee() +"','"+checkingaccount.getMin_balance()+"','"+checkingaccount.getBalance()+"')";
+				
 		try {
 
 			Connection conn = DriverManager.getConnection(
 			"jdbc:mysql://localhost:3306/gestion_database","root","9D7896N6");
 			Statement st = conn.createStatement();
 			st.executeUpdate(sql);
-
+          
 			conn.close();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
