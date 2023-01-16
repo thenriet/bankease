@@ -15,7 +15,7 @@ public class Main {
 //		BankDAO.newBank();
 //		BankDAO.getAllBanks();
 		System.out.println(ClientDao.getAllClients());
-		System.out.println(ClientDao.getOneClient(1).getClientName());
+		System.out.println(ClientDao.getOneClient(1).getClientDescription());
 
 		new ClientCreate();
 //		System.out.println(ClientCreate().Cl);

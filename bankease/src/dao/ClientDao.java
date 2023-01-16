@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,15 +14,15 @@ public class ClientDao {
 
 	public static List<Client> getAllClients() {
 		List<Client> allClients = new ArrayList<>();
-		
-		ResultSet rs1 = null;
+
+		ResultSet rs = null;
 		try {
 			Connection conn = Connect.getConnection();
 			Statement st = conn.createStatement();
-			rs1 = st.executeQuery("SELECT * FROM CLIENT");
+			rs = st.executeQuery("SELECT * FROM CLIENT");
 
-			while (rs1.next()) {
-				Client oneClient = new Client(rs1.getString(2));
+			while (rs.next()) {
+				Client oneClient = new Client(rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5));
 				allClients.add(oneClient);
 			}
 			conn.close();
@@ -34,21 +35,23 @@ public class ClientDao {
 		}
 		return allClients;
 	}
-	
-	public static Client getOneClient(int id) {
-		ResultSet rs1 = null;
-		Client oneClient = null;
-		try {
-			Connection conn = Connect.getConnection();
-			Statement st = conn.createStatement();
-			
-			rs1 = st.executeQuery("SELECT * FROM CLIENT WHERE client_id = '" + id + "'");
 
-			while (rs1.next()) {
-				oneClient = new Client(rs1.getString(2));
+	public static Client getOneClient(int id) {
+		ResultSet rs = null;
+		Client oneClient = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			String query ="SELECT * FROM CLIENT WHERE client_id =?";
+			conn = Connect.getConnection();
+			stmt = conn.prepareStatement(query);
+		    stmt.setInt(1, id);
+		    rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				oneClient = new Client(rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5));
 			}
 			conn.close();
-
 		}
 
 		catch (SQLException e) {
@@ -58,16 +61,27 @@ public class ClientDao {
 		return oneClient;
 
 	}
-	
+
 	public static void createClient(Client client) {
-		
-		String request = "INSERT INTO CLIENT (client_name) VALUES('"+ client.getClientName()+"')";
+
+
+//		String request = "INSERT INTO CLIENT (client_description, birth_date, address, phone) VALUES('"
+//				+ client.getClientDescription() + "',  '" + client.getClientBirthdate() + "', '"
+//				+ client.getClientAddress() + "', '" + client.getClientPhone() + "')";
+		Connection conn = null;
+		PreparedStatement stmt = null;
 
 		try {
+			// 
+			String query = "INSERT INTO CLIENT (client_description, birth_date, address, phone) VALUES(?, ?, ?, ?)";
+			conn = Connect.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, client.getClientDescription());
+			stmt.setDate(2, client.getClientBirthdate());
+			stmt.setString(3, client.getClientAddress());
+			stmt.setString(4, client.getClientPhone());
 
-			Connection conn = Connect.getConnection();
-			Statement st = conn.createStatement();
-			st.executeUpdate(request);
+			stmt.executeUpdate();
 
 			conn.close();
 		} catch (SQLException e) {
