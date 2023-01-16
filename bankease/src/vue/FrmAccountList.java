@@ -15,11 +15,10 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
-import javax.swing.JSplitPane;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
 
@@ -70,9 +69,12 @@ public class FrmAccountList extends JFrame {
 		scrollPane.setBounds(53, 109, 579, 315);
 		contentPane.add(scrollPane);
 
-		AccountListController accountList = new AccountListController(2);
-		Account[] data = accountList.getAccountList().toArray(new Account[0]);
-		JList<Account> list = new JList<Account>(data);
+		// Récupération de la liste des comptes du client (à modifier avec l'ID dynamique)
+		List<Account> accountList = AccountListController.getAccountList(2);
+		
+		// Affichage de la liste :
+		JList<Account> list = new JList<Account>();
+		list.setListData(accountList.toArray(new Account[0]));
 		scrollPane.setViewportView(list);
 		
 		JButton btnNewAccount = new JButton("Ouvrir un compte");

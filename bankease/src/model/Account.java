@@ -11,10 +11,6 @@ public abstract class Account {
 	protected int clientId;
 	protected String ownerDescription;
 	protected float balance;
-	
-	public String toString() {
-		return "Compte " + accountType + " n°" + accountId + " - " + ownerDescription + " - Solde : " + balance + " €";
-	}
 
 	public Account() {}
 	
@@ -26,7 +22,12 @@ public abstract class Account {
 		this.balance = balance;
 	}
 
+	
+	public String toString() {
+		return "Compte " + accountType + " n°" + accountId + " - " + ownerDescription + " - Solde : " + balance + " €";
+	}
 
+	
 	// Getters Setters
 	public String getAccountType() {
 		return accountType;
