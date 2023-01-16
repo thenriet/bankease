@@ -18,6 +18,7 @@ public class AccountDAO {
 
 	/**
 	 * Create CheckingAccount and SavingAccount objects with data from DB tables
+	 * @param client ID
 	 * @return Account Arraylist
 	 */
 	public static ArrayList<Account> getAccounts(int id) {
@@ -72,4 +73,26 @@ public class AccountDAO {
 		return accountList;
 	}
 
+	/**
+	 * Recovers the client name/business name from DB
+	 * @param client ID
+	 * @return client description as String
+	 */
+	public static String getAccountOwner(int id) {
+		String clientDesc = null;
+		try {
+			Connection conn = Connect.getConnection();
+			
+			PreparedStatement prst = conn.prepareStatement("SELECT client_description FROM client WHERE client_id = ?");
+			prst.setInt(1, id);
+			ResultSet rs = prst.executeQuery();
+			rs.next();
+			clientDesc = rs.getString(1);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return clientDesc;
+	}
 }

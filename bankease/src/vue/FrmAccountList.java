@@ -1,14 +1,12 @@
 package vue;
 
-//import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import Controller.AccountListController;
 import model.Account;
-
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -19,12 +17,18 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
-import javax.swing.JSeparator;
-import javax.swing.JLabel;
 
 public class FrmAccountList extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton btnOuvrir;
+	private JButton btnModifier;
+	private JButton btnCloturer;
+	private JButton btnCrediter;
+	private JButton btnTransferer;
+	private JButton btnDebiter;
+	private JButton btnRetour;
 
 //	/**
 //	 * Launch the application.
@@ -45,103 +49,138 @@ public class FrmAccountList extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FrmAccountList() {
+	public FrmAccountList(int id) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 700, 670);
+		setBounds(0, 0, 700, 660);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JTextField textLabel = new JTextField();
-		textLabel.setForeground(new Color(255, 255, 255));
-		textLabel.setBackground(new Color(128, 64, 64));
-		textLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		textLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		textLabel.setText("Liste des comptes");
-		textLabel.setBounds(0, 0, 686, 76);
-		contentPane.add(textLabel);
-		textLabel.setColumns(10);
+		JTextField txtTitle = new JTextField();
+		txtTitle.setForeground(new Color(0, 0, 0));
+		txtTitle.setBackground(new Color(200, 173, 167));
+		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
+		// Affichage du libellé client en titre :
+		String accountOwner = AccountListController.getAccountOwner(id);
+		txtTitle.setText(accountOwner);
+		txtTitle.setBounds(0, 0, 686, 77);
+		contentPane.add(txtTitle);
+		txtTitle.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(53, 109, 579, 315);
+		scrollPane.setBounds(20, 100, 650, 350);
 		contentPane.add(scrollPane);
 
 		// Récupération de la liste des comptes du client (à modifier avec l'ID dynamique)
-		List<Account> accountList = AccountListController.getAccountList(2);
+		List<Account> accountList = AccountListController.getAccountList(id);
 		
 		// Affichage de la liste :
 		JList<Account> list = new JList<Account>();
+		list.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		list.setListData(accountList.toArray(new Account[0]));
 		scrollPane.setViewportView(list);
 		
-		JButton btnNewAccount = new JButton("Ouvrir un compte");
-		btnNewAccount.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewAccount.setBounds(53, 460, 160, 25);
-		contentPane.add(btnNewAccount);
+		// Sélection du compte dans la liste :
+		list.addListSelectionListener(new ListSelectionListener(){
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				btnModifier.setEnabled(true);
+				btnCloturer.setEnabled(true);
+				btnCrediter.setEnabled(true);
+				btnDebiter.setEnabled(true);
+				btnTransferer.setEnabled(true);
+			}
+		});
 		
-		JButton btnCloseAccount = new JButton("Clôturer un compte");
-		btnCloseAccount.setEnabled(false);
-		btnCloseAccount.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCloseAccount.setBounds(472, 460, 160, 25);
-		contentPane.add(btnCloseAccount);
+		btnOuvrir = new JButton("Ouvrir");
+		btnOuvrir.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnOuvrir.setBounds(127, 506, 100, 30);
+		contentPane.add(btnOuvrir);
 		
-		JButton btnEditAccount = new JButton("Modifier un compte");
-		btnEditAccount.setEnabled(false);
-		btnEditAccount.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditAccount.setBounds(263, 460, 160, 25);
-		contentPane.add(btnEditAccount);
-		
-		JButton btnCreditAccount = new JButton("Créditer");
-		btnCreditAccount.setEnabled(false);
-		btnCreditAccount.addActionListener(new ActionListener() {
+		// Clic sur le bouton "Ouvrir" :
+		btnOuvrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCreditAccount.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCreditAccount.setBounds(53, 534, 160, 25);
-		contentPane.add(btnCreditAccount);
 		
-		JButton btnDebitAccount = new JButton("Débiter");
-		btnDebitAccount.setEnabled(false);
-		btnDebitAccount.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnDebitAccount.setBounds(472, 534, 160, 25);
-		contentPane.add(btnDebitAccount);
+		btnModifier = new JButton("Modifier");
+		btnModifier.setEnabled(false);
+		btnModifier.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnModifier.setBounds(237, 506, 100, 30);
+		contentPane.add(btnModifier);
 		
-		JButton btnTransfrerFrom = new JButton("Transférer");
-		btnTransfrerFrom.setEnabled(false);
-		btnTransfrerFrom.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnTransfrerFrom.setBounds(263, 534, 160, 25);
-		contentPane.add(btnTransfrerFrom);
+		// Clic sur le bouton "Modifier" :
+		btnModifier.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
-		JButton btnSeeClientsFrame = new JButton("Gestion des clients");
-		btnSeeClientsFrame.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSeeClientsFrame.setBounds(263, 583, 160, 25);
-		contentPane.add(btnSeeClientsFrame);
+		btnCloturer = new JButton("Clôturer");
+		btnCloturer.setEnabled(false);
+		btnCloturer.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnCloturer.setBounds(347, 506, 100, 30);
+		contentPane.add(btnCloturer);
 		
-		JLabel lblNewLabel = new JLabel("Gestion des comptes :");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(95, 435, 500, 14);
-		contentPane.add(lblNewLabel);
+		// Clic sur le bouton "Clôturer" :
+		btnCloturer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
-		JLabel lblGestionDesComptes = new JLabel("Mouvements d'argent :");
-		lblGestionDesComptes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGestionDesComptes.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblGestionDesComptes.setBounds(95, 509, 500, 14);
-		contentPane.add(lblGestionDesComptes);
+		btnCrediter = new JButton("Créditer");
+		btnCrediter.setEnabled(false);
+		btnCrediter.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnCrediter.setBounds(127, 547, 100, 30);
+		contentPane.add(btnCrediter);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(79, 570, 532, 2);
-		contentPane.add(separator);
+		// Clic sur le bouton "Créditer" :
+		btnCrediter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(79, 496, 532, 2);
-		contentPane.add(separator_1);
+		btnTransferer = new JButton("Transférer");
+		btnTransferer.setEnabled(false);
+		btnTransferer.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnTransferer.setBounds(237, 547, 100, 30);
+		contentPane.add(btnTransferer);
 		
-
+		// Clic sur le bouton "Transférer" :
+		btnTransferer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		btnDebiter = new JButton("Débiter");
+		btnDebiter.setEnabled(false);
+		btnDebiter.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnDebiter.setBounds(347, 547, 100, 30);
+		contentPane.add(btnDebiter);
+		
+		// Clic sur le bouton "Débiter" :
+		btnDebiter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		btnRetour = new JButton("Retour");
+		btnRetour.setBackground(new Color(200, 173, 167));
+		btnRetour.repaint();
+		btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnRetour.setBounds(490, 519, 100, 45);
+		contentPane.add(btnRetour);
+		
+		// Clic sur le bouton "Retour" :
+		btnDebiter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
 		this.setVisible(true);
 	}
 }

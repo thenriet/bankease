@@ -20,5 +20,9 @@ public class AccountListController {
 		List<Account> accountList = new ArrayList<>(AccountDAO.getAccounts(id));
 		return accountList;
 	}
+	
+	public static String getAccountOwner (int id) {
+		return AccountDAO.getAccountOwner(id);
+	}
 
 }
