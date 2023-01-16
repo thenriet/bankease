@@ -31,5 +31,13 @@ public class ClientHandler {
 		Client[] arrayClients = allClients.toArray(new Client[0]);
 		return arrayClients;
 	}
+	
+	public static Client showOneClient(int id) {
+		return ClientDao.getOneClient(id);
+	}
+	
+	public static void deleteClient(int id) {
+		ClientDao.deleteClient(id);
+	}
 
 }

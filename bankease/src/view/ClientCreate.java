@@ -32,10 +32,6 @@ import java.awt.event.FocusEvent;
 
 public class ClientCreate extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField txtAdresse_1;
-	private JTextField txtDateDeNaissance;
-	private JTextField txtAdresse;
 
 	public ClientCreate() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -19,10 +19,15 @@ public class ClientDao {
 		try {
 			Connection conn = Connect.getConnection();
 			Statement st = conn.createStatement();
-			rs = st.executeQuery("SELECT * FROM CLIENT");
+			rs = st.executeQuery("SELECT * FROM CLIENT ORDER BY client_id");
 
 			while (rs.next()) {
-				Client oneClient = new Client(rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5));
+				Client oneClient = new Client();
+				oneClient.setClientId(rs.getInt(1));
+				oneClient.setClientDescription(rs.getString(2));
+				oneClient.setClientBirthdate(rs.getDate(3));
+				oneClient.setClientAddress(rs.getString(4));
+				oneClient.setClientPhone(rs.getString(5));
 				allClients.add(oneClient);
 			}
 			conn.close();
@@ -81,8 +86,26 @@ public class ClientDao {
 
 			conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void deleteClient(int id) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try { 
+			String query = "DELETE FROM CLIENT WHERE client_id=?";
+			conn = Connect.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, id);
+
+			stmt.executeUpdate();
+
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

@@ -17,7 +17,6 @@ public class Client {
 	}
 	
 	public Client() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Client(Object object, Object clientBirthdate, Object object3, Object object4) {
@@ -29,7 +28,7 @@ public class Client {
 	}
 	
 	public String toString() {
-		return this.clientDescription + " - " + clientAddress;
+		return this.clientDescription;
 	}
 
 	public int getClientId() {
