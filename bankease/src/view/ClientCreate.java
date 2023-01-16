@@ -21,10 +21,14 @@ import controller.ClientHandler;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.DropMode;
 import javax.swing.JFormattedTextField;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class ClientCreate extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -61,6 +65,22 @@ public class ClientCreate extends JFrame {
 		getContentPane().add(panel_3);
 		
 		JTextField textField = new JTextField();
+		textField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(textField.getText().equals("Entrer le nom du nouveau client")) {
+					textField.setText("");
+					textField.setForeground(new Color(153, 153, 153));
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(textField.getText().equals("")) {
+					textField.setText("Entrer le nom du nouveau client");
+					textField.setForeground(new Color(153, 153, 153));
+				}
+			}
+		});
 		panel_3.add(textField);
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField.setText("Entrer le nom du nouveau client");
@@ -72,7 +92,24 @@ public class ClientCreate extends JFrame {
 		getContentPane().add(panel_3_1);
 		
 		JTextField txtAdresse = new JTextField();
-		txtAdresse.setText("Adresse");
+		txtAdresse.setForeground(new Color(153, 153, 153));
+		txtAdresse.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtAdresse.getText().equals("Entrer une adresse")) {
+					txtAdresse.setText("");
+					txtAdresse.setForeground(new Color(153, 153, 153));
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtAdresse.getText().equals("")) {
+					txtAdresse.setText("Entrer une adresse");
+					txtAdresse.setForeground(new Color(153, 153, 153));
+				}
+			}
+		});
+		txtAdresse.setText("Entrer une adresse");
 		txtAdresse.setHorizontalAlignment(SwingConstants.LEFT);
 		txtAdresse.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtAdresse.setColumns(30);
@@ -94,15 +131,28 @@ public class ClientCreate extends JFrame {
 		getContentPane().add(panel_3_1_2);
 		
 		JTextField txtTel = new JTextField();
-		txtTel.setText("tel");
+		txtTel.setForeground(new Color(153, 153, 153));
+		txtTel.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtTel.getText().equals("Entrer un numéro de téléphone")) {
+					txtTel.setText("");
+					txtTel.setForeground(new Color(153, 153, 153));
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtTel.getText().equals("")) {
+					txtTel.setText("Entrer un numéro de téléphone");
+					txtTel.setForeground(new Color(153, 153, 153));
+				}
+			}
+		});
+		txtTel.setText("Entrer un numéro de téléphone");
 		txtTel.setHorizontalAlignment(SwingConstants.LEFT);
 		txtTel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtTel.setColumns(30);
 		panel_3_1_2.add(txtTel);
-		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setBounds(147, 251, 172, 26);
-		getContentPane().add(formattedTextField);
 		btnNewButton.addActionListener(new ActionListener() {
 
 			@Override
