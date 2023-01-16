@@ -3,8 +3,6 @@ package controller;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
-
 import dao.ClientDao;
 import model.Client;
 
@@ -25,6 +23,13 @@ public class ClientHandler {
 
 		Client newClient = new Client(data.get(0), data.get(1), data.get(2), data.get(3));
 		ClientDao.createClient(newClient);
+	}
+	
+	public static Client[] listOfClients() {
+		List<Client> allClients = new ArrayList<>();
+		allClients.addAll(ClientDao.getAllClients());
+		Client[] arrayClients = allClients.toArray(new Client[0]);
+		return arrayClients;
 	}
 
 }

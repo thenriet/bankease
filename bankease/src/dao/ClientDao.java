@@ -64,10 +64,6 @@ public class ClientDao {
 
 	public static void createClient(Client client) {
 
-
-//		String request = "INSERT INTO CLIENT (client_description, birth_date, address, phone) VALUES('"
-//				+ client.getClientDescription() + "',  '" + client.getClientBirthdate() + "', '"
-//				+ client.getClientAddress() + "', '" + client.getClientPhone() + "')";
 		Connection conn = null;
 		PreparedStatement stmt = null;
 

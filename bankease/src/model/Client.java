@@ -27,6 +27,10 @@ public class Client {
 		this.clientAddress = (String) object3;
 		this.clientPhone = (String) object4;
 	}
+	
+	public String toString() {
+		return this.clientDescription + " - " + clientAddress;
+	}
 
 	public int getClientId() {
 		return clientId;
