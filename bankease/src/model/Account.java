@@ -13,7 +13,7 @@ public abstract class Account {
 	protected float balance;
 	
 	public String toString() {
-		return "Compte " + accountType + " n°" + accountId + " - " + ownerDescription + " - Solde : " + balance;
+		return "Compte " + accountType + " n°" + accountId + " - " + ownerDescription + " - Solde : " + balance + " €";
 	}
 
 	public Account() {}

@@ -5,12 +5,17 @@ package vue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controller.AccountListController;
+import model.Account;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -64,8 +69,10 @@ public class FrmAccountList extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(53, 109, 579, 315);
 		contentPane.add(scrollPane);
-		
-		JList list = new JList();
+
+		AccountListController accountList = new AccountListController(2);
+		Account[] data = accountList.getAccountList().toArray(new Account[0]);
+		JList<Account> list = new JList<Account>(data);
 		scrollPane.setViewportView(list);
 		
 		JButton btnNewAccount = new JButton("Ouvrir un compte");
