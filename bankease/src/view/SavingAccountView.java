@@ -37,11 +37,36 @@ public class SavingAccountView extends JFrame {
 		
 		getContentPane().setLayout(null);
 		setSize(660,700);
-		JLabel monMessage = new JLabel("  ");
-		monMessage.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		monMessage.setForeground(new Color(255, 0, 0));
-		monMessage.setBounds(197, 240, 184, 14);
-		getContentPane().add(monMessage);
+		
+		JLabel monMessageS = new JLabel("  ");
+		monMessageS.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		monMessageS.setForeground(new Color(255, 0, 0));
+		monMessageS.setBounds(197, 240, 184, 14);
+		getContentPane().add(monMessageS);
+		
+		JLabel monMessage_2S = new JLabel("   ");
+		monMessage_2S.setForeground(new Color(255, 0, 0));
+		monMessage_2S.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		monMessage_2S.setBounds(197, 297, 108, 14);
+		getContentPane().add(monMessage_2S);
+		
+		JLabel monMessage_3S = new JLabel("  ");
+		monMessage_3S.setForeground(Color.RED);
+		monMessage_3S.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		monMessage_3S.setBounds(197, 367, 108, 14);
+		getContentPane().add(monMessage_3S);
+		
+		JLabel monMessage_4S = new JLabel("  ");
+		monMessage_4S.setForeground(Color.RED);
+		monMessage_4S.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		monMessage_4S.setBounds(197, 436, 108, 14);
+		getContentPane().add(monMessage_4S);
+		
+		JLabel monMessage_5S = new JLabel("  ");
+		monMessage_5S.setForeground(new Color(255, 0, 0));
+		monMessage_5S.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		monMessage_5S.setBounds(72, 485, 406, 14);
+		getContentPane().add(monMessage_5S);
 		
 		
 		// Choisir compte courant ou compte épargne
@@ -84,21 +109,46 @@ public class SavingAccountView extends JFrame {
 				
 				public void actionPerformed(ActionEvent e) {
 					String titu = titulaire.getText();
-					float bal = Float.parseFloat(balance.getText());
-					float bal_limit= Float.parseFloat(balance_limit.getText());
-					float interest= Float.parseFloat(interest_rate.getText());
+					float int_rate= Float.parseFloat(interest_rate.getText());
+					float bal_lim= Float.parseFloat(balance_limit.getText());
+					float bal=Float.parseFloat(balance.getText());
 					
 					try {
 						
 						// TODO ajouter num compte et client id
-						
-						if (SavingAccountHandler.createSavingAccount(44,444444,titu,bal,interest,bal_limit)==null) {
-							
-							monMessage.setText("100 caractères maximum");
+
+						if (monMessage_2S.getText()==null || monMessage_2S.getText().isEmpty()) {
+													
+						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_balance") {
+							monMessage_2S.setText("Entrer un chiffre valide");
 							setVisible(true);
 						}
 						
-						else{SavingAccountHandler.createSavingAccount(44,444444,titu,bal,interest,bal_limit);}
+						if (monMessage_3S.getText()==null || monMessage_2S.getText().isEmpty()) {
+						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_min_balance") {
+							monMessage_3S.setText("Entrer un chiffre valide");
+							setVisible(true);
+						}
+						
+						if (monMessage_4S.getText()==null || monMessage_2S.getText().isEmpty()) {
+						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_transfer_fee") {
+							monMessage_4S.setText("Entrer un chiffre valide");
+							setVisible(true);
+						}
+													
+						if (titu.length()>100) {
+							monMessageS.setText("100 caractères maximum");
+							setVisible(true);
+						}
+													
+						if(bal>bal_lim) {
+							monMessage_5S.setText("Le solde initial doit être inférieur au plafond");
+							setVisible(true);
+						}
+						
+						else{
+	
+							SavingAccountHandler.createSavingAccount(44,444444,titu,bal,int_rate,bal_lim);}
 						
 					} catch (SQLException e1) {
 						e1.printStackTrace();
@@ -114,7 +164,7 @@ public class SavingAccountView extends JFrame {
 			
 			//Affichage des titres
 			
-			JLabel lblNewLabel = new JLabel("Solde minimum");
+			JLabel lblNewLabel = new JLabel("Plafond");
 			lblNewLabel.setBounds(72, 350, 92, 14);
 			getContentPane().add(lblNewLabel);
 			
@@ -125,7 +175,7 @@ public class SavingAccountView extends JFrame {
 			lblNewLabel_2.setBounds(72, 124, 96, 23);
 			getContentPane().add(lblNewLabel_2);
  		
-			JLabel lblNewLabel_3 = new JLabel("Frais de transfert");
+			JLabel lblNewLabel_3 = new JLabel("Taux d'intérêt");
 			lblNewLabel_3.setBounds(72, 284, 95, 14);
 			getContentPane().add(lblNewLabel_3);
 	
@@ -144,7 +194,6 @@ public class SavingAccountView extends JFrame {
 			getContentPane().add(lblNewLabel_4);
 			
 
-
-
+			
 	}
 }

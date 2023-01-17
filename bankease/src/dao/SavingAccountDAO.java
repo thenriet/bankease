@@ -62,6 +62,25 @@ public class SavingAccountDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public static void DeleteSavingAccount(int id) {
+
+		try {
+			String query = "DELETE FROM SAVING_ACCOUNT WHERE account_id=?";
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "root",
+					"9D7896N6");
+
+			PreparedStatement st = conn.prepareStatement(query);
+			st.setInt(1, id);
+
+			st.executeUpdate();
+
+			conn.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 	
 }

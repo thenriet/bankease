@@ -37,11 +37,36 @@ public class CheckingAccountView extends JFrame {
 		
 		getContentPane().setLayout(null);
 		setSize(660,700);
+		
 		JLabel monMessage = new JLabel("  ");
 		monMessage.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		monMessage.setForeground(new Color(255, 0, 0));
 		monMessage.setBounds(197, 240, 184, 14);
 		getContentPane().add(monMessage);
+		
+		JLabel monMessage_2 = new JLabel("   ");
+		monMessage_2.setForeground(new Color(255, 0, 0));
+		monMessage_2.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		monMessage_2.setBounds(197, 297, 108, 14);
+		getContentPane().add(monMessage_2);
+		
+		JLabel monMessage_3 = new JLabel("  ");
+		monMessage_3.setForeground(Color.RED);
+		monMessage_3.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		monMessage_3.setBounds(197, 367, 108, 14);
+		getContentPane().add(monMessage_3);
+		
+		JLabel monMessage_4 = new JLabel("  ");
+		monMessage_4.setForeground(Color.RED);
+		monMessage_4.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		monMessage_4.setBounds(197, 436, 108, 14);
+		getContentPane().add(monMessage_4);
+		
+		JLabel monMessage_5 = new JLabel("  ");
+		monMessage_5.setForeground(new Color(255, 0, 0));
+		monMessage_5.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		monMessage_5.setBounds(72, 485, 406, 14);
+		getContentPane().add(monMessage_5);
 		
 		
 		// Choisir compte courant ou compte épargne
@@ -84,21 +109,46 @@ public class CheckingAccountView extends JFrame {
 				
 				public void actionPerformed(ActionEvent e) {
 					String titu = titulaire.getText();
-					float bal = Float.parseFloat(balance.getText());
 					float min_bal= Float.parseFloat(min_balance.getText());
 					float transfer= Float.parseFloat(transfer_fee.getText());
+					float bal=Float.parseFloat(balance.getText());
 					
 					try {
 						
 						// TODO ajouter num compte et client id
-						
-						if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)==null) {
-							
-							monMessage.setText("100 caractères maximum");
+
+						if (monMessage_2.getText()==null || monMessage_2.getText().isEmpty()) {
+													
+						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_balance") {
+							monMessage_2.setText("Entrer un chiffre valide");
 							setVisible(true);
 						}
 						
-						else{CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal);}
+						if (monMessage_3.getText()==null || monMessage_2.getText().isEmpty()) {
+						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_min_balance") {
+							monMessage_3.setText("Entrer un chiffre valide");
+							setVisible(true);
+						}
+						
+						if (monMessage_4.getText()==null || monMessage_2.getText().isEmpty()) {
+						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_transfer_fee") {
+							monMessage_4.setText("Entrer un chiffre valide");
+							setVisible(true);
+						}
+													
+						if (titu.length()>100) {
+							monMessage.setText("100 caractères maximum");
+							setVisible(true);
+						}
+													
+						if(bal<min_bal) {
+							monMessage_5.setText("Le solde initial doit être supérieur au solde minimum");
+							setVisible(true);
+						}
+						
+						else{
+	
+							CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal);}
 						
 					} catch (SQLException e1) {
 						e1.printStackTrace();
@@ -144,7 +194,6 @@ public class CheckingAccountView extends JFrame {
 			getContentPane().add(lblNewLabel_4);
 			
 
-
-
+			
 	}
 }
