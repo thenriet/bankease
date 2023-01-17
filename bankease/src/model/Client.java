@@ -19,12 +19,11 @@ public class Client {
 	public Client() {
 	}
 
-	public Client(Object object, Object clientBirthdate, Object object3, Object object4) {
-		// TODO Auto-generated constructor stub
-		this.clientDescription = (String) object;
+	public Client(Object clientDescription, Object clientBirthdate, Object clientAddress, Object clientPhone) {
+		this.clientDescription = (String) clientDescription;
 		this.clientBirthdate = (Date) clientBirthdate;
-		this.clientAddress = (String) object3;
-		this.clientPhone = (String) object4;
+		this.clientAddress = (String) clientAddress;
+		this.clientPhone = (String) clientPhone;
 	}
 	
 	public String toString() {

@@ -4,25 +4,77 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import dao.ClientDao;
+import dao.Regex;
 import model.Client;
 
 public class ClientHandler {
-
-	public static List<Object> checkData(List<String> uncheckedData) {
+	
+	public static List<String> checkEmptyAndDataTrim(List<String> uncheckedData) {
+		List<String> rawData = new ArrayList<>();
+		for (String data : uncheckedData) {
+			if (!data.isEmpty()){
+				data = data.trim();
+				rawData.add(data);
+			}
+		}
+		return rawData;
+	}
+	
+	public static List<Object> checkClientDescription(List<String> uncheckedData) {
 		List<Object> checkedData = new ArrayList<>();
 		for (String data : uncheckedData) {
-			data.trim();
 			checkedData.add(data);
 		}
-		Date date = Date.valueOf((String) checkedData.get(1));
-		checkedData.set(1, date);
-		return checkedData;
+		String strClientDescription = (String) checkedData.get(0);
+		if (strClientDescription.length() <101) {
+			return checkedData;
+		} else {
+			return null;
+		}
 	}
+	
+	public static List<Object> checkPhone(List<String> uncheckedData) {
+		List<Object> checkedData = new ArrayList<>();
+		Regex regex = new Regex();
+		for (String data : uncheckedData) {
+			checkedData.add(data);
+		}
+		String strPhone = (String) checkedData.get(3);
+		if (regex.phoneMatch(strPhone)) {
+			
+			return checkedData;
+		} else {
+			return null;
+		}
+	}
+	
+	public static List<Object> checkDate(List<String> uncheckedData) {
+		List<Object> checkedData = new ArrayList<>();
+		Regex regex = new Regex();
+		
+		for (String data : uncheckedData) {
+			checkedData.add(data);
+		}
 
-	public static void createClient(List<Object> data) {
+		String strDate = (String) checkedData.get(1);
+		
+		if (regex.matches(strDate)) {
+			Date date = Date.valueOf((String) checkedData.get(1));
+			checkedData.set(1, date);
+			return checkedData;
+		} else {
+			return null;
+		}
+	}
+	
+	
 
-		Client newClient = new Client(data.get(0), data.get(1), data.get(2), data.get(3));
+	public static void createClient(List<Object> checkedData) {
+		
+		if(checkedData != null) {
+		Client newClient = new Client(checkedData.get(0), checkedData.get(1), checkedData.get(2), checkedData.get(3));
 		ClientDao.createClient(newClient);
+		}
 	}
 	
 	public static Client[] listOfClients() {
