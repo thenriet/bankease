@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import controller.AccountListController;
+import Controller.AccountListController;
 import model.Account;
 import java.awt.Color;
 import javax.swing.JTextField;

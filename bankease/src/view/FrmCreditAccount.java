@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import controller.AccountListController;
+import Controller.AccountListController;
 import model.Account;
 import model.CheckingAccount;
 import model.SavingAccount;
