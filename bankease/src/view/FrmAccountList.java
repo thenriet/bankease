@@ -1,14 +1,17 @@
-package vue;
+package view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import Controller.AccountListController;
+
+import controller.AccountListController;
 import model.Account;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
@@ -29,27 +32,13 @@ public class FrmAccountList extends JFrame {
 	private JButton btnTransferer;
 	private JButton btnDebiter;
 	private JButton btnRetour;
+	private Account selectedAccount;
 
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					FrmAccountList frame = new FrmAccountList();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public FrmAccountList(int id) {
+	public FrmAccountList(int clientId) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 700, 660);
@@ -58,31 +47,29 @@ public class FrmAccountList extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JTextField txtTitle = new JTextField();
-		txtTitle.setForeground(new Color(0, 0, 0));
+
+		// Affichage du libellé du client en titre :
+		JTextField txtTitle = new JTextField(AccountListController.getAccountOwner(clientId));
 		txtTitle.setBackground(new Color(200, 173, 167));
+		txtTitle.setOpaque(true);
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
-		// Affichage du libellé client en titre :
-		String accountOwner = AccountListController.getAccountOwner(id);
-		txtTitle.setText(accountOwner);
 		txtTitle.setBounds(0, 0, 686, 77);
 		contentPane.add(txtTitle);
-		txtTitle.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 100, 650, 350);
+		scrollPane.setBounds(20, 150, 650, 300);
 		contentPane.add(scrollPane);
 
 		// Récupération de la liste des comptes du client (à modifier avec l'ID dynamique)
-		List<Account> accountList = AccountListController.getAccountList(id);
+		List<Account> accountList = AccountListController.getAccountList(clientId);
 		
 		// Affichage de la liste :
 		JList<Account> list = new JList<Account>();
 		list.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		list.setListData(accountList.toArray(new Account[0]));
 		scrollPane.setViewportView(list);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		// Sélection du compte dans la liste :
 		list.addListSelectionListener(new ListSelectionListener(){
@@ -94,6 +81,8 @@ public class FrmAccountList extends JFrame {
 				btnCrediter.setEnabled(true);
 				btnDebiter.setEnabled(true);
 				btnTransferer.setEnabled(true);
+				
+				selectedAccount = list.getSelectedValue();
 			}
 		});
 		
@@ -141,6 +130,8 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Créditer" :
 		btnCrediter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				AccountListController.goToCreditDebit(selectedAccount, "créditer");
 			}
 		});
 		
@@ -165,6 +156,8 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Débiter" :
 		btnDebiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				AccountListController.goToCreditDebit(selectedAccount, "débiter");
 			}
 		});
 		
@@ -176,7 +169,7 @@ public class FrmAccountList extends JFrame {
 		contentPane.add(btnRetour);
 		
 		// Clic sur le bouton "Retour" :
-		btnDebiter.addActionListener(new ActionListener() {
+		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
