@@ -46,8 +46,8 @@ public class CheckingAccountDAO {
 	public static void CreateCheckingAccount(CheckingAccount checkingaccount) {
 
 		String sql = "INSERT INTO CHECKING_ACCOUNT (owner_description,transfer_fee,min_balance,balance) VALUES('"
-				+ checkingaccount.getownerDescription() + "','" + checkingaccount.getTransfer_fee() + "','"
-				+ checkingaccount.getMin_balance() + "','" + checkingaccount.getBalance() + "')";
+				+ checkingaccount.getOwnerDescription() + "','" + checkingaccount.getTransferFee() + "','"
+				+ checkingaccount.getMinBalance() + "','" + checkingaccount.getBalance() + "')";
 
 		try {
 
