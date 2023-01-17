@@ -24,12 +24,12 @@ public class SavingAccountDAO {
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "root",
 				"9D7896N6");
 		java.sql.Statement st = conn.createStatement();
-		ResultSet account_id = st.executeQuery("SELECT * FROM SAVING_ACCOUNT WHERE account_id = '" + id + "'" );
+		ResultSet accountId = st.executeQuery("SELECT * FROM SAVING_ACCOUNT WHERE account_id = '" + id + "'" );
 		
-		while (account_id.next()) {
+		while (accountId.next()) {
 				
-				compte = new SavingAccount(id, account_id.getInt(2),account_id.getString(3),
-						account_id.getFloat(4),account_id.getFloat(5),account_id.getFloat(6));
+				compte = new SavingAccount(id, accountId.getInt(2),accountId.getString(3),
+						accountId.getFloat(4),accountId.getFloat(5),accountId.getFloat(6));
 			
 		}
 		conn.close();

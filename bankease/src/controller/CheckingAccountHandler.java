@@ -8,10 +8,10 @@ import view.CheckingAccountView;
 
 public class CheckingAccountHandler {
 
-	public static Object createCheckingAccount(int account_id, int client_id, String owner_description, float balance,
-			float transfer_fee, float min_balance) throws SQLException {
+	public static Object createCheckingAccount(int accountId, int clientId, String ownerDescription, float balance,
+			float transferFee, float minBalance) throws SQLException {
 
-		if (owner_description.length() > 100) {
+		if (ownerDescription.length() > 100) {
 			return "caractere_depasse";
 		}
 		
@@ -21,22 +21,22 @@ public class CheckingAccountHandler {
 			System.out.println("e");
 		}
 		
-		if (min_balance != (int) min_balance && min_balance != (float) min_balance ) {
+		if (minBalance != (int) minBalance && minBalance != (float) minBalance ) {
 			return "type_min_balance";
 		}
 		
-		if (transfer_fee != (int) transfer_fee && transfer_fee != (float) transfer_fee ) {
+		if (transferFee != (int) transferFee && transferFee != (float) transferFee ) {
 			return "type_transfer_fee";
 		}
 		
-		if(balance<min_balance) {
+		if(balance<minBalance) {
 			return "min_balance";
 		}
 
 		else {
 
-			CheckingAccount newAccount = new CheckingAccount(account_id, client_id, owner_description, balance,
-					transfer_fee, min_balance);
+			CheckingAccount newAccount = new CheckingAccount(accountId, clientId, ownerDescription, balance,
+					transferFee, minBalance);
 			CheckingAccountDAO.CreateCheckingAccount(newAccount);
 			return newAccount;
 

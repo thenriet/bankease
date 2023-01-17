@@ -21,16 +21,16 @@ public class SavingAccount extends Account {
 		return interestRate;
 	}
 
-	public void setInterestRate(float interest_rate) {
-		this.interestRate = interest_rate;
+	public void setInterestRate(float interestRate) {
+		this.interestRate = interestRate;
 	}
 
 	public float getBalanceLimit() {
 		return balanceLimit;
 	}
 
-	public void setBalanceLimit(float balance_limit) {
-		this.balanceLimit = balance_limit;
+	public void setBalanceLimit(float balanceLimit) {
+		this.balanceLimit = balanceLimit;
 	}
 
 }

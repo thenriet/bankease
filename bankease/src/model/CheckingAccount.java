@@ -19,16 +19,16 @@ public class CheckingAccount extends Account {
 		return transferFee;
 	}
 
-	public void setTransferFee(float transfer_fee) {
-		this.transferFee = transfer_fee;
+	public void setTransferFee(float transferFee) {
+		this.transferFee = transferFee;
 	}
 
 	public float getMinBalance() {
 		return minBalance;
 	}
 
-	public void setMinBalance(float min_balance) {
-		this.minBalance = min_balance;
+	public void setMinBalance(float minBalance) {
+		this.minBalance = minBalance;
 	}
 
 

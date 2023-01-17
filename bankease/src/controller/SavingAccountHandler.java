@@ -6,11 +6,11 @@ import model.SavingAccount;
 
 public class SavingAccountHandler {
 	
-public static Object createSavingAccount(int account_id, int client_id,String owner_description, 
-		float balance, float interest_rate, float balance_limit) throws SQLException {
+public static Object createSavingAccount(int accountId, int clientId,String ownerDescription, 
+		float balance, float interestRate, float balanceLimit) throws SQLException {
 
-	if(owner_description.length()<100) {
-	SavingAccount newAccount = new SavingAccount(account_id,client_id,owner_description,balance,interest_rate, balance_limit);
+	if(ownerDescription.length()<100) {
+	SavingAccount newAccount = new SavingAccount(accountId,clientId,ownerDescription,balance,interestRate, balanceLimit);
 	SavingAccountDAO.CreateSavingAccount(newAccount);
 	return newAccount;
 }
