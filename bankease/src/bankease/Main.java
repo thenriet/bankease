@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import view.CheckingAccountView;
+import view.ClientsList;
 import view.OuvrirCompte;
 import view.SavingAccountView;
 
@@ -43,6 +44,7 @@ public class Main {
 		SavingAccountView f = new SavingAccountView();
 		f.setVisible(true);
 		
+		//new ClientsList();
 		
 		//System.out.println(CheckingAccountDAO.OneCheckingAccount(444444).getOwner_description());
 
