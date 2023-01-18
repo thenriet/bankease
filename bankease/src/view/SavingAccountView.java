@@ -31,7 +31,9 @@ public class SavingAccountView extends JFrame {
 	private JTextField balance;
 	private JTextField num_compte;
 	private JTextField solde_initial;
-
+	float int_rate;
+	float bal_lim;
+	float bal;
 
 	public SavingAccountView() {
 		
@@ -109,9 +111,6 @@ public class SavingAccountView extends JFrame {
 				
 				public void actionPerformed(ActionEvent e) {
 					String titu = titulaire.getText();
-					float int_rate= Float.parseFloat(interest_rate.getText());
-					float bal_lim= Float.parseFloat(balance_limit.getText());
-					float bal=Float.parseFloat(balance.getText());
 					
 					try {
 						
@@ -124,17 +123,24 @@ public class SavingAccountView extends JFrame {
 							setVisible(true);
 						}
 						
-						if (monMessage_3S.getText()==null || monMessage_2S.getText().isEmpty()) {
+						else {int_rate= Float.parseFloat(interest_rate.getText());}
+						
+						if (monMessage_3S.getText()==null || monMessage_3S.getText().isEmpty()) {
 						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_min_balance") {
 							monMessage_3S.setText("Entrer un chiffre valide");
 							setVisible(true);
 						}
 						
-						if (monMessage_4S.getText()==null || monMessage_2S.getText().isEmpty()) {
+						else {bal_lim= Float.parseFloat(balance_limit.getText());}
+						
+						if (monMessage_4S.getText()==null || monMessage_4S.getText().isEmpty()) {
 						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_transfer_fee") {
 							monMessage_4S.setText("Entrer un chiffre valide");
 							setVisible(true);
 						}
+						
+						else {bal=Float.parseFloat(balance.getText());}
+						
 													
 						if (titu.length()>100) {
 							monMessageS.setText("100 caractères maximum");

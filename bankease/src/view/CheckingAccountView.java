@@ -31,13 +31,17 @@ public class CheckingAccountView extends JFrame {
 	private JTextField balance;
 	private JTextField num_compte;
 	private JTextField solde_initial;
-
+	float transfer;
+	float min_bal;
+	float bal;
 
 	public CheckingAccountView() {
 		
 		getContentPane().setLayout(null);
 		setSize(660,700);
 		
+
+//		
 		JLabel monMessage = new JLabel("  ");
 		monMessage.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		monMessage.setForeground(new Color(255, 0, 0));
@@ -109,9 +113,7 @@ public class CheckingAccountView extends JFrame {
 				
 				public void actionPerformed(ActionEvent e) {
 					String titu = titulaire.getText();
-					float min_bal= Float.parseFloat(min_balance.getText());
-					float transfer= Float.parseFloat(transfer_fee.getText());
-					float bal=Float.parseFloat(balance.getText());
+
 					
 					try {
 						
@@ -124,17 +126,23 @@ public class CheckingAccountView extends JFrame {
 							setVisible(true);
 						}
 						
-						if (monMessage_3.getText()==null || monMessage_2.getText().isEmpty()) {
+						else {transfer= Float.parseFloat(transfer_fee.getText());}
+						
+						if (monMessage_3.getText()==null || monMessage_3.getText().isEmpty()) {
 						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_min_balance") {
 							monMessage_3.setText("Entrer un chiffre valide");
 							setVisible(true);
 						}
 						
-						if (monMessage_4.getText()==null || monMessage_2.getText().isEmpty()) {
+						else {min_bal= Float.parseFloat(min_balance.getText());}
+						
+						if (monMessage_4.getText()==null || monMessage_4.getText().isEmpty()) {
 						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_transfer_fee") {
 							monMessage_4.setText("Entrer un chiffre valide");
 							setVisible(true);
 						}
+						
+						else {bal=Float.parseFloat(balance.getText());}
 													
 						if (titu.length()>100) {
 							monMessage.setText("100 caractères maximum");
@@ -153,7 +161,6 @@ public class CheckingAccountView extends JFrame {
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					
 					
 				}
 				
