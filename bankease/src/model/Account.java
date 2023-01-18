@@ -14,6 +14,7 @@ public abstract class Account {
 
 	public Account() {}
 	
+
 	public Account(int accountId, int clientId, String ownerDescription, float balance) {
 		this.accountId = accountId;
 		this.clientId = clientId;
@@ -60,3 +61,4 @@ public abstract class Account {
 	}
 
 }
+

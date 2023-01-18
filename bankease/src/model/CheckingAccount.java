@@ -1,5 +1,6 @@
 package model;
 
+
 public class CheckingAccount extends Account {
 	
 	private float transferFee;
@@ -30,6 +31,5 @@ public class CheckingAccount extends Account {
 	public void setMinBalance(float minBalance) {
 		this.minBalance = minBalance;
 	}
-
 
 }
