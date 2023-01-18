@@ -1,7 +1,6 @@
 package bankease;
 import dao.CheckingAccountDAO;
-
-import vue.FrmAccountList;
+import view.FrmAccountList;
 
 public class Main {
 

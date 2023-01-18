@@ -1,11 +1,12 @@
-package vue;
+package view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import Controller.AccountListController;
+
+import controller.AccountListController;
 import model.Account;
 import java.awt.Color;
 import javax.swing.JTextField;
