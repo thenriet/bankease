@@ -13,7 +13,6 @@ public class Connect {
 	
 	private static final String user = "slebrun";
 	private static final String password = "Simplon59";
-	
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(host + port + db, user,
 				password);
