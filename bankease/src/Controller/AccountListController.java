@@ -2,7 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import dao.AccountDAO;
+import dao.AccountListDAO;
 import model.Account;
 import view.FrmCreditAccount;
 
@@ -18,7 +18,7 @@ public class AccountListController {
 	 * @return ArrayList of Account objects
 	 */
 	public static List<Account> getAccountList(int id) {
-		List<Account> accountList = new ArrayList<>(AccountDAO.getAccounts(id));
+		List<Account> accountList = new ArrayList<>(AccountListDAO.getAccounts(id));
 		return accountList;
 	}
 	
@@ -28,7 +28,7 @@ public class AccountListController {
 	 * @return String client description
 	 */
 	public static String getAccountOwner (int id) {
-		return AccountDAO.getAccountOwner(id);
+		return AccountListDAO.getAccountOwner(id);
 	}
 	
 	public static void goToCreditDebit (Account account, String action) {

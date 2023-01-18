@@ -21,6 +21,10 @@ import model.SavingAccount;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 
+/**
+ * @author S. Lebrun
+ *
+ */
 public class FrmCreditAccount extends JFrame {
 
 
