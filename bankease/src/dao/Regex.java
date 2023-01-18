@@ -11,9 +11,7 @@ public class Regex implements DateMatcher {
       + "|^(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$");
     
     private static Pattern PHONE_PATTERN = Pattern.compile("^\\d{10}$");
-    
-    private static Pattern CLIENT_DESCRIPTION_PATTERN = Pattern.compile("[a-zA-Z ]");
-
+ 
     @Override
     public boolean matches(String date) {
         return DATE_PATTERN.matcher(date).matches();
@@ -22,10 +20,6 @@ public class Regex implements DateMatcher {
     public boolean phoneMatch(String phone) {
     	
     	return PHONE_PATTERN.matcher(phone).matches();
-    }
-    
-    public boolean descriptionMatch(String clientDescription) {
-    	return CLIENT_DESCRIPTION_PATTERN.matcher(clientDescription).matches();
     }
 }
 

@@ -26,7 +26,7 @@ public class ClientHandler {
 			checkedData.add(data);
 		}
 		String strClientDescription = (String) checkedData.get(0);
-		if (strClientDescription.length() <101) {
+		if (strClientDescription.length() <101 && strClientDescription.length() > 1) {
 			return checkedData;
 		} else {
 			return null;

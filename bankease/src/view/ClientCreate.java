@@ -150,23 +150,7 @@ public class ClientCreate extends JFrame {
 		JTextField txtTel = new JTextField();
 		txtTel.setBounds(200, 5, 91, 27);
 		txtTel.setForeground(new Color(153, 153, 153));
-		txtTel.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (txtTel.getText().equals("Entrer un numéro de téléphone")) {
-					txtTel.setText("");
-					txtTel.setForeground(new Color(153, 153, 153));
-				}
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtTel.getText().equals("")) {
-					txtTel.setText("Entrer un numéro de téléphone");
-					txtTel.setForeground(new Color(153, 153, 153));
-				}
-			}
-		});
+			
 
 		panel_3_1_2.setLayout(null);
 
@@ -185,12 +169,12 @@ public class ClientCreate extends JFrame {
 		ErrorPhone.setBounds(330, 11, 298, 16);
 		ErrorPhone.setVisible(false);
 		panel_3_1_2.add(ErrorPhone);
-		
-		JLabel ErrorEmpty = new JLabel("Veuillez remplir tous les champs");
+
+		JLabel ErrorEmpty = new JLabel("Veuillez remplir TOUS les champs");
 		ErrorEmpty.setForeground(new Color(153, 43, 56));
-		ErrorEmpty.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		ErrorEmpty.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		ErrorEmpty.setVisible(false);
-		ErrorEmpty.setBounds(197, 257, 279, 16);
+		ErrorEmpty.setBounds(232, 258, 270, 16);
 		getContentPane().add(ErrorEmpty);
 		btnValidate.addActionListener(new ActionListener() {
 
@@ -206,30 +190,30 @@ public class ClientCreate extends JFrame {
 				datas.add(data2);
 				datas.add(data3);
 				datas.add(data4);
-		
 
 				List<String> trimmedData = new ArrayList<>();
 				trimmedData = ClientHandler.checkEmptyAndDataTrim(datas);
-				
-				if (trimmedData.size()<4) {
+
+				if (trimmedData.size() < 4) {
 					ErrorEmpty.setVisible(true);
-				} else if ((ClientHandler.checkPhone(trimmedData) != null) && (ClientHandler.checkDate(trimmedData) != null)
-						&& (ClientHandler.checkClientDescription(trimmedData) != null)) {
-					List<Object> checkedData = ClientHandler.checkDate(trimmedData);
-					ClientHandler.createClient(checkedData);
-					setVisible(false);
-					new ClientsList();
 				} else if (ClientHandler.checkDate(trimmedData) == null && ClientHandler.checkPhone(trimmedData) == null
 						&& ClientHandler.checkClientDescription(trimmedData) == null) {
 					ErrorDate.setVisible(true);
 					ErrorPhone.setVisible(true);
-					ErrorDescription.setVisible(true);
+					ErrorDescription.setVisible(true);	
 				} else if (ClientHandler.checkDate(trimmedData) == null) {
 					ErrorDate.setVisible(true);
 				} else if (ClientHandler.checkPhone(trimmedData) == null) {
 					ErrorPhone.setVisible(true);
 				} else if (ClientHandler.checkClientDescription(trimmedData) == null) {
 					ErrorDescription.setVisible(true);
+				} else if ((ClientHandler.checkPhone(trimmedData) != null)
+						&& (ClientHandler.checkDate(trimmedData) != null)
+						&& (ClientHandler.checkClientDescription(trimmedData) != null)) {
+					List<Object> checkedData = ClientHandler.checkDate(trimmedData);
+					ClientHandler.createClient(checkedData);
+					setVisible(false);
+					new ClientsList();
 				}
 			}
 		});

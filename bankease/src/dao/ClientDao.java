@@ -35,7 +35,6 @@ public class ClientDao {
 		}
 
 		catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return allClients;
@@ -60,7 +59,6 @@ public class ClientDao {
 		}
 
 		catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return oneClient;
