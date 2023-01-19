@@ -15,7 +15,7 @@ public class Client {
 		this.clientAddress = clientAddress;
 		this.clientPhone = clientPhone;
 	}
-	
+
 	public Client() {
 	}
 
@@ -25,7 +25,7 @@ public class Client {
 		this.clientAddress = (String) clientAddress;
 		this.clientPhone = (String) clientPhone;
 	}
-	
+
 	public String toString() {
 		return this.clientDescription;
 	}

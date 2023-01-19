@@ -106,4 +106,29 @@ public class ClientDao {
 		}
 		
 	}
+	
+	public static void updateClient(Client client) {
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			
+			String query = "UPDATE CLIENT SET client_description = ?, birth_date = ?, address = ?, phone = ? WHERE client_id = ?";
+
+			conn = Connect.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, client.getClientDescription());
+			stmt.setDate(2, client.getClientBirthdate());
+			stmt.setString(3, client.getClientAddress());
+			stmt.setString(4, client.getClientPhone());
+			stmt.setInt(5, client.getClientId());
+
+			stmt.executeUpdate();
+
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

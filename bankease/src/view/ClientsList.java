@@ -33,17 +33,19 @@ public class ClientsList extends JFrame {
 		panel.add(lblNewLabel);
 		JScrollPane scrollPane = new JScrollPane();
 
-		scrollPane.setBounds(0, 60, 660, 400);
+		scrollPane.setBounds(100, 60, 460, 400);
 		getContentPane().add(scrollPane);
 
 		Client[] clientsList = ClientHandler.listOfClients();
 		JList<Client> list = new JList<Client>();
+		list.setFixedCellHeight(44);
+		list.setFont(list.getFont().deriveFont(16.0f));
 		list.setListData(clientsList);
 
 		scrollPane.setViewportView(list);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 472, 660, 120);
+		panel_1.setBounds(0, 540, 660, 39);
 		getContentPane().add(panel_1);
 
 		JButton btnDetailsClient = new JButton("Détails Client");
@@ -57,6 +59,17 @@ public class ClientsList extends JFrame {
 		panel_1.add(btnDetailsClient);
 
 		JButton btnModifyClient = new JButton("Modifier Client");
+		btnModifyClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Client selectedClient = list.getSelectedValue();
+				System.out.println(selectedClient);
+				if(selectedClient !=null) {
+					setVisible(false);
+					new ModifyClient(selectedClient);
+					// ClientHandler.showOneClient(selectedClient);
+				}
+			}
+		});
 		btnModifyClient.setSize(100, 30);
 		btnModifyClient.setEnabled(false);
 		panel_1.add(btnModifyClient);
