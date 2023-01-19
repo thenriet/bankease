@@ -22,6 +22,11 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
+/**
+ * Frame for account selection page
+ * @author S. Lebrun
+ *
+ */
 public class FrmAccountList extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -35,6 +40,9 @@ public class FrmAccountList extends JFrame {
 	private JButton btnRetour;
 	private Account selectedAccount;
 	private JLabel lblMessage;
+	private JLabel lblInfo1;
+	private JLabel lblInfo2;
+	private JLabel lblInfosCompte;
 
 
 	/**
@@ -74,11 +82,11 @@ public class FrmAccountList extends JFrame {
 		contentPane.add(lblMessage);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 150, 650, 300);
+		scrollPane.setBounds(20, 150, 650, 230);
 		contentPane.add(scrollPane);
 
 		// Récupération de la liste des comptes du client 
-		// TODO modifier avec l'ID dynamique
+		// TODO modifier avec l'ID dynamique si récupération du client
 		List<Account> accountList = AccountListController.getAccountList(clientId);
 		
 		// Affichage de la liste :
@@ -100,8 +108,32 @@ public class FrmAccountList extends JFrame {
 				btnTransferer.setEnabled(true);
 				
 				selectedAccount = list.getSelectedValue();
+
+				// Affichage des infos du compte sélectionné :
+				String[] infos = FrmTransfer.showInfos(selectedAccount);
+				lblInfosCompte.setText("Informations sur le compte :");
+				lblInfo1.setText(infos[0]);
+				lblInfo2.setText(infos[1]);
 			}
 		});
+
+		lblInfosCompte = new JLabel();
+		lblInfosCompte.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInfosCompte.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblInfosCompte.setBounds(191, 391, 300, 20);
+		contentPane.add(lblInfosCompte);
+		
+		lblInfo1 = new JLabel();
+		lblInfo1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInfo1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblInfo1.setBounds(191, 422, 300, 20);
+		contentPane.add(lblInfo1);
+		
+		lblInfo2 = new JLabel();
+		lblInfo2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInfo2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblInfo2.setBounds(191, 453, 300, 20);
+		contentPane.add(lblInfo2);
 		
 		btnOuvrir = new JButton("Ouvrir");
 		btnOuvrir.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -111,6 +143,7 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Ouvrir" :
 		btnOuvrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// TODO vers formulaire "ouvrir un compte"
 			}
 		});
 		
@@ -123,6 +156,7 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Modifier" :
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// TODO vers formulaire "modifier un compte"
 			}
 		});
 		
@@ -135,6 +169,7 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Clôturer" :
 		btnCloturer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// TODO vers pop-up "clôturer un compte"
 			}
 		});
 		
@@ -186,10 +221,11 @@ public class FrmAccountList extends JFrame {
 		btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRetour.setBounds(490, 519, 100, 45);
 		contentPane.add(btnRetour);
-		
+
 		// Clic sur le bouton "Retour" :
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// TODO vers liste des clients
 			}
 		});
 		

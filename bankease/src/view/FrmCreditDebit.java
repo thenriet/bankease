@@ -19,6 +19,7 @@ import model.CheckingAccount;
 import model.SavingAccount;
 
 /**
+ * Frame for credit and debit account page
  * @author S. Lebrun
  *
  */
@@ -27,7 +28,7 @@ public class FrmCreditDebit extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtSomme;
+	private JTextField txtMontant;
 	private JButton btnValider;
 	private JButton btnAnnuler;
 	private JLabel lblTitulaire;
@@ -38,24 +39,7 @@ public class FrmCreditDebit extends JFrame {
 	private JLabel lblTauxInteret;
 	private JLabel lblPlafond;
 	private JLabel lblErrorMessage;
-	
-	
 
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					FrmCreditAccount frame = new FrmCreditAccount();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
@@ -133,37 +117,37 @@ public class FrmCreditDebit extends JFrame {
 		lblSolde.setBounds(30, 335, 600, 30);
 		contentPane.add(lblSolde);
 		
-		txtSomme = new JTextField();
-		txtSomme.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtSomme.setBounds(331, 417, 150, 30);
-		contentPane.add(txtSomme);
-		txtSomme.setColumns(10);
+		txtMontant = new JTextField();
+		txtMontant.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtMontant.setBounds(331, 417, 150, 30);
+		contentPane.add(txtMontant);
+		txtMontant.setColumns(10);
 		
-		JLabel lblCrediter = new JLabel("Somme à " + action + "er :");
-		lblCrediter.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCrediter.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCrediter.setBounds(30, 416, 291, 30);
-		contentPane.add(lblCrediter);
+		JLabel lblMontant = new JLabel("Somme à " + action + "er :");
+		lblMontant.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblMontant.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblMontant.setBounds(30, 416, 291, 30);
+		contentPane.add(lblMontant);
 		
 		// Affichage du message d'erreur :
 		lblErrorMessage = new JLabel();
 		lblErrorMessage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblErrorMessage.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblErrorMessage.setForeground(new Color(128, 0, 0));;
-		lblErrorMessage.setBounds(40, 460, 600, 30);
+		lblErrorMessage.setBounds(40, 460, 600, 50);
 		contentPane.add(lblErrorMessage);
 		
 		btnValider = new JButton("Valider");
 		btnValider.setBackground(new Color(128, 255, 128));
 		btnValider.repaint();
 		btnValider.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnValider.setBounds(172, 519, 100, 45);
+		btnValider.setBounds(172, 530, 100, 45);
 		contentPane.add(btnValider);
 		
 		// Clic sur le bouton "Valider" :
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String amount = txtSomme.getText();
+				String amount = txtMontant.getText();
 				String errorMsg = CreditAccountController.creditDebitAccount(action, account, amount);
 				if (errorMsg == null) {
 					String message = CreditAccountController.applyChange(account, action, amount);
@@ -179,7 +163,7 @@ public class FrmCreditDebit extends JFrame {
 		btnAnnuler.setBackground(new Color(255, 128, 128));
 		btnAnnuler.repaint();
 		btnAnnuler.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAnnuler.setBounds(381, 519, 100, 45);
+		btnAnnuler.setBounds(381, 530, 100, 45);
 		contentPane.add(btnAnnuler);
 		
 		

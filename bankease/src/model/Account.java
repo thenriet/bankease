@@ -24,7 +24,7 @@ public abstract class Account {
 
 	
 	public String toString() {
-		return "Compte " + accountType + " n°" + accountId + " - " + ownerDescription + " - Solde : " + String.format("%.02f", balance) + " €";
+		return "Compte " + accountType + " n°" + accountId + " - " + ownerDescription + " - Solde : " + String.format("%,.2f", balance) + " €";
 	}
 
 	
