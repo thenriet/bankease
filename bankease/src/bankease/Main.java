@@ -14,40 +14,16 @@ import java.sql.SQLException;
 
 import view.CheckingAccountView;
 import view.ClientsList;
-import view.OuvrirCompte;
-import view.SavingAccountView;
+import view.FrmAccountList;
 
 public class Main {
 
 	public static void main(String[] args) {
-//		try {
-//			Connection conn = DriverManager.getConnection(
-//					"jdbc:mysql://localhost:3306/gestion_database","root","9D7896N6");
-//			java.sql.Statement st = conn.createStatement();
-//		    ResultSet rs = st.executeQuery("SELECT * FROM BANK");
-//
-//			while(rs.next()) {
-//				System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+
-//			rs.getString(3));
-//
-//			}
-//			conn.close();
-//			
-//		}
-//		
-//		catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 
-		
-		SavingAccountView f = new SavingAccountView();
-		f.setVisible(true);
-		
-		//new ClientsList();
-		
-		//System.out.println(CheckingAccountDAO.OneCheckingAccount(444444).getOwner_description());
+		//FrmAccountList mainFrame = new FrmAccountList(4);
+		//CheckingAccountView a = new CheckingAccountView();
+		//a.setVisible(true);
+		new ClientsList();
 
 	}
-
 }

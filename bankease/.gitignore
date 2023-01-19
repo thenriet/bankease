@@ -1,5 +1,12 @@
 /bin/
 /.classpath
 /src/dao/Connect.java
+<<<<<<< HEAD
 /src/bankease/Main.java
 src/.DS_Store
+=======
+/jgoodies-common-1.8.0-sources.jar
+/jgoodies-common-1.8.0.jar
+/jgoodies-forms-1.8.0-sources.jar
+/jgoodies-forms-1.8.0.jar
+>>>>>>> bf8f4d634c506c2dc9ab2024a9ff34114f723360

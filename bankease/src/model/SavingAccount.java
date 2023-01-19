@@ -17,6 +17,10 @@ public class SavingAccount extends Account {
 	}
 
 
+	public SavingAccount() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public float getInterestRate() {
 		return interestRate;
 	}
