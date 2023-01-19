@@ -1,20 +1,12 @@
 package controller;
 
-
 import dao.AccountManagementDAO;
 import model.Account;
 import model.CheckingAccount;
 import model.SavingAccount;
 
-/**
- * @author S. Lebrun
- *
- */
-public class CreditAccountController {
-	
-	// TODO choisir créditer ou débiter => -amount
-	// TODO vérifier si transfer possible => message d'erreur
-	// TODO faire le changement en BDD => message d'erreur
+public class TransferController {
+
 	
 	public static String creditDebitAccount(String action, Account account, String amountTxt) {
 		String errorMsg = null;
