@@ -161,6 +161,8 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Transférer" :
 		btnTransferer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new FrmTransfer(selectedAccount);
 			}
 		});
 		

@@ -8,25 +8,32 @@ import model.SavingAccount;
 public class TransferController {
 
 	
-	public static String creditDebitAccount(String action, Account account, String amountTxt) {
-		String errorMsg = null;
-		float amount = 0;
+	public static String creditDebitAccount(Account source, Account destination, String amountTxt) {
+		String errorMsg = "";
+		float debitAmount = 0;
+		float creditAmount = 0;
+		
+		if (destination == null) {
+			return "Veuillez sélectionner un compte de destination";
+		}
 		
 		if (checkInput(amountTxt)) {
-			amount = (float) Float.parseFloat(amountTxt);
+			creditAmount = (float) Float.parseFloat(amountTxt);
+			debitAmount = - creditAmount;
 		} else {
-			errorMsg = "Veuillez entrer un nombre positif";
-			return errorMsg;
+			return "Veuillez entrer un nombre positif";
 		}
-		
-		if (action == "débit") {
-			amount = - amount;
+
+		if (source instanceof CheckingAccount) {
+			debitAmount -= debitAmount - ((CheckingAccount) source).getTransferFee() / 100;
 		}
+
+		errorMsg += validateAction(source, debitAmount);
+		errorMsg += validateAction(destination, creditAmount);
 		
-		errorMsg = validateAction(account, amount);
-		
-		if (errorMsg == null) {
-			account.setBalance(account.getBalance() + amount);
+		if (errorMsg == "") {
+			source.setBalance(source.getBalance() - debitAmount);
+			destination.setBalance(destination.getBalance() + creditAmount);
 		}
 
 		return errorMsg;
@@ -39,7 +46,7 @@ public class TransferController {
 		if (rows == 1) {
 			message = "Le compte n°" + account.getAccountId() + " a bien été " + action + "é de " + amount + " €";
 		} else if (rows == 0) {
-			message = "Erreur : le compte n°" + account.getAccountId() + " n'a pas pû être " + amount + "é";
+			message = "Erreur : le compte n°" + account.getAccountId() + " n'a pas pû être " + action + "é";
 		} else {
 			message = "Erreur en base de données";
 		}
@@ -72,21 +79,21 @@ public class TransferController {
 	
 	public static String validateCheckingAccount(CheckingAccount account, float amount) {
 		if (account.getBalance() + amount <= account.getMinBalance()) {
-			return "Erreur : le solde ne peut pas être inférieur au solde minimum";
+			return "Erreur : le solde ne peut pas être inférieur au solde minimum\n";
 		} else if (account.getBalance() + amount >= 100000) {
-			return "Erreur : un compte ne peut pas contenir plus de 100'000 €";
+			return "Erreur : un compte ne peut pas contenir plus de 100'000 €\n";
 		} else {
-			return null;
+			return "";
 		}
 	}
 	
 	public static String validateSavingAccount(SavingAccount account, float amount) {
 		if (account.getBalance() + amount <= 0) {
-			return "Erreur : le solde ne peut pas être négatif";
+			return "Erreur : le solde ne peut pas être négatif\n";
 		} else if (account.getBalance() + amount >= account.getBalanceLimit()) {
-			return "Erreur : le solde ne peut pas être supérieur au plafond";
+			return "Erreur : le solde ne peut pas être supérieur au plafond\n";
 		} else {
-			return null;
+			return "";
 		}
 	}
 }
