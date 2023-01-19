@@ -14,7 +14,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
 public class ClientsList extends JFrame {
 	private static final long serialVersionUID = 1L;
 
@@ -53,7 +52,7 @@ public class ClientsList extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		btnDetailsClient.setBounds(0, 0, 100, 30);
 		btnDetailsClient.setEnabled(false);
 		panel_1.add(btnDetailsClient);
@@ -62,12 +61,13 @@ public class ClientsList extends JFrame {
 		btnModifyClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client selectedClient = list.getSelectedValue();
-				if(selectedClient !=null) {
+				if (selectedClient != null) {
 					setVisible(false);
 					new ModifyClient(selectedClient);
 				}
 			}
 		});
+
 		btnModifyClient.setSize(100, 30);
 		btnModifyClient.setEnabled(false);
 		panel_1.add(btnModifyClient);
@@ -76,15 +76,15 @@ public class ClientsList extends JFrame {
 		btnDeleteClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client selectedClient = list.getSelectedValue();
-				if(selectedClient !=null) {
-				ClientHandler.deleteClient(selectedClient.getClientId());
-				Client[] clientsList = ClientHandler.listOfClients();
-				list.setListData(clientsList); 
-				scrollPane.setViewportView(list);
+				if (selectedClient != null) {
+					ClientHandler.deleteClient(selectedClient.getClientId());
+					Client[] clientsList = ClientHandler.listOfClients();
+					list.setListData(clientsList);
+					scrollPane.setViewportView(list);
 				}
 			}
 		});
-		
+
 		btnDeleteClient.setSize(100, 30);
 		btnDeleteClient.setEnabled(false);
 		panel_1.add(btnDeleteClient);
@@ -93,13 +93,28 @@ public class ClientsList extends JFrame {
 		btnDetailsClient.setSize(100, 30);
 		panel_1.add(btnAddClient);
 		
-		btnAddClient.addActionListener(new ActionListener() {
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(0, 618, 660, 48);
+		getContentPane().add(panel_2);
+		
+		JButton btnAccounts = new JButton("Voir comptes");
+		btnAccounts.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			new ClientCreate();
+				setVisible(false);
+				Client selectedClient = list.getSelectedValue();
+				int selectedClientId = selectedClient.getClientId();
+				new FrmAccountList(selectedClientId);
 			}
 		});
-		
+		panel_2.add(btnAccounts);
+
+		btnAddClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new ClientCreate();
+			}
+		});
+
 		list.addListSelectionListener(new ListSelectionListener() {
 
 			@Override

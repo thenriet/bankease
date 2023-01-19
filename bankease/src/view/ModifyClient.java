@@ -36,9 +36,9 @@ public class ModifyClient extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JLabel lblNewLabel = new JLabel("Modification d'un client");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(lblNewLabel);
+		JLabel modifClientLabel = new JLabel("Modification d'un client");
+		modifClientLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.add(modifClientLabel);
 
 		JPanel panelButtons = new JPanel();
 		panelButtons.setBounds(0, 416, 660, 60);
@@ -48,144 +48,144 @@ public class ModifyClient extends JFrame {
 		panelButtons.add(btnValidate);
 		btnValidate.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
-		JButton btnNewButton = new JButton("Retour");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnReturn = new JButton("Retour");
+		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				new ClientsList();
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panelButtons.add(btnNewButton);
+		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panelButtons.add(btnReturn);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(0, 39, 660, 37);
 		getContentPane().add(panel_3);
 
-		JTextField txtMylneDubois = new JTextField();
-		txtMylneDubois.setBounds(200, 5, 251, 27);
-		txtMylneDubois.setForeground(new Color(153, 153, 153));
-		txtMylneDubois.addFocusListener(new FocusAdapter() {
+		JTextField clientDescription = new JTextField();
+		clientDescription.setBounds(200, 5, 251, 27);
+		clientDescription.setForeground(new Color(153, 153, 153));
+		clientDescription.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (txtMylneDubois.getText().equals("Entrer le nom désiré du client")) {
-					txtMylneDubois.setText("");
-					txtMylneDubois.setForeground(new Color(153, 153, 153));
+				if (clientDescription.getText().equals("Entrer le nom désiré du client")) {
+					clientDescription.setText("");
+					clientDescription.setForeground(new Color(153, 153, 153));
 				}
 			}
 		});
 		panel_3.setLayout(null);
 
-		JLabel lblNewLabel_2 = new JLabel("Identifiant Client");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(40, 10, 106, 16);
-		panel_3.add(lblNewLabel_2);
-		panel_3.add(txtMylneDubois);
-		txtMylneDubois.setFont(new Font("Tahoma", Font.ITALIC, 14));
-		txtMylneDubois.setText(client.getClientDescription());
-		txtMylneDubois.setHorizontalAlignment(SwingConstants.LEFT);
-		txtMylneDubois.setColumns(30);
+		JLabel clientLabel = new JLabel("Identifiant Client");
+		clientLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		clientLabel.setBounds(40, 10, 106, 16);
+		panel_3.add(clientLabel);
+		panel_3.add(clientDescription);
+		clientDescription.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		clientDescription.setText(client.getClientDescription());
+		clientDescription.setHorizontalAlignment(SwingConstants.LEFT);
+		clientDescription.setColumns(30);
 
-		JLabel ErrorDescription = new JLabel("Entre 2 et 100 caractères");
-		ErrorDescription.setForeground(new Color(153, 43, 56));
-		ErrorDescription.setBounds(463, 11, 161, 16);
-		ErrorDescription.setVisible(false);
-		panel_3.add(ErrorDescription);
+		JLabel errorDescription = new JLabel("Entre 2 et 100 caractères");
+		errorDescription.setForeground(new Color(153, 43, 56));
+		errorDescription.setBounds(463, 11, 161, 16);
+		errorDescription.setVisible(false);
+		panel_3.add(errorDescription);
 
 		JPanel panel_3_1 = new JPanel();
 		panel_3_1.setBounds(0, 137, 660, 37);
 		getContentPane().add(panel_3_1);
 
-		JTextField txtAdresse = new JTextField();
-		txtAdresse.setBounds(200, 5, 249, 27);
-		txtAdresse.setForeground(new Color(153, 153, 153));
-		txtAdresse.addFocusListener(new FocusAdapter() {
+		JTextField clientAdress = new JTextField();
+		clientAdress.setBounds(200, 5, 249, 27);
+		clientAdress.setForeground(new Color(153, 153, 153));
+		clientAdress.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (txtAdresse.getText().equals("Entrer une adresse")) {
-					txtAdresse.setText("");
-					txtAdresse.setForeground(new Color(153, 153, 153));
+				if (clientAdress.getText().equals("Entrer une adresse")) {
+					clientAdress.setText("");
+					clientAdress.setForeground(new Color(153, 153, 153));
 				}
 			}
 		});
 		panel_3_1.setLayout(null);
 
-		JLabel lblNewLabel_4 = new JLabel("Adresse");
-		lblNewLabel_4.setBounds(40, 10, 47, 17);
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_3_1.add(lblNewLabel_4);
-		txtAdresse.setText(client.getClientAddress());
-		txtAdresse.setHorizontalAlignment(SwingConstants.LEFT);
-		txtAdresse.setFont(new Font("Tahoma", Font.ITALIC, 14));
-		txtAdresse.setColumns(30);
-		panel_3_1.add(txtAdresse);
+		JLabel adressLabel = new JLabel("Adresse");
+		adressLabel.setBounds(40, 10, 47, 17);
+		adressLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_3_1.add(adressLabel);
+		clientAdress.setText(client.getClientAddress());
+		clientAdress.setHorizontalAlignment(SwingConstants.LEFT);
+		clientAdress.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		clientAdress.setColumns(30);
+		panel_3_1.add(clientAdress);
 
 		JPanel panel_3_1_1 = new JPanel();
 		panel_3_1_1.setBounds(0, 87, 660, 37);
 		getContentPane().add(panel_3_1_1);
 		panel_3_1_1.setLayout(null);
 
-		JLabel lblNewLabel_3 = new JLabel("Date de naissance");
-		lblNewLabel_3.setBounds(40, 10, 109, 17);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_3_1_1.add(lblNewLabel_3);
+		JLabel birthLabel = new JLabel("Date de naissance");
+		birthLabel.setBounds(40, 10, 109, 17);
+		birthLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_3_1_1.add(birthLabel);
 
-		JTextField txtDateDeNaissance = new JTextField();
-		txtDateDeNaissance.setBounds(200, 5, 93, 27);
-		txtDateDeNaissance.setForeground(new Color(153, 153, 153));
-		txtDateDeNaissance.setText(client.getClientBirthdate().toString());
-		txtDateDeNaissance.setHorizontalAlignment(SwingConstants.LEFT);
-		txtDateDeNaissance.setFont(new Font("Tahoma", Font.ITALIC, 14));
-		txtDateDeNaissance.setColumns(20);
-		panel_3_1_1.add(txtDateDeNaissance);
+		JTextField birthClient = new JTextField();
+		birthClient.setBounds(200, 5, 93, 27);
+		birthClient.setForeground(new Color(153, 153, 153));
+		birthClient.setText(client.getClientBirthdate().toString());
+		birthClient.setHorizontalAlignment(SwingConstants.LEFT);
+		birthClient.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		birthClient.setColumns(20);
+		panel_3_1_1.add(birthClient);
 
-		JLabel ErrorDate = new JLabel("La date doit être au format YYYY-MM-DD");
-		ErrorDate.setForeground(new Color(153, 43, 56));
-		ErrorDate.setBounds(330, 11, 309, 16);
-		ErrorDate.setVisible(false);
-		panel_3_1_1.add(ErrorDate);
+		JLabel errorBirth = new JLabel("La date doit être au format YYYY-MM-DD");
+		errorBirth.setForeground(new Color(153, 43, 56));
+		errorBirth.setBounds(330, 11, 309, 16);
+		errorBirth.setVisible(false);
+		panel_3_1_1.add(errorBirth);
 
 		JPanel panel_3_1_2 = new JPanel();
 		panel_3_1_2.setBounds(0, 186, 660, 37);
 		getContentPane().add(panel_3_1_2);
 
-		JTextField txtTel = new JTextField();
-		txtTel.setBounds(200, 5, 91, 27);
-		txtTel.setForeground(new Color(153, 153, 153));
+		JTextField phoneClient = new JTextField();
+		phoneClient.setBounds(200, 5, 91, 27);
+		phoneClient.setForeground(new Color(153, 153, 153));
 
 		panel_3_1_2.setLayout(null);
 
-		JLabel lblNewLabel_5 = new JLabel("Téléphone");
-		lblNewLabel_5.setBounds(40, 10, 64, 17);
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_3_1_2.add(lblNewLabel_5);
-		txtTel.setText(client.getClientPhone());
-		txtTel.setHorizontalAlignment(SwingConstants.LEFT);
-		txtTel.setFont(new Font("Tahoma", Font.ITALIC, 14));
-		txtTel.setColumns(30);
-		panel_3_1_2.add(txtTel);
+		JLabel phoneLabel = new JLabel("Téléphone");
+		phoneLabel.setBounds(40, 10, 64, 17);
+		phoneLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_3_1_2.add(phoneLabel);
+		phoneClient.setText(client.getClientPhone());
+		phoneClient.setHorizontalAlignment(SwingConstants.LEFT);
+		phoneClient.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		phoneClient.setColumns(30);
+		panel_3_1_2.add(phoneClient);
 
-		JLabel ErrorPhone = new JLabel("Renseigner un numéro composé de 10 chiffres");
-		ErrorPhone.setForeground(new Color(153, 43, 56));
-		ErrorPhone.setBounds(330, 11, 298, 16);
-		ErrorPhone.setVisible(false);
-		panel_3_1_2.add(ErrorPhone);
+		JLabel errorPhone = new JLabel("Renseigner un numéro composé de 10 chiffres");
+		errorPhone.setForeground(new Color(153, 43, 56));
+		errorPhone.setBounds(330, 11, 298, 16);
+		errorPhone.setVisible(false);
+		panel_3_1_2.add(errorPhone);
 
-		JLabel ErrorEmpty = new JLabel("Veuillez remplir TOUS les champs");
-		ErrorEmpty.setForeground(new Color(153, 43, 56));
-		ErrorEmpty.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		ErrorEmpty.setVisible(false);
-		ErrorEmpty.setBounds(232, 258, 270, 16);
-		getContentPane().add(ErrorEmpty);
+		JLabel errorEmpty = new JLabel("Veuillez remplir TOUS les champs");
+		errorEmpty.setForeground(new Color(153, 43, 56));
+		errorEmpty.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		errorEmpty.setVisible(false);
+		errorEmpty.setBounds(232, 258, 270, 16);
+		getContentPane().add(errorEmpty);
 
 		btnValidate.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String data1 = txtMylneDubois.getText();
-				String data2 = txtDateDeNaissance.getText();
-				String data3 = txtAdresse.getText();
-				String data4 = txtTel.getText();
+				String data1 = clientDescription.getText();
+				String data2 = birthClient.getText();
+				String data3 = clientAdress.getText();
+				String data4 = phoneClient.getText();
 
 				List<String> datas = new ArrayList<>();
 				datas.add(data1);
@@ -197,18 +197,18 @@ public class ModifyClient extends JFrame {
 				trimmedData = ClientHandler.checkEmptyAndDataTrim(datas);
 
 				if (trimmedData.size() < 4) {
-					ErrorEmpty.setVisible(true);
+					errorEmpty.setVisible(true);
 				} else if (ClientHandler.checkDate(trimmedData) == null && ClientHandler.checkPhone(trimmedData) == null
 						&& ClientHandler.checkClientDescription(trimmedData) == null) {
-					ErrorDate.setVisible(true);
-					ErrorPhone.setVisible(true);
-					ErrorDescription.setVisible(true);
+					errorBirth.setVisible(true);
+					errorPhone.setVisible(true);
+					errorDescription.setVisible(true);
 				} else if (ClientHandler.checkDate(trimmedData) == null) {
-					ErrorDate.setVisible(true);
+					errorBirth.setVisible(true);
 				} else if (ClientHandler.checkPhone(trimmedData) == null) {
-					ErrorPhone.setVisible(true);
+					errorPhone.setVisible(true);
 				} else if (ClientHandler.checkClientDescription(trimmedData) == null) {
-					ErrorDescription.setVisible(true);
+					errorDescription.setVisible(true);
 				} else if ((ClientHandler.checkPhone(trimmedData) != null)
 						&& (ClientHandler.checkDate(trimmedData) != null)
 						&& (ClientHandler.checkClientDescription(trimmedData) != null)) {
