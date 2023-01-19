@@ -12,17 +12,18 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		List<Account> list = new ArrayList<>(AccountListDAO.getAccounts(4));
-		Account account = list.get(1);
-		System.out.println(account);
-		account.setBalance(1500);
-		System.out.println(account);
+//		List<Account> list = new ArrayList<>(AccountListDAO.getAccounts(4));
+//		Account account = list.get(1);
+//		System.out.println(account);
+//		account.setBalance(1500);
+//		System.out.println(account);
+//		
+//		AccountManagementDAO.changeBalance(account);
+//
+//		System.out.println("OK");
 		
-		AccountManagementDAO.changeBalance(account);
-
-		System.out.println("OK");
 		
-//		new FrmAccountList(4);
+		new FrmAccountList(4, "");
 		
 	}
 }

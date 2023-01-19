@@ -1,10 +1,10 @@
-package Controller;
+package controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import dao.AccountListDAO;
 import model.Account;
-import view.FrmCreditAccount;
+import view.FrmCreditDebit;
 
 /**
  * @author S. Lebrun
@@ -30,10 +30,4 @@ public class AccountListController {
 	public static String getAccountOwner (int id) {
 		return AccountListDAO.getAccountOwner(id);
 	}
-	
-	public static void goToCreditDebit (Account account, String action) {
-		FrmCreditAccount newFrame = new FrmCreditAccount(account, action);
-		newFrame.setVisible(true);
-	}
-
 }

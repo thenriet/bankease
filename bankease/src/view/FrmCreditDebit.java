@@ -13,7 +13,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import Controller.AccountListController;
+import controller.AccountListController;
+import controller.CreditAccountController;
 import model.Account;
 import model.CheckingAccount;
 import model.SavingAccount;
@@ -25,7 +26,7 @@ import javax.swing.JLabel;
  * @author S. Lebrun
  *
  */
-public class FrmCreditAccount extends JFrame {
+public class FrmCreditDebit extends JFrame {
 
 
 	private static final long serialVersionUID = 1L;
@@ -40,6 +41,7 @@ public class FrmCreditAccount extends JFrame {
 	private JLabel lblFraisTransfert;
 	private JLabel lblTauxInteret;
 	private JLabel lblPlafond;
+	private JLabel lblErrorMessage;
 	
 	
 
@@ -62,7 +64,7 @@ public class FrmCreditAccount extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FrmCreditAccount(Account account, String action) {
+	public FrmCreditDebit(Account account, String action) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 700, 660);
@@ -73,7 +75,7 @@ public class FrmCreditAccount extends JFrame {
 		contentPane.setLayout(null);
 
 		// Affichage du libellé du compte en titre :
-		JLabel txtTitle = new JLabel(action.substring(0,1).toUpperCase() + action.substring(1) + " le compte n°" + account.getAccountId());
+		JLabel txtTitle = new JLabel(action.substring(0,1).toUpperCase() + action.substring(1) + "er le compte n°" + account.getAccountId());
 		txtTitle.setBackground(new Color(200, 173, 167));
 		txtTitle.setOpaque(true);
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -99,7 +101,7 @@ public class FrmCreditAccount extends JFrame {
 		lblTypeCompte.setBounds(30, 207, 600, 25);
 		contentPane.add(lblTypeCompte);
 		
-		if (account.getAccountType() == "épargne") {
+		if (account instanceof SavingAccount) {
 		
 			lblTauxInteret = new JLabel("Taux d'intrêt : " + ((SavingAccount) account).getInterestRate() + "%");
 			lblTauxInteret.setHorizontalAlignment(SwingConstants.CENTER);
@@ -141,12 +143,19 @@ public class FrmCreditAccount extends JFrame {
 		contentPane.add(txtSomme);
 		txtSomme.setColumns(10);
 		
-		JLabel lblCrediter = new JLabel("Somme à créditer :");
+		JLabel lblCrediter = new JLabel("Somme à " + action + "er :");
 		lblCrediter.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCrediter.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCrediter.setBounds(30, 416, 291, 30);
 		contentPane.add(lblCrediter);
 		
+		// Affichage du message d'erreur :
+		lblErrorMessage = new JLabel();
+		lblErrorMessage.setHorizontalAlignment(SwingConstants.CENTER);
+		lblErrorMessage.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblErrorMessage.setForeground(new Color(128, 0, 0));;
+		lblErrorMessage.setBounds(40, 460, 600, 30);
+		contentPane.add(lblErrorMessage);
 		
 		btnValider = new JButton("Valider");
 		btnValider.setBackground(new Color(128, 255, 128));
@@ -158,7 +167,15 @@ public class FrmCreditAccount extends JFrame {
 		// Clic sur le bouton "Valider" :
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				float amount = (float) Double.parseDouble(txtSomme.getText());
+				String amount = txtSomme.getText();
+				String errorMsg = CreditAccountController.creditDebitAccount(action, account, amount);
+				if (errorMsg == null) {
+					String message = CreditAccountController.applyChange(account, action, amount);
+					setVisible(false);
+					new FrmAccountList(account.getClientId(), message);
+				} else {
+					lblErrorMessage.setText(errorMsg);
+				}
 			}
 		});
 		
@@ -169,13 +186,14 @@ public class FrmCreditAccount extends JFrame {
 		btnAnnuler.setBounds(381, 519, 100, 45);
 		contentPane.add(btnAnnuler);
 		
+		
 		// Clic sur le bouton "Annuler" :
 		btnAnnuler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new FrmAccountList(account.getClientId());
+				new FrmAccountList(account.getClientId(), "");
 			}
 		});
-		
+		this.setVisible(true);
 	}
 }

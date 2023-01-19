@@ -13,8 +13,14 @@ import model.Account;
  */
 public class AccountManagementDAO {
 
-	public static void changeBalance(Account account) {
+	/**
+	 * Sets the DB balance value to the Account's balance value
+	 * @param account previously modified with new balance value
+	 * @return number of rows impacted by change
+	 */
+	public static int changeBalance(Account account) {
 		String query;
+		int rows = 0;
 		
 		if (account.getAccountType() == "courant") {
 			query = "UPDATE checking_account SET balance = ? WHERE account_id = ?;";
@@ -28,14 +34,14 @@ public class AccountManagementDAO {
 			prst.setFloat(1, account.getBalance());
 			prst.setInt(2, account.getAccountId());
 			
-			int rows = prst.executeUpdate();
+			rows = prst.executeUpdate();
 			prst.close();
 
-			System.out.println("Rows impacted : " + rows);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return rows;
 	}
 }

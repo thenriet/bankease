@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import Controller.AccountListController;
+import controller.AccountListController;
 import model.Account;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class FrmAccountList extends JFrame {
 
@@ -33,12 +34,14 @@ public class FrmAccountList extends JFrame {
 	private JButton btnDebiter;
 	private JButton btnRetour;
 	private Account selectedAccount;
+	private JLabel lblMessage;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public FrmAccountList(int clientId) {
+	// TODO modifier clientId par client ?
+	public FrmAccountList(int clientId, String message) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 700, 660);
@@ -49,6 +52,7 @@ public class FrmAccountList extends JFrame {
 		contentPane.setLayout(null);
 
 		// Affichage du libellé du client en titre :
+		// TODO si récupération du client, supprimer l'appel BDD
 		JTextField txtTitle = new JTextField(AccountListController.getAccountOwner(clientId));
 		txtTitle.setBackground(new Color(200, 173, 167));
 		txtTitle.setOpaque(true);
@@ -56,12 +60,25 @@ public class FrmAccountList extends JFrame {
 		txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
 		txtTitle.setBounds(0, 0, 686, 77);
 		contentPane.add(txtTitle);
+
+		// Affichage du message après transfert d'argent :
+		lblMessage = new JLabel(message);
+		lblMessage.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMessage.setFont(new Font("Tahoma", Font.BOLD, 14));
+		if (message.contains("Erreur")) {
+			lblMessage.setForeground(new Color(128, 0, 0));
+		} else {
+			lblMessage.setForeground(new Color(0, 128, 0));
+		}
+		lblMessage.setBounds(20, 98, 650, 30);
+		contentPane.add(lblMessage);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(20, 150, 650, 300);
 		contentPane.add(scrollPane);
 
-		// Récupération de la liste des comptes du client (à modifier avec l'ID dynamique)
+		// Récupération de la liste des comptes du client 
+		// TODO modifier avec l'ID dynamique
 		List<Account> accountList = AccountListController.getAccountList(clientId);
 		
 		// Affichage de la liste :
@@ -131,7 +148,7 @@ public class FrmAccountList extends JFrame {
 		btnCrediter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				AccountListController.goToCreditDebit(selectedAccount, "créditer");
+				new FrmCreditDebit(selectedAccount, "crédit");
 			}
 		});
 		
@@ -157,7 +174,7 @@ public class FrmAccountList extends JFrame {
 		btnDebiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				AccountListController.goToCreditDebit(selectedAccount, "débiter");
+				new FrmCreditDebit(selectedAccount, "débit");
 			}
 		});
 		
