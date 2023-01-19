@@ -62,11 +62,9 @@ public class ClientsList extends JFrame {
 		btnModifyClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client selectedClient = list.getSelectedValue();
-				System.out.println(selectedClient);
 				if(selectedClient !=null) {
 					setVisible(false);
 					new ModifyClient(selectedClient);
-					// ClientHandler.showOneClient(selectedClient);
 				}
 			}
 		});
@@ -83,7 +81,6 @@ public class ClientsList extends JFrame {
 				Client[] clientsList = ClientHandler.listOfClients();
 				list.setListData(clientsList); 
 				scrollPane.setViewportView(list);
-				//list.setSelectedValue(null, );
 				}
 			}
 		});
@@ -103,9 +100,6 @@ public class ClientsList extends JFrame {
 			}
 		});
 		
-		Client test = list.getSelectedValue();
-		System.out.println(test);
-
 		list.addListSelectionListener(new ListSelectionListener() {
 
 			@Override
@@ -114,8 +108,6 @@ public class ClientsList extends JFrame {
 					btnDetailsClient.setEnabled(true);
 					btnModifyClient.setEnabled(true);
 					btnDeleteClient.setEnabled(true);
-					// Client selectedClient = list.getSelectedValue(); // Ici je chope l'objet Client sélectionné
-					// System.out.println(selectedClient.getClientId()); // Ici je chope son Id (est-ce que c'est utile ?)
 				}
 			}
 		});
