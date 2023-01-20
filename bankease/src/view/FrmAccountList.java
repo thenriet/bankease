@@ -9,7 +9,7 @@ import javax.swing.event.ListSelectionListener;
 
 import controller.AccountListController;
 import model.Account;
-import model.Client;
+import model.SavingAccount;
 
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -22,9 +22,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-import view.CheckingAccountView;
-import controller.CheckingAccountHandler;
-
 public class FrmAccountList extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -36,7 +33,6 @@ public class FrmAccountList extends JFrame {
 	private JButton btnTransferer;
 	private JButton btnDebiter;
 	private JButton btnRetour;
-
 
 	/**
 	 * Create the frame.
@@ -65,24 +61,23 @@ public class FrmAccountList extends JFrame {
 		txtTitle.setBounds(0, 0, 686, 77);
 		contentPane.add(txtTitle);
 		txtTitle.setColumns(10);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(20, 100, 650, 350);
 		contentPane.add(scrollPane);
-		
 
-		// Récupération de la liste des comptes du client (à modifier avec l'ID dynamique)
+		// Récupération de la liste des comptes du client (à modifier avec l'ID
+		// dynamique)
 		List<Account> accountList = AccountListController.getAccountList(clientId);
-		
-		
+
 		// Affichage de la liste :
 		JList<Account> list = new JList<Account>();
 		list.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		list.setListData(accountList.toArray(new Account[0]));
 		scrollPane.setViewportView(list);
-		
+
 		// Sélection du compte dans la liste :
-		list.addListSelectionListener(new ListSelectionListener(){
+		list.addListSelectionListener(new ListSelectionListener() {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -93,12 +88,12 @@ public class FrmAccountList extends JFrame {
 				btnTransferer.setEnabled(true);
 			}
 		});
-		
+
 		btnOuvrir = new JButton("Ouvrir");
 		btnOuvrir.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnOuvrir.setBounds(127, 506, 100, 30);
 		contentPane.add(btnOuvrir);
-		
+
 		// Clic sur le bouton "Ouvrir" :
 		btnOuvrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -109,85 +104,84 @@ public class FrmAccountList extends JFrame {
 
 			}
 		});
-		
+
 		btnModifier = new JButton("Modifier");
 		btnModifier.setEnabled(false);
 		btnModifier.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnModifier.setBounds(237, 506, 100, 30);
 		contentPane.add(btnModifier);
-		
+
 		// Clic sur le bouton "Modifier" :
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Account selectedAccount = list.getSelectedValue();
-				if (selectedAccount != null) {
+				if (list.getSelectedValue() instanceof SavingAccount) {
 					setVisible(false);
-					new ModifyAccount(selectedAccount);
+					new ModifyAccount((SavingAccount) list.getSelectedValue());
 				}
 			}
 		});
-		
+
 		btnCloturer = new JButton("Clôturer");
 		btnCloturer.setEnabled(false);
 		btnCloturer.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnCloturer.setBounds(347, 506, 100, 30);
 		contentPane.add(btnCloturer);
-		
+
 		// Clic sur le bouton "Clôturer" :
 		btnCloturer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		btnCrediter = new JButton("Créditer");
 		btnCrediter.setEnabled(false);
 		btnCrediter.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnCrediter.setBounds(127, 547, 100, 30);
 		contentPane.add(btnCrediter);
-		
+
 		// Clic sur le bouton "Créditer" :
 		btnCrediter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		btnTransferer = new JButton("Transférer");
 		btnTransferer.setEnabled(false);
 		btnTransferer.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnTransferer.setBounds(237, 547, 100, 30);
 		contentPane.add(btnTransferer);
-		
+
 		// Clic sur le bouton "Transférer" :
 		btnTransferer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		btnDebiter = new JButton("Débiter");
 		btnDebiter.setEnabled(false);
 		btnDebiter.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnDebiter.setBounds(347, 547, 100, 30);
 		contentPane.add(btnDebiter);
-		
+
 		// Clic sur le bouton "Débiter" :
 		btnDebiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		btnRetour = new JButton("Retour");
 		btnRetour.setBackground(new Color(200, 173, 167));
 		btnRetour.repaint();
 		btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRetour.setBounds(490, 519, 100, 45);
 		contentPane.add(btnRetour);
-		
+
 		// Clic sur le bouton "Retour" :
 		btnDebiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		this.setVisible(true);
 	}
 }
