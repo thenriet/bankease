@@ -26,8 +26,7 @@ public abstract class Account {
 	 * @param ownerDescription String
 	 * @param balance float
 	 */
-	public Account(String accountType, int accountId, int clientId, String ownerDescription, float balance) {
-		this.accountType = accountType;
+	public Account(int accountId, int clientId, String ownerDescription, float balance) {
 
 		this.accountId = accountId;
 		this.clientId = clientId;

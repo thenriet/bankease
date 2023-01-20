@@ -50,7 +50,6 @@ public class FrmAccountList extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	// TODO modifier clientId par objet Client ?
 	public FrmAccountList(int clientId, String message) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,11 +57,11 @@ public class FrmAccountList extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		// Affichage du libellé du client en titre :
-		// TODO si récupération du client, supprimer l'appel BDD
 		JTextField txtTitle = new JTextField(AccountListController.getAccountOwner(clientId));
 		txtTitle.setBackground(new Color(200, 173, 167));
 		txtTitle.setOpaque(true);
@@ -88,13 +87,12 @@ public class FrmAccountList extends JFrame {
 		contentPane.add(scrollPane);
 
 		// Récupération de la liste des comptes du client 
-		// TODO modifier avec l'ID dynamique si récupération du client
 		List<Account> accountList = AccountListController.getAccountList(clientId);
 
 		
 		// Affichage de la liste :
 		JList<Account> list = new JList<Account>();
-		list.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		list.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		list.setListData(accountList.toArray(new Account[0]));
 		scrollPane.setViewportView(list);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -148,8 +146,9 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Ouvrir" :
 		btnOuvrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO vers formulaire "ouvrir un compte"
-
+				setVisible(false);
+				OpenAccountView a = new OpenAccountView(clientId);
+				a.setVisible(true);
 			}
 		});
 		
