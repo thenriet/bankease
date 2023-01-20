@@ -16,6 +16,8 @@ import java.awt.FlowLayout;
 import java.awt.Color;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -219,14 +221,14 @@ public class ClientCreate extends JFrame {
 			}
 		});
 
-//		setVisible(true);
-//
-//		this.addWindowListener(new WindowAdapter() {
-//			@Override 
-//			public void windowClosing(java.awt.event.WindowEvent e) {
-//				JOptionPane.showConfirmDialog(ClientCreate.this, "Etes-vous certain de vouloir quitter ?");
-//			}
-//		});
-//
+		setVisible(true);
+
+		this.addWindowListener(new WindowAdapter() {
+			@Override 
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				JOptionPane.showConfirmDialog(ClientCreate.this, "Etes-vous certain de vouloir quitter ?");
+			}
+		});
+
 	}
 }

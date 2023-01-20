@@ -33,4 +33,19 @@ public class AccountListController {
 	public static String getAccountOwner (int id) {
 		return AccountListDAO.getAccountOwner(id);
 	}
+	
+	public static String deleteAccount (Account account) {
+		String message = "";
+		
+		int rows = AccountListDAO.DeleteAccount(account);
+		
+		if (rows == 1) {
+			message = "Le compte n°" + account.getAccountId() + " a bien été supprimé";
+		} else {
+			message = "Erreur : le compte n'a pas pu être supprimé";
+		}
+		
+		return message;
+	}
+	
 }

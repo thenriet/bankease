@@ -7,13 +7,18 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import controller.AccountListController;
+import dao.CheckingAccountDAO;
+import dao.SavingAccountDAO;
 import model.Account;
+import model.SavingAccount;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -30,22 +35,11 @@ public class FrmAccountList extends JFrame {
 	private JButton btnTransferer;
 	private JButton btnDebiter;
 	private JButton btnRetour;
-
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					FrmAccountList frame = new FrmAccountList();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	private JLabel lblMessage;
+	private JLabel lblInfo1;
+	private JLabel lblInfo2;
+	private JLabel lblInfosCompte;
+	private Account selectedAccount;
 
 	/**
 	 * Create the frame.
@@ -130,6 +124,19 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Clôturer" :
 		btnCloturer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				int result = JOptionPane.showConfirmDialog(FrmAccountList.this, "Cloûturer le compte n°" + selectedAccount.getAccountId() + " ?", "Confirmation avant clôture", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					String message = AccountListController.deleteAccount(selectedAccount);
+					if (message.contains("Erreur")) {
+						lblMessage.setForeground(new Color(128, 0, 0));
+					} else {
+						lblMessage.setForeground(new Color(0, 128, 0));
+					}
+					lblMessage.setText(message);
+					list.setListData(AccountListController.getAccountList(clientId).toArray(new Account[0]));
+				}
+
 			}
 		});
 		
