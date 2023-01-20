@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,6 +70,29 @@ public class AccountListDAO {
 		}
 
 		return accountList;
+	}
+	
+	public static int DeleteAccount(Account account) {
+		String query;
+		int rows = 0;
+		
+		if (account instanceof SavingAccount) {
+			query = "DELETE FROM saving_account WHERE account_id = ?";
+		} else {
+			query = "DELETE FROM checking_account WHERE account_id = ?";
+		}
+
+		try (Connection conn = Connect.getConnection()) {
+			PreparedStatement prst = conn.prepareStatement(query);
+			prst.setInt(1, account.getAccountId());
+			rows = prst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return rows;
+
 	}
 
 	/**
