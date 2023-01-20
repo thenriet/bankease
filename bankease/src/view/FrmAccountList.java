@@ -37,26 +37,12 @@ public class FrmAccountList extends JFrame {
 	private JButton btnDebiter;
 	private JButton btnRetour;
 
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					FrmAccountList frame = new FrmAccountList();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public FrmAccountList(int id) {
+	// TODO modifier clientId par objet Client ?
+	public FrmAccountList(int clientId, String message) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 700, 660);
@@ -65,14 +51,14 @@ public class FrmAccountList extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JTextField txtTitle = new JTextField();
-		txtTitle.setForeground(new Color(0, 0, 0));
+
+		// Affichage du libellé du client en titre :
+		// TODO si récupération du client, supprimer l'appel BDD
+		JTextField txtTitle = new JTextField(AccountListController.getAccountOwner(clientId));
 		txtTitle.setBackground(new Color(200, 173, 167));
+		txtTitle.setOpaque(true);
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
-		
-		
 		// Affichage du libellé client en titre :
 		String accountOwner = AccountListController.getAccountOwner(id);
 		txtTitle.setText(accountOwner);
@@ -119,6 +105,8 @@ public class FrmAccountList extends JFrame {
 				setVisible(false);
 				CheckingAccountView a = new CheckingAccountView();
 				a.setVisible(true);
+				// TODO vers formulaire "ouvrir un compte"
+
 			}
 		});
 		

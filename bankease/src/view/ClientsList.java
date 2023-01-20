@@ -106,7 +106,7 @@ public class ClientsList extends JFrame {
 				setVisible(false);
 				Client selectedClient = list.getSelectedValue();
 				int selectedClientId = selectedClient.getClientId();
-				new FrmAccountList(selectedClientId);
+				new FrmAccountList(selectedClientId, "");
 			}
 		});
 		panel_2.add(btnAccounts);

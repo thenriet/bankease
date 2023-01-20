@@ -1,5 +1,13 @@
 package bankease;
+
 import view.ClientsList;
+
+
+import dao.CheckingAccountDAO;
+import view.CheckingAccountView;
+import view.ClientsList;
+
+import view.FrmAccountList;
 
 public class Main {
 
@@ -14,6 +22,7 @@ public class Main {
 //		a.setVisible(true);
 		//new ClientsList();
 		//new FrmAccountList(4);
+
 
 	}
 }
