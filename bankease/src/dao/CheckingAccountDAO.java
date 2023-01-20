@@ -7,7 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Account;
 import model.CheckingAccount;
+import model.Client;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,8 +48,8 @@ public class CheckingAccountDAO {
 
 	public static void CreateCheckingAccount(CheckingAccount checkingaccount) {
 
-		String sql = "INSERT INTO CHECKING_ACCOUNT (owner_description,transfer_fee,min_balance,balance) VALUES('"
-				+ checkingaccount.getOwnerDescription() + "','" + checkingaccount.getTransferFee() + "','"
+		String sql = "INSERT INTO CHECKING_ACCOUNT (owner_description,client_id,transfer_fee,min_balance,balance) VALUES('"
+				+ checkingaccount.getOwnerDescription() + "','" + checkingaccount.getClientId() +  "','" + checkingaccount.getTransferFee() + "','"
 				+ checkingaccount.getMinBalance() + "','" + checkingaccount.getBalance() + "')";
 
 		try {
