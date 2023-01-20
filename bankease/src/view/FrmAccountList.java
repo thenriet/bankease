@@ -60,7 +60,7 @@ public class FrmAccountList extends JFrame {
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
 		// Affichage du libellé client en titre :
-		String accountOwner = AccountListController.getAccountOwner(id);
+		String accountOwner = AccountListController.getAccountOwner(clientId);
 		txtTitle.setText(accountOwner);
 		txtTitle.setBounds(0, 0, 686, 77);
 		contentPane.add(txtTitle);
@@ -72,7 +72,7 @@ public class FrmAccountList extends JFrame {
 		
 
 		// Récupération de la liste des comptes du client (à modifier avec l'ID dynamique)
-		List<Account> accountList = AccountListController.getAccountList(id);
+		List<Account> accountList = AccountListController.getAccountList(clientId);
 		
 		
 		// Affichage de la liste :
