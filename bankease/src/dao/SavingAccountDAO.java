@@ -5,10 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
-import model.Client;
 import model.SavingAccount;
 
 import java.sql.DriverManager;
@@ -60,7 +56,6 @@ public class SavingAccountDAO {
 			conn.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -106,8 +101,6 @@ public class SavingAccountDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
-		
 	}
 	
 }

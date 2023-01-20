@@ -142,6 +142,8 @@ public class ModifyAccount extends JFrame {
 			});
 		}
 		
+		if (account instanceof CheckingAccount)
+		
 		setVisible(true);
 
 		JButton btnReturn = new JButton("Retour");
