@@ -12,21 +12,20 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controller.ClientHandler;
+import model.Client;
+
 import java.awt.FlowLayout;
 import java.awt.Color;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.WindowAdapter;
 
-public class ClientCreate extends JFrame {
+public class ModifyClient extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	public ClientCreate() {
+	public ModifyClient(Client client) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(660, 700);
 		setLocationRelativeTo(null);
@@ -37,27 +36,27 @@ public class ClientCreate extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JLabel clientCreationLabel = new JLabel("Création d'un nouveau client");
-		clientCreationLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(clientCreationLabel);
+		JLabel modifClientLabel = new JLabel("Modification d'un client");
+		modifClientLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.add(modifClientLabel);
 
-		JPanel btnReturn = new JPanel();
-		btnReturn.setBounds(0, 416, 660, 60);
-		getContentPane().add(btnReturn);
+		JPanel panelButtons = new JPanel();
+		panelButtons.setBounds(0, 416, 660, 60);
+		getContentPane().add(panelButtons);
 
 		JButton btnValidate = new JButton("Valider");
-		btnReturn.add(btnValidate);
+		panelButtons.add(btnValidate);
 		btnValidate.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
-		JButton btnNewButton = new JButton("Retour");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnReturn = new JButton("Retour");
+		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				new ClientsList();
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnReturn.add(btnNewButton);
+		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panelButtons.add(btnReturn);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(0, 39, 660, 37);
@@ -69,7 +68,7 @@ public class ClientCreate extends JFrame {
 		clientDescription.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (clientDescription.getText().equals("Entrer le nom du nouveau client")) {
+				if (clientDescription.getText().equals("Entrer le nom désiré du client")) {
 					clientDescription.setText("");
 					clientDescription.setForeground(new Color(153, 153, 153));
 				}
@@ -83,7 +82,7 @@ public class ClientCreate extends JFrame {
 		panel_3.add(clientLabel);
 		panel_3.add(clientDescription);
 		clientDescription.setFont(new Font("Tahoma", Font.ITALIC, 14));
-		clientDescription.setText("Mylène Dubois");
+		clientDescription.setText(client.getClientDescription());
 		clientDescription.setHorizontalAlignment(SwingConstants.LEFT);
 		clientDescription.setColumns(30);
 
@@ -115,7 +114,7 @@ public class ClientCreate extends JFrame {
 		adressLabel.setBounds(40, 10, 47, 17);
 		adressLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_3_1.add(adressLabel);
-		clientAdress.setText("96 Rue de la Chaussée");
+		clientAdress.setText(client.getClientAddress());
 		clientAdress.setHorizontalAlignment(SwingConstants.LEFT);
 		clientAdress.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		clientAdress.setColumns(30);
@@ -134,7 +133,7 @@ public class ClientCreate extends JFrame {
 		JTextField birthClient = new JTextField();
 		birthClient.setBounds(200, 5, 93, 27);
 		birthClient.setForeground(new Color(153, 153, 153));
-		birthClient.setText("1986-03-12");
+		birthClient.setText(client.getClientBirthdate().toString());
 		birthClient.setHorizontalAlignment(SwingConstants.LEFT);
 		birthClient.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		birthClient.setColumns(20);
@@ -153,7 +152,6 @@ public class ClientCreate extends JFrame {
 		JTextField phoneClient = new JTextField();
 		phoneClient.setBounds(200, 5, 91, 27);
 		phoneClient.setForeground(new Color(153, 153, 153));
-			
 
 		panel_3_1_2.setLayout(null);
 
@@ -161,7 +159,7 @@ public class ClientCreate extends JFrame {
 		phoneLabel.setBounds(40, 10, 64, 17);
 		phoneLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_3_1_2.add(phoneLabel);
-		phoneClient.setText("0771963255");
+		phoneClient.setText(client.getClientPhone());
 		phoneClient.setHorizontalAlignment(SwingConstants.LEFT);
 		phoneClient.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		phoneClient.setColumns(30);
@@ -179,6 +177,7 @@ public class ClientCreate extends JFrame {
 		errorEmpty.setVisible(false);
 		errorEmpty.setBounds(232, 258, 270, 16);
 		getContentPane().add(errorEmpty);
+
 		btnValidate.addActionListener(new ActionListener() {
 
 			@Override
@@ -203,7 +202,7 @@ public class ClientCreate extends JFrame {
 						&& ClientHandler.checkClientDescription(trimmedData) == null) {
 					errorBirth.setVisible(true);
 					errorPhone.setVisible(true);
-					errorDescription.setVisible(true);	
+					errorDescription.setVisible(true);
 				} else if (ClientHandler.checkDate(trimmedData) == null) {
 					errorBirth.setVisible(true);
 				} else if (ClientHandler.checkPhone(trimmedData) == null) {
@@ -214,7 +213,7 @@ public class ClientCreate extends JFrame {
 						&& (ClientHandler.checkDate(trimmedData) != null)
 						&& (ClientHandler.checkClientDescription(trimmedData) != null)) {
 					List<Object> checkedData = ClientHandler.checkDate(trimmedData);
-					ClientHandler.createClient(checkedData);
+					ClientHandler.updateClient(checkedData, client);
 					setVisible(false);
 					new ClientsList();
 				}
@@ -223,12 +222,12 @@ public class ClientCreate extends JFrame {
 
 		setVisible(true);
 
-		this.addWindowListener(new WindowAdapter() {
-			@Override 
-			public void windowClosing(java.awt.event.WindowEvent e) {
-				JOptionPane.showConfirmDialog(ClientCreate.this, "Etes-vous certain de vouloir quitter ?");
-			}
-		});
+//		this.addWindowListener(new WindowAdapter() {
+//			@Override 
+//			public void windowClosing(java.awt.event.WindowEvent e) {
+//				JOptionPane.showConfirmDialog(ClientCreate.this, "Etes-vous certain de vouloir quitter ?");
+//			}
+//		});
 
 	}
 }

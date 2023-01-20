@@ -5,14 +5,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-import model.Account;
 import model.CheckingAccount;
-import model.Client;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 public class CheckingAccountDAO {
@@ -79,6 +74,30 @@ public class CheckingAccountDAO {
 
 			conn.close();
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void UpdateCheckingAccount(CheckingAccount checkingAccount) {
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+
+			String query = "UPDATE CHECKING_ACCOUNT SET owner_description = ?, transfer_fee = ? WHERE account_id = ?";
+
+			conn = Connect.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, checkingAccount.getOwnerDescription());
+			stmt.setFloat(2, checkingAccount.getTransferFee());
+			stmt.setInt(3, checkingAccount.getAccountId());
+
+			stmt.executeUpdate();
+
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

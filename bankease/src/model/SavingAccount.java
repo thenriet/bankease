@@ -6,9 +6,6 @@ public class SavingAccount extends Account {
 	private float balanceLimit;
 
 	
-	public int getAccountId() {
-		return accountId;
-	}
 
 	public SavingAccount(int accountId, int clientId, String ownerDescription, float balance, float interestRate, float balanceLimit) {
 		super(accountId, clientId, ownerDescription, balance);
@@ -21,8 +18,12 @@ public class SavingAccount extends Account {
 		// TODO Auto-generated constructor stub
 	}
 
+	public int getAccountId() {
+		return this.accountId;
+	}
+	
 	public float getInterestRate() {
-		return interestRate;
+		return this.interestRate;
 	}
 
 	public void setInterestRate(float interestRate) {
@@ -30,7 +31,7 @@ public class SavingAccount extends Account {
 	}
 
 	public float getBalanceLimit() {
-		return balanceLimit;
+		return this.balanceLimit;
 	}
 
 	public void setBalanceLimit(float balanceLimit) {

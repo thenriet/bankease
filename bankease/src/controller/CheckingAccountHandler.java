@@ -1,9 +1,12 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import dao.CheckingAccountDAO;
+import dao.SavingAccountDAO;
 import model.CheckingAccount;
+import model.SavingAccount;
 import view.CheckingAccountView;
 
 public class CheckingAccountHandler {
@@ -41,6 +44,18 @@ public class CheckingAccountHandler {
 			return newAccount;
 
 		}
-
 	}
+		
+		public static void updateCheckingAccount(List<Object> checkedData, CheckingAccount updatedAccount) {
+
+			if (checkedData != null) {
+				updatedAccount.setOwnerDescription((String) checkedData.get(0));
+				updatedAccount.setTransferFee( Float.parseFloat((String) checkedData.get(1)));
+
+				CheckingAccountDAO.UpdateCheckingAccount(updatedAccount);
+			}
+		}
+
+
+	
 }

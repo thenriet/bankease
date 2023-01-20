@@ -1,5 +1,8 @@
 package bankease;
 
+import view.ClientsList;
+
+
 import dao.CheckingAccountDAO;
 import view.CheckingAccountView;
 import view.ClientsList;
@@ -14,10 +17,8 @@ public class Main {
 
 		//CheckingAccountView a = new CheckingAccountView();
 		//a.setVisible(true);
-		
-		new FrmAccountList(4, "");
 
-//		new ClientsList();
+		new ClientsList();
 
 	}
 }
