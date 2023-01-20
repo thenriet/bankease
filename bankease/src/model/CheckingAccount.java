@@ -1,41 +1,35 @@
 package model;
 
-/**
- * Brouillon Checking
- * @author S. Lebrun
- */
+
 public class CheckingAccount extends Account {
-	private float minBalance;
+	
 	private float transferFee;
-
-
-	/**
-	 * Empty constructor
-	 */
-	public CheckingAccount() {}
-
-	/**
-	 * Fields constructor
-	 */
-	public CheckingAccount(String accountType, int accountId, int clientId, String ownerDescription, float balance,
-			float minBalance, float transferFee) {
-		super(accountType, accountId, clientId, ownerDescription, balance);
-		this.minBalance = minBalance;
-		this.transferFee = transferFee;
+	private float minBalance;
+	
+	public CheckingAccount() {
 	}
 	
-	// Getters Setters
+
+	public CheckingAccount(int accountId, int clientId, String ownerDescription, float balance, float transferFee, float minBalance) {
+		super(accountId, clientId, ownerDescription, balance);
+		this.transferFee = transferFee;
+		this.minBalance = minBalance;
+	}
+
+	public float getTransferFee() {
+		return transferFee;
+	}
+
+	public void setTransferFee(float transferFee) {
+		this.transferFee = transferFee;
+	}
 
 	public float getMinBalance() {
 		return minBalance;
 	}
+
 	public void setMinBalance(float minBalance) {
 		this.minBalance = minBalance;
 	}
-	public float getTransferFee() {
-		return transferFee;
-	}
-	public void setTransferFee(float transferFee) {
-		this.transferFee = transferFee;
-	}
+
 }

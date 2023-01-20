@@ -27,6 +27,7 @@ import javax.swing.JLabel;
  * @author S. Lebrun
  *
  */
+
 public class FrmAccountList extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -43,6 +44,7 @@ public class FrmAccountList extends JFrame {
 	private JLabel lblInfo1;
 	private JLabel lblInfo2;
 	private JLabel lblInfosCompte;
+
 
 
 	/**
@@ -88,6 +90,7 @@ public class FrmAccountList extends JFrame {
 		// Récupération de la liste des comptes du client 
 		// TODO modifier avec l'ID dynamique si récupération du client
 		List<Account> accountList = AccountListController.getAccountList(clientId);
+
 		
 		// Affichage de la liste :
 		JList<Account> list = new JList<Account>();
@@ -95,6 +98,7 @@ public class FrmAccountList extends JFrame {
 		list.setListData(accountList.toArray(new Account[0]));
 		scrollPane.setViewportView(list);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
 		
 		// Sélection du compte dans la liste :
 		list.addListSelectionListener(new ListSelectionListener(){
@@ -134,6 +138,7 @@ public class FrmAccountList extends JFrame {
 		lblInfo2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblInfo2.setBounds(191, 453, 300, 20);
 		contentPane.add(lblInfo2);
+
 		
 		btnOuvrir = new JButton("Ouvrir");
 		btnOuvrir.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -144,6 +149,7 @@ public class FrmAccountList extends JFrame {
 		btnOuvrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO vers formulaire "ouvrir un compte"
+
 			}
 		});
 		
@@ -157,6 +163,7 @@ public class FrmAccountList extends JFrame {
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO vers formulaire "modifier un compte"
+
 			}
 		});
 		

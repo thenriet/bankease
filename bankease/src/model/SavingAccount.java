@@ -1,37 +1,30 @@
 package model;
 
-/**
- * Brouillon Saving
- * @author S. Lebrun
- */
-public class SavingAccount extends Account{
-	private float balanceLimit;
+public class SavingAccount extends Account {
+	
 	private float interestRate;
-	
+	private float balanceLimit;
 
-	/**
-	 * Empty constructor
-	 */
-	public SavingAccount() {}
 	
-	/**
-	 * Fields constructor
-	 */
-	public SavingAccount(float balanceLimit, float interestRate) {
-		super();
-		this.balanceLimit = balanceLimit;
+	public int getAccountId() {
+		return accountId;
+	}
+
+	public SavingAccount(int accountId, int clientId, String ownerDescription, float balance, float interestRate, float balanceLimit) {
+		super(accountId, clientId, ownerDescription, balance);
 		this.interestRate = interestRate;
-	}
-
-
-	// Getters Setters
-
-	public void setBalanceLimit(float balanceLimit) {
 		this.balanceLimit = balanceLimit;
 	}
+
+
+	public SavingAccount() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public float getInterestRate() {
 		return interestRate;
 	}
+
 	public void setInterestRate(float interestRate) {
 		this.interestRate = interestRate;
 	}
@@ -39,6 +32,9 @@ public class SavingAccount extends Account{
 	public float getBalanceLimit() {
 		return balanceLimit;
 	}
-	
+
+	public void setBalanceLimit(float balanceLimit) {
+		this.balanceLimit = balanceLimit;
+	}
 
 }
