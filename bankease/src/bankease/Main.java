@@ -14,9 +14,9 @@ public class Main {
 		//CheckingAccountView a = new CheckingAccountView();
 		//a.setVisible(true);
 		
-//		new FrmAccountList(4, "");
+		new FrmAccountList(4, "");
 
-		new ClientsList();
+//		new ClientsList();
 
 	}
 }

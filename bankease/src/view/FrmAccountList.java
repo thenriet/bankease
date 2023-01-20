@@ -50,7 +50,6 @@ public class FrmAccountList extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	// TODO modifier clientId par objet Client ?
 	public FrmAccountList(int clientId, String message) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,7 +62,6 @@ public class FrmAccountList extends JFrame {
 		contentPane.setLayout(null);
 
 		// Affichage du libellé du client en titre :
-		// TODO si récupération du client, supprimer l'appel BDD
 		JTextField txtTitle = new JTextField(AccountListController.getAccountOwner(clientId));
 		txtTitle.setBackground(new Color(200, 173, 167));
 		txtTitle.setOpaque(true);
@@ -89,7 +87,6 @@ public class FrmAccountList extends JFrame {
 		contentPane.add(scrollPane);
 
 		// Récupération de la liste des comptes du client 
-		// TODO modifier avec l'ID dynamique si récupération du client
 		List<Account> accountList = AccountListController.getAccountList(clientId);
 
 		
@@ -149,8 +146,9 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Ouvrir" :
 		btnOuvrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO vers formulaire "ouvrir un compte"
-
+				setVisible(false);
+				OpenAccountView a = new OpenAccountView(clientId);
+				a.setVisible(true);
 			}
 		});
 		
