@@ -9,6 +9,8 @@ import javax.swing.event.ListSelectionListener;
 
 import controller.AccountListController;
 import model.Account;
+import model.Client;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -129,6 +131,11 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Modifier" :
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Account selectedAccount = list.getSelectedValue();
+				if (selectedAccount != null) {
+					setVisible(false);
+					new ModifyAccount(selectedAccount);
+				}
 			}
 		});
 		

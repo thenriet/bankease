@@ -37,7 +37,7 @@ public class ClientsList extends JFrame {
 
 		Client[] clientsList = ClientHandler.listOfClients();
 		JList<Client> list = new JList<Client>();
-		list.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		list.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		//list.setFixedCellHeight(44);
 		//list.setFont(list.getFont().deriveFont(16.0f));
 		list.setListData(clientsList);
@@ -99,6 +99,8 @@ public class ClientsList extends JFrame {
 		getContentPane().add(panel_2);
 		
 		JButton btnAccounts = new JButton("Voir comptes");
+		btnAccounts.setEnabled(false);
+
 		btnAccounts.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -124,6 +126,7 @@ public class ClientsList extends JFrame {
 					btnDetailsClient.setEnabled(true);
 					btnModifyClient.setEnabled(true);
 					btnDeleteClient.setEnabled(true);
+					btnAccounts.setEnabled(true);
 				}
 			}
 		});

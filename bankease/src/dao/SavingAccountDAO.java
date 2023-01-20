@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Client;
 import model.SavingAccount;
 
 import java.sql.DriverManager;
@@ -81,6 +83,31 @@ public class SavingAccountDAO {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static void UpdateSavingAccount(SavingAccount savingAccount) {
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+
+			String query = "UPDATE SAVING_ACCOUNT SET owner_description = ?, interest_rate = ? WHERE account_id = ?";
+
+			conn = Connect.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, savingAccount.getOwnerDescription());
+			stmt.setFloat(2, savingAccount.getInterestRate());
+			stmt.setInt(3, savingAccount.getAccountId());
+
+			stmt.executeUpdate();
+
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+		
 	}
 	
 }
