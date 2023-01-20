@@ -46,7 +46,7 @@ public class SavingAccountDAO {
 	
 	public static void CreateSavingAccount(SavingAccount savingaccount) {
 		
-		String sql = "INSERT INTO SAVING_ACCOUNT (owner_description,interest_rate,balance_limit,balance) VALUES('"+ savingaccount.getOwnerDescription()+"','"+ savingaccount.getInterestRate() +"','"+savingaccount.getBalanceLimit()+"','"+savingaccount.getBalance()+"')";
+		String sql = "INSERT INTO SAVING_ACCOUNT (owner_description,client_id,interest_rate,balance_limit,balance) VALUES('"+ savingaccount.getOwnerDescription()+"','" + savingaccount.getClientId() +"','"+ savingaccount.getInterestRate() +"','"+savingaccount.getBalanceLimit()+"','"+savingaccount.getBalance()+"')";
 				
 		try {
 
