@@ -37,8 +37,9 @@ public class ClientsList extends JFrame {
 
 		Client[] clientsList = ClientHandler.listOfClients();
 		JList<Client> list = new JList<Client>();
-		list.setFixedCellHeight(44);
-		list.setFont(list.getFont().deriveFont(16.0f));
+		list.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		//list.setFixedCellHeight(44);
+		//list.setFont(list.getFont().deriveFont(16.0f));
 		list.setListData(clientsList);
 
 		scrollPane.setViewportView(list);

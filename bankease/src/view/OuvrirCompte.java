@@ -106,7 +106,6 @@ public class OuvrirCompte extends JFrame implements ActionListener {
 						e1.printStackTrace();
 					}
 					
-					
 				}
 				
 			});
