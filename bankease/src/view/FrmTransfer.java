@@ -196,7 +196,7 @@ public class FrmTransfer extends JFrame {
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String amount = txtMontant.getText();
-				String errorMsg = TransferController.creditDebitAccount(sourceAccount, selectedAccount, amount);
+				String errorMsg = TransferController.transferAccount(sourceAccount, selectedAccount, amount);
 				if (errorMsg == "") {
 					String message = TransferController.applyChange(sourceAccount, "débit", amount) + "\n";
 					message += TransferController.applyChange(selectedAccount, "crédit", amount);

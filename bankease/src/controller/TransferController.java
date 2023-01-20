@@ -19,7 +19,7 @@ public class TransferController {
 	 * @param input : user input in form
 	 * @return empty String if OK, or error message to display on frame
 	 */
-	public static String creditDebitAccount(Account source, Account destination, String input) {
+	public static String transferAccount(Account source, Account destination, String input) {
 		String errorMsg = "";
 		float debitAmount = 0;
 		float creditAmount = 0;
