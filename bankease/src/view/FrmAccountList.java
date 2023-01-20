@@ -1,7 +1,6 @@
 package view;
 
 import javax.swing.JFrame;
-
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -19,9 +18,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
-
-import view.CheckingAccountView;
-import controller.CheckingAccountHandler;
 
 public class FrmAccountList extends JFrame {
 
@@ -69,8 +65,6 @@ public class FrmAccountList extends JFrame {
 		txtTitle.setBackground(new Color(200, 173, 167));
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
-		
-		
 		// Affichage du libellé client en titre :
 		String accountOwner = AccountListController.getAccountOwner(id);
 		txtTitle.setText(accountOwner);
@@ -81,11 +75,9 @@ public class FrmAccountList extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(20, 100, 650, 350);
 		contentPane.add(scrollPane);
-		
 
 		// Récupération de la liste des comptes du client (à modifier avec l'ID dynamique)
 		List<Account> accountList = AccountListController.getAccountList(id);
-		
 		
 		// Affichage de la liste :
 		JList<Account> list = new JList<Account>();
@@ -114,9 +106,6 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Ouvrir" :
 		btnOuvrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				OpenAccountView a = new OpenAccountView(id);
-				a.setVisible(true);
 			}
 		});
 		

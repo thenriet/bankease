@@ -11,59 +11,57 @@ import model.CheckingAccount;
 import model.SavingAccount;
 
 /**
+ * DB queries for Account list creation
  * @author S. Lebrun
  *
  */
-public class AccountDAO {
+public class AccountListDAO {
 
 	/**
 	 * Create CheckingAccount and SavingAccount objects with data from DB tables
-	 * @param client ID
+	 * @param id : client ID
 	 * @return Account Arraylist
 	 */
 	public static ArrayList<Account> getAccounts(int id) {
 		ArrayList<Account> accountList = new ArrayList<>();
 
-		try {
-			Connection conn = Connect.getConnection();
+		try (Connection conn = Connect.getConnection()){
 
 			PreparedStatement checking_st = conn.prepareStatement("SELECT account_id, client_id, owner_description, balance, transfer_fee, min_balance FROM checking_account WHERE client_id = ?;");
 			checking_st.setInt(1,  id);
-			ResultSet checking = checking_st.executeQuery();
+			ResultSet checking_rs = checking_st.executeQuery();
 
-			while (checking.next()) {
+			while (checking_rs.next()) {
 				CheckingAccount checking_account = new CheckingAccount();
 
 				checking_account.setAccountType("courant");
-				checking_account.setAccountId(checking.getInt(1));
-				checking_account.setClientId(checking.getInt(2));
-				checking_account.setOwnerDescription(checking.getString(3));
-				checking_account.setBalance(checking.getFloat(4));
-				checking_account.setTransferFee(checking.getFloat(5));
-				checking_account.setMinBalance(checking.getFloat(6));
+				checking_account.setAccountId(checking_rs.getInt(1));
+				checking_account.setClientId(checking_rs.getInt(2));
+				checking_account.setOwnerDescription(checking_rs.getString(3));
+				checking_account.setBalance(checking_rs.getFloat(4));
+				checking_account.setTransferFee(checking_rs.getFloat(5));
+				checking_account.setMinBalance(checking_rs.getFloat(6));
 
 				accountList.add(checking_account);
 			}
 
 			PreparedStatement saving_st = conn.prepareStatement("SELECT account_id, client_id, owner_description, balance, interest_rate, balance_limit FROM saving_account WHERE client_id = ?;");
 			saving_st.setInt(1,  id);
-			ResultSet saving = saving_st.executeQuery();
+			ResultSet saving_rs = saving_st.executeQuery();
 			
-			while (saving.next()) {
+			while (saving_rs.next()) {
 				SavingAccount saving_account = new SavingAccount();
 
 				saving_account.setAccountType("épargne");
-				saving_account.setAccountId(saving.getInt(1));
-				saving_account.setClientId(saving.getInt(2));
-				saving_account.setOwnerDescription(saving.getString(3));
-				saving_account.setBalance(saving.getFloat(4));
-				saving_account.setInterestRate(saving.getFloat(5));
-				saving_account.setBalanceLimit(saving.getFloat(6));
+				saving_account.setAccountId(saving_rs.getInt(1));
+				saving_account.setClientId(saving_rs.getInt(2));
+				saving_account.setOwnerDescription(saving_rs.getString(3));
+				saving_account.setBalance(saving_rs.getFloat(4));
+				saving_account.setInterestRate(saving_rs.getFloat(5));
+				saving_account.setBalanceLimit(saving_rs.getFloat(6));
 
 				accountList.add(saving_account);
 			}
-
-			conn.close();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -75,13 +73,13 @@ public class AccountDAO {
 
 	/**
 	 * Recovers the client name/business name from DB
-	 * @param client ID
+	 * @param id : client ID
 	 * @return client description as String
 	 */
+	// TODO retirer si plus utilisé après mise en commun (récupération du Client dans la frame)
 	public static String getAccountOwner(int id) {
 		String clientDesc = null;
-		try {
-			Connection conn = Connect.getConnection();
+		try (Connection conn = Connect.getConnection()) {
 			
 			PreparedStatement prst = conn.prepareStatement("SELECT client_description FROM client WHERE client_id = ?");
 			prst.setInt(1, id);
