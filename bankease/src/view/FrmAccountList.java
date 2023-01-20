@@ -8,6 +8,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import controller.AccountListController;
+import dao.CheckingAccountDAO;
+import dao.SavingAccountDAO;
 import model.Account;
 import model.SavingAccount;
 
@@ -17,6 +19,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -34,11 +37,16 @@ public class FrmAccountList extends JFrame {
 	private JButton btnDebiter;
 	private JButton btnRetour;
 
+	private JLabel lblMessage;
+	private JLabel lblInfo1;
+	private JLabel lblInfo2;
+	private JLabel lblInfosCompte;
+	private Account selectedAccount;
+
 	/**
 	 * Create the frame.
 	 */
-	// TODO modifier clientId par objet Client ?
-	public FrmAccountList(int clientId, String message) {
+	public FrmAccountList(int id) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 700, 660);
@@ -47,16 +55,16 @@ public class FrmAccountList extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		// Affichage du libellé du client en titre :
-		// TODO si récupération du client, supprimer l'appel BDD
-		JTextField txtTitle = new JTextField(AccountListController.getAccountOwner(clientId));
+		
+		JTextField txtTitle = new JTextField();
+		txtTitle.setForeground(new Color(0, 0, 0));
 		txtTitle.setBackground(new Color(200, 173, 167));
-		txtTitle.setOpaque(true);
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
 		// Affichage du libellé client en titre :
+
 		String accountOwner = AccountListController.getAccountOwner(clientId);
+
 		txtTitle.setText(accountOwner);
 		txtTitle.setBounds(0, 0, 686, 77);
 		contentPane.add(txtTitle);
@@ -66,16 +74,17 @@ public class FrmAccountList extends JFrame {
 		scrollPane.setBounds(20, 100, 650, 350);
 		contentPane.add(scrollPane);
 
+
 		// Récupération de la liste des comptes du client (à modifier avec l'ID
 		// dynamique)
-		List<Account> accountList = AccountListController.getAccountList(clientId);
+		List<Account> accountList = AccountListController.getAccountList(clientId);		
 
 		// Affichage de la liste :
 		JList<Account> list = new JList<Account>();
 		list.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		list.setListData(accountList.toArray(new Account[0]));
 		scrollPane.setViewportView(list);
-
+    
 		// Sélection du compte dans la liste :
 		list.addListSelectionListener(new ListSelectionListener() {
 
@@ -97,6 +106,7 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Ouvrir" :
 		btnOuvrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				setVisible(false);
 				CheckingAccountView a = new CheckingAccountView();
 				a.setVisible(true);
@@ -114,6 +124,7 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Modifier" :
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				if (list.getSelectedValue() instanceof SavingAccount) {
 					setVisible(false);
 					new ModifyAccount((SavingAccount) list.getSelectedValue());
@@ -130,6 +141,19 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Clôturer" :
 		btnCloturer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				int result = JOptionPane.showConfirmDialog(FrmAccountList.this, "Clôturer le compte n°" + selectedAccount.getAccountId() + " ?", "Confirmation avant clôture", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					String message = AccountListController.deleteAccount(selectedAccount);
+					if (message.contains("Erreur")) {
+						lblMessage.setForeground(new Color(128, 0, 0));
+					} else {
+						lblMessage.setForeground(new Color(0, 128, 0));
+					}
+					lblMessage.setText(message);
+					list.setListData(AccountListController.getAccountList(clientId).toArray(new Account[0]));
+				}
+
 			}
 		});
 
@@ -175,7 +199,7 @@ public class FrmAccountList extends JFrame {
 		btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRetour.setBounds(490, 519, 100, 45);
 		contentPane.add(btnRetour);
-
+		
 		// Clic sur le bouton "Retour" :
 		btnDebiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

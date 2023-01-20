@@ -63,6 +63,7 @@ public class FrmTransfer extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -110,6 +111,8 @@ public class FrmTransfer extends JFrame {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
+				btnValider.setEnabled(true);
+
 				selectedAccount = list.getSelectedValue();
 
 				// Affichage des infos du compte de destination :
@@ -190,6 +193,7 @@ public class FrmTransfer extends JFrame {
 		btnValider.repaint();
 		btnValider.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnValider.setBounds(172, 530, 100, 45);
+		btnValider.setEnabled(false);
 		contentPane.add(btnValider);
 		
 		// Clic sur le bouton "Valider" :
