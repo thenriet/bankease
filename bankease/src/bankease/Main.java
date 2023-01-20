@@ -3,7 +3,7 @@ import dao.CheckingAccountDAO;
 import view.CheckingAccountView;
 import view.ClientsList;
 import view.FrmAccountList;
-import view.OuvrirCompte2;
+import view.OpenAccountView;
 
 public class Main {
 
@@ -13,9 +13,9 @@ public class Main {
 //		CheckingAccountView a = new CheckingAccountView();
 //		a.setVisible(true);
 		//new ClientsList();
-		//new FrmAccountList(4);
-		OuvrirCompte2 a = new OuvrirCompte2();
-		a.setVisible(true);
+		new FrmAccountList(5);
+//		OuvrirCompte2 a = new OuvrirCompte2();
+//		a.setVisible(true);
 		
 	}
 }

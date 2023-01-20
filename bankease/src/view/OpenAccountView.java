@@ -1,30 +1,29 @@
 package view;
 
-import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
-
-import javax.swing.JButton;
+import javax.swing.Box;
 import javax.swing.ButtonGroup;
-import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Box;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
+import model.Client;
 import controller.CheckingAccountHandler;
 import controller.SavingAccountHandler;
 
-import java.awt.Panel;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
-import javax.swing.JRadioButton;
-
-public class OuvrirCompte2 extends JFrame implements ActionListener {
+public class OpenAccountView extends JFrame implements ActionListener {
 
 	private JTextField titulaire;
+	private int global_id;
 	private JTextField txtOuvrirUnCompte;
 	private JRadioButton Compte_courant;
 	private JRadioButton Compte_epargne;
@@ -43,7 +42,9 @@ public class OuvrirCompte2 extends JFrame implements ActionListener {
 	float bal_lim;
 	JFrame frame = new JFrame("Checking account");
 
-	public OuvrirCompte2() {
+	public OpenAccountView(int id) {
+		
+		global_id = id;
 		
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -253,11 +254,16 @@ public class OuvrirCompte2 extends JFrame implements ActionListener {
 						
 						else{
 	
-							CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal);}
+							CheckingAccountHandler.createCheckingAccount(0,global_id,titu,bal,
+									transfer,min_bal);}
+						
+						System.out.println(global_id);
 						
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
+					
+					new FrmAccountList(global_id);
 					
 				}
 				
@@ -293,6 +299,14 @@ public class OuvrirCompte2 extends JFrame implements ActionListener {
 			btnNewButton_1.setBounds(392, 545, 89, 23);
 			getContentPane().add(btnNewButton_1);
 			
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					new FrmAccountList(global_id);
+				}
+				
+			});
+				
 			JLabel lblNewLabel_4 = new JLabel("Solde initial");
 			lblNewLabel_4.setBounds(72, 420, 92, 14);
 			getContentPane().add(lblNewLabel_4);
@@ -401,14 +415,16 @@ public class OuvrirCompte2 extends JFrame implements ActionListener {
 						
 						else{
 	
-							SavingAccountHandler.createSavingAccount(44,444444,titu,bal,int_rate,bal_lim);}
+							SavingAccountHandler.createSavingAccount(0,global_id,titu,bal,int_rate,bal_lim);}
 						
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					
+					new FrmAccountList(global_id);
 					
 				}
+				
+				
 				
 			});
 			btnNewButton.setBounds(142, 545, 89, 23);
@@ -441,6 +457,14 @@ public class OuvrirCompte2 extends JFrame implements ActionListener {
 			btnNewButton_1.setBackground(new Color(255, 128, 192));
 			btnNewButton_1.setBounds(392, 545, 89, 23);
 			getContentPane().add(btnNewButton_1);
+
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					new FrmAccountList(global_id);
+				}
+				
+			});
 			
 			JLabel lblNewLabel_4 = new JLabel("Solde initial");
 			lblNewLabel_4.setBounds(72, 420, 92, 14);
