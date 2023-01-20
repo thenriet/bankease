@@ -1,6 +1,7 @@
 package model;
 
 /**
+ * Account abstract superclass
  * @author S. Lebrun
  * 
  */
@@ -12,8 +13,19 @@ public abstract class Account {
 	protected String ownerDescription;
 	protected float balance;
 
+	/**
+	 * Empty constructor
+	 */
 	public Account() {}
 	
+	/**
+	 * Fields constructor
+	 * @param accountType String
+	 * @param accountId int
+	 * @param clientId int
+	 * @param ownerDescription String
+	 * @param balance float
+	 */
 	public Account(String accountType, int accountId, int clientId, String ownerDescription, float balance) {
 		this.accountType = accountType;
 		this.accountId = accountId;
@@ -22,7 +34,9 @@ public abstract class Account {
 		this.balance = balance;
 	}
 
-	
+	/**
+	 * String representation of Account to display on frames
+	 */
 	public String toString() {
 		return "Compte " + accountType + " n°" + accountId + " - " + ownerDescription + " - Solde : " + String.format("%,.2f", balance) + " €";
 	}

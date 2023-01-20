@@ -1,50 +1,44 @@
 package controller;
 
+
 import dao.AccountManagementDAO;
 import model.Account;
 import model.CheckingAccount;
 import model.SavingAccount;
 
 /**
- * Controller for money transfer page
+ * Controller for the credit/debit page
  * @author S. Lebrun
  *
  */
-public class TransferController {
-
+public class CreditDebitController {
+	
 	/**
-	 * Checks if transfer can be carried out, then modifies the Account objects
-	 * @param source : account to debit
-	 * @param destination : account to credit
-	 * @param input : user input in form
-	 * @return empty String if OK, or error message to display on frame
+	 * Credit or debit Account object balance after verifying the action can be carried out
+	 * @param action : credit or debit
+	 * @param account : Account object to credit or debit
+	 * @param input : user input from the frame
+	 * @return empty string if OK, or error message to display on frame
 	 */
-	public static String creditDebitAccount(Account source, Account destination, String input) {
-		String errorMsg = "";
-		float debitAmount = 0;
-		float creditAmount = 0;
-		
-		if (destination == null) {
-			return "Veuillez sélectionner un compte de destination";
-		}
+	public static String creditDebitAccount(String action, Account account, String input) {
+		String errorMsg = null;
+		float amount = 0;
 		
 		if (checkInput(input)) {
-			creditAmount = (float) Float.parseFloat(input);
-			debitAmount = - creditAmount;
+			amount = (float) Float.parseFloat(input);
 		} else {
-			return "Veuillez entrer un nombre positif";
+			errorMsg = "Veuillez entrer un nombre positif";
+			return errorMsg;
 		}
-
-		if (source instanceof CheckingAccount) {
-			creditAmount *= (1 - ((CheckingAccount) source).getTransferFee() / 100);
-		}
-
-		errorMsg += validateAction(source, debitAmount);
-		errorMsg += validateAction(destination, creditAmount);
 		
-		if (errorMsg == "") {
-			source.setBalance(source.getBalance() + debitAmount);
-			destination.setBalance(destination.getBalance() + creditAmount);
+		if (action == "débit") {
+			amount = - amount;
+		}
+		
+		errorMsg = validateAction(account, amount);
+		
+		if (errorMsg == null) {
+			account.setBalance(account.getBalance() + amount);
 		}
 
 		return errorMsg;
@@ -62,9 +56,9 @@ public class TransferController {
 		String message = null;
 		
 		if (rows == 1) {
-			message = "Le compte n°" + account.getAccountId() + " a bien été " + action + "é";
+			message = "Le compte n°" + account.getAccountId() + " a bien été " + action + "é de " + amount + " €";
 		} else if (rows == 0) {
-			message = "Erreur : le compte n°" + account.getAccountId() + " n'a pas pû être " + action + "é";
+			message = "Erreur : le compte n°" + account.getAccountId() + " n'a pas pû être " + amount + "é";
 		} else {
 			message = "Erreur en base de données";
 		}
@@ -90,7 +84,7 @@ public class TransferController {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Sends account to appropriate validator
 	 * @param account : Account object

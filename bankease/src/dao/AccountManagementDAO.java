@@ -15,7 +15,7 @@ public class AccountManagementDAO {
 
 	/**
 	 * Sets the DB balance value to the Account's balance value
-	 * @param account previously modified with new balance value
+	 * @param account : previously modified Account object with new balance value
 	 * @return number of rows impacted by change
 	 */
 	public static int changeBalance(Account account) {

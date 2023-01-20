@@ -48,7 +48,7 @@ public class FrmAccountList extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	// TODO modifier clientId par client ?
+	// TODO modifier clientId par objet Client ?
 	public FrmAccountList(int clientId, String message) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

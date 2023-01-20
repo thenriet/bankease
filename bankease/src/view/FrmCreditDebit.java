@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
-import controller.CreditAccountController;
+import controller.CreditDebitController;
 import model.Account;
 import model.CheckingAccount;
 import model.SavingAccount;
@@ -148,9 +148,9 @@ public class FrmCreditDebit extends JFrame {
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String amount = txtMontant.getText();
-				String errorMsg = CreditAccountController.creditDebitAccount(action, account, amount);
+				String errorMsg = CreditDebitController.creditDebitAccount(action, account, amount);
 				if (errorMsg == null) {
-					String message = CreditAccountController.applyChange(account, action, amount);
+					String message = CreditDebitController.applyChange(account, action, amount);
 					setVisible(false);
 					new FrmAccountList(account.getClientId(), message);
 				} else {

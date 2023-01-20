@@ -19,7 +19,7 @@ public class AccountListDAO {
 
 	/**
 	 * Create CheckingAccount and SavingAccount objects with data from DB tables
-	 * @param client ID
+	 * @param id : client ID
 	 * @return Account Arraylist
 	 */
 	public static ArrayList<Account> getAccounts(int id) {
@@ -73,9 +73,10 @@ public class AccountListDAO {
 
 	/**
 	 * Recovers the client name/business name from DB
-	 * @param client ID
+	 * @param id : client ID
 	 * @return client description as String
 	 */
+	// TODO retirer si plus utilisé après mise en commun (récupération du Client dans la frame)
 	public static String getAccountOwner(int id) {
 		String clientDesc = null;
 		try (Connection conn = Connect.getConnection()) {
