@@ -1,6 +1,5 @@
 package controller;
 
-
 import dao.AccountManagementDAO;
 import model.Account;
 import model.CheckingAccount;
@@ -21,7 +20,7 @@ public class CreditDebitController {
 	 * @return empty string if OK, or error message to display on frame
 	 */
 	public static String creditDebitAccount(String action, Account account, String input) {
-		String errorMsg = null;
+		String errorMsg = "";
 		float amount = 0;
 		
 		if (checkInput(input)) {
@@ -37,7 +36,7 @@ public class CreditDebitController {
 		
 		errorMsg = validateAction(account, amount);
 		
-		if (errorMsg == null) {
+		if (errorMsg == "") {
 			account.setBalance(account.getBalance() + amount);
 		}
 
@@ -53,7 +52,7 @@ public class CreditDebitController {
 	 */
 	public static String applyChange(Account account, String action, String amount) {
 		int rows = AccountManagementDAO.changeBalance(account);
-		String message = null;
+		String message = "";
 		
 		if (rows == 1) {
 			message = "Le compte n°" + account.getAccountId() + " a bien été " + action + "é de " + amount + " €";

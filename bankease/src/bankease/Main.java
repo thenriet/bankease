@@ -13,8 +13,10 @@ public class Main {
 		//FrmAccountList mainFrame = new FrmAccountList(4);
 		//CheckingAccountView a = new CheckingAccountView();
 		//a.setVisible(true);
-		new ClientsList();
+		
+//		new FrmAccountList(4, "");
 
+		new ClientsList();
 
 	}
 }

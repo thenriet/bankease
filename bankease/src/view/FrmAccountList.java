@@ -58,6 +58,7 @@ public class FrmAccountList extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -94,7 +95,7 @@ public class FrmAccountList extends JFrame {
 		
 		// Affichage de la liste :
 		JList<Account> list = new JList<Account>();
-		list.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		list.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		list.setListData(accountList.toArray(new Account[0]));
 		scrollPane.setViewportView(list);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

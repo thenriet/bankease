@@ -51,6 +51,7 @@ public class FrmCreditDebit extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -149,7 +150,7 @@ public class FrmCreditDebit extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String amount = txtMontant.getText();
 				String errorMsg = CreditDebitController.creditDebitAccount(action, account, amount);
-				if (errorMsg == null) {
+				if (errorMsg == "") {
 					String message = CreditDebitController.applyChange(account, action, amount);
 					setVisible(false);
 					new FrmAccountList(account.getClientId(), message);
