@@ -80,13 +80,13 @@ public class ModifyAccount extends JFrame {
 		interestRate.setBounds(46, 27, 109, 25);
 		panel_3_1.add(interestRate);
 
-		JTextPane interestRateText = new JTextPane();
-		interestRateText.setText((String) null);
-		interestRateText.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		interestRateText.setBounds(204, 27, 184, 25);
+		JTextPane interestRateOrTransferFeeText = new JTextPane();
+		interestRateOrTransferFeeText.setText((String) null);
+		interestRateOrTransferFeeText.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		interestRateOrTransferFeeText.setBounds(204, 27, 184, 25);
 		JButton btnValidate = new JButton("Valider");
 		
-		panel_3_1.add(interestRateText);
+		panel_3_1.add(interestRateOrTransferFeeText);
 
 		JLabel errorEmpty = new JLabel("Veillez remplir TOUS les champs");
 		errorEmpty.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -107,13 +107,13 @@ public class ModifyAccount extends JFrame {
 
 
 		if (account instanceof SavingAccount) {
-			interestRateText.setText(Float.toString(((SavingAccount) account).getInterestRate()));
+			interestRateOrTransferFeeText.setText(Float.toString(((SavingAccount) account).getInterestRate()));
 			btnValidate.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					String data1 = clientLabelText.getText();
-					String data2 = interestRateText.getText();
+					String data2 = interestRateOrTransferFeeText.getText();
 
 					List<String> datas = new ArrayList<>();
 					datas.add(data1);

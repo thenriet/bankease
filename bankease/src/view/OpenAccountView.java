@@ -47,6 +47,8 @@ public class OpenAccountView extends JFrame implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setSize(660,700);
+		setLocationRelativeTo(null);
+
 		
 		new JPanel();
 		
@@ -260,7 +262,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 						e1.printStackTrace();
 					}
 					
-					new FrmAccountList(global_id, "");
+					new FrmAccountList(global_id, " ");
 					
 				}
 				
@@ -299,7 +301,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
-					new FrmAccountList(global_id, "");
+					new FrmAccountList(global_id," ");
 				}
 				
 			});
@@ -417,7 +419,8 @@ public class OpenAccountView extends JFrame implements ActionListener {
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					new FrmAccountList(global_id, "");
+					new FrmAccountList(global_id," ");
+					setVisible(false);
 					
 				}
 				
@@ -457,8 +460,8 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-
-					new FrmAccountList(global_id, "");
+					new FrmAccountList(global_id, " ");
+					setVisible(false);
 				}
 				
 			});

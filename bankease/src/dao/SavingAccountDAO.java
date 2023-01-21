@@ -48,8 +48,7 @@ public class SavingAccountDAO {
 				
 		try {
 
-			Connection conn = DriverManager.getConnection(
-			"jdbc:mysql://localhost:3306/gestion_database","root","9D7896N6");
+			Connection conn = Connect.getConnection();
 			Statement st = conn.createStatement();
 			st.executeUpdate(sql);
           
@@ -64,8 +63,7 @@ public class SavingAccountDAO {
 
 		try {
 			String query = "DELETE FROM SAVING_ACCOUNT WHERE account_id=?";
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "root",
-					"9D7896N6");
+			Connection conn = Connect.getConnection();
 
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setInt(1, id);
