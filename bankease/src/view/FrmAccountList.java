@@ -32,7 +32,6 @@ import javax.swing.JLabel;
  * @author S. Lebrun
  *
  */
-
 public class FrmAccountList extends JFrame {
 
 	private static final long serialVersionUID = 1L;
