@@ -92,12 +92,9 @@ public class FrmTransfer extends JFrame {
 		contentPane.add(scrollPane);
 
 		// Récupération de la liste des comptes du client sans le compte source :
+		// XXX cause une erreur console au lancement (Exception in thread "AWT-EventQueue-0")
 		List<Account> accountList = AccountListController.getAccountList(sourceAccount.getClientId());
-		for (int i = 0; i < accountList.size(); i++) {
-			if (accountList.get(i).getAccountId() == sourceAccount.getAccountId()) {
-				accountList.remove(i);
-			}
-		}
+		accountList.removeIf(account -> account.getAccountId() == sourceAccount.getAccountId());
 		
 		// Affichage de la liste :
 		JList<Account> list = new JList<Account>();
