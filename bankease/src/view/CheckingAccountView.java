@@ -37,11 +37,11 @@ public class CheckingAccountView extends JFrame {
 
 	public CheckingAccountView() {
 		
+		JFrame frame = new JFrame("Checking account");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setSize(660,700);
-		
-
-//		
+				
 		JLabel monMessage = new JLabel("  ");
 		monMessage.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		monMessage.setForeground(new Color(255, 0, 0));
