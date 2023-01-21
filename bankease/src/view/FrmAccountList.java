@@ -162,7 +162,8 @@ public class FrmAccountList extends JFrame {
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO vers formulaire "modifier un compte"
-
+				setVisible(false);
+				new ModifyAccount(selectedAccount);
 			}
 		});
 		
@@ -176,6 +177,7 @@ public class FrmAccountList extends JFrame {
 		btnCloturer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO vers pop-up "clôturer un compte"
+				
 			}
 		});
 		
