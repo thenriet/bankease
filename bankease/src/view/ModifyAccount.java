@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.FlowLayout;
 
+import controller.CheckingAccountHandler;
 import controller.SavingAccountHandler;
 import model.Account;
 import model.CheckingAccount;
@@ -33,6 +34,9 @@ public class ModifyAccount extends JFrame {
 		setSize(660, 700);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
+		setResizable(false);
+		setTitle("Bankease - Modifier un compte");
+
 
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 660, 27);
@@ -143,7 +147,44 @@ public class ModifyAccount extends JFrame {
 			});
 		}
 		
-		if (account instanceof CheckingAccount)
+		if (account instanceof CheckingAccount) {
+			
+			interestRate.setText("Frais de transfert");
+			interestRateOrTransferFeeText.setText(Float.toString(((CheckingAccount) account).getTransferFee()));
+			btnValidate.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String data1 = clientLabelText.getText();
+					String data2 = interestRateOrTransferFeeText.getText();
+
+					List<String> datas = new ArrayList<>();
+					datas.add(data1);
+					datas.add(data2);
+
+					List<String> trimmedData = new ArrayList<>();
+					trimmedData = CheckingAccountHandler.checkEmptyAndDataTrim(datas);
+
+					if (trimmedData.size() < 2) {
+						errorEmpty.setVisible(true);
+					} else if (CheckingAccountHandler.checkClientDescription(trimmedData) == null
+							&& CheckingAccountHandler.checkTransferFee(trimmedData) == null) {
+						errorDescription.setVisible(true);
+						errorInterestRate.setVisible(true);
+					} else if (CheckingAccountHandler.checkClientDescription(trimmedData) == null) {
+						errorDescription.setVisible(true);
+					} else if (CheckingAccountHandler.checkTransferFee(trimmedData) == null) {
+						errorInterestRate.setVisible(true);
+					} else if ((CheckingAccountHandler.checkClientDescription(trimmedData) != null)
+							&& (CheckingAccountHandler.checkTransferFee(trimmedData) != null)) {
+						List<Object> checkedData = CheckingAccountHandler.checkTransferFee(trimmedData);
+						CheckingAccountHandler.updateCheckingAccount(checkedData, (CheckingAccount) account );
+						setVisible(false);
+						new FrmAccountList(account.getClientId(), "");
+					}
+				}
+			});
+		}
 		
 		setVisible(true);
 
