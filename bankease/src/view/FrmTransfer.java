@@ -92,7 +92,7 @@ public class FrmTransfer extends JFrame {
 		contentPane.add(scrollPane);
 
 		// Récupération de la liste des comptes du client sans le compte source :
-		// XXX cause une erreur console au lancement (Exception in thread "AWT-EventQueue-0")
+		// XXX cause une NullPointerException (Exception in thread "AWT-EventQueue-0") au lancement, non bloquante
 		List<Account> accountList = AccountListController.getAccountList(sourceAccount.getClientId());
 		accountList.removeIf(account -> account.getAccountId() == sourceAccount.getAccountId());
 		
@@ -239,7 +239,7 @@ public class FrmTransfer extends JFrame {
 		if (account instanceof SavingAccount) {
 			lbl1 = "Taux d'intrêt : " + ((SavingAccount) account).getInterestRate() + "%";
 			lbl2 = "Plafond : " + String.format("%,.2f", ((SavingAccount) account).getBalanceLimit()) + " €";
-		} else {
+		} else if (account instanceof CheckingAccount) {
 			lbl1 = "Frais de transfert : " + ((CheckingAccount) account).getTransferFee() + "%";
 			lbl2 = "Solde minimum : " + String.format("%,.2f", ((CheckingAccount) account).getMinBalance()) + " €";
 		}

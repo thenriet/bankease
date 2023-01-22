@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -47,7 +48,7 @@ public class FrmAccountList extends JFrame {
 
 
 	/**
-	 * Create the frame.
+	 * Create the frame for account selection
 	 */
 	public FrmAccountList(int clientId, String message) {
 		setResizable(false);
@@ -96,7 +97,6 @@ public class FrmAccountList extends JFrame {
 		scrollPane.setViewportView(list);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		
 		// Sélection du compte dans la liste :
 		list.addListSelectionListener(new ListSelectionListener(){
 
@@ -146,7 +146,7 @@ public class FrmAccountList extends JFrame {
 		btnOuvrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				OpenAccountView a = new OpenAccountView(clientId);
+				OpnAccountView a = new OpenAccountView(clientId);
 				a.setVisible(true);
 			}
 		});
@@ -160,7 +160,6 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Modifier" :
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO vers formulaire "modifier un compte"
 				setVisible(false);
 				new ModifyAccount(selectedAccount);
 			}
@@ -175,8 +174,18 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Clôturer" :
 		btnCloturer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO vers pop-up "clôturer un compte"
-				
+				int result = JOptionPane.showConfirmDialog(FrmAccountList.this, "Cloûturer le compte n°" + selectedAccount.getAccountId() + " ?", "Confirmation avant clôture", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					String message = AccountListController.deleteAccount(selectedAccount);
+					if (message.contains("Erreur")) {
+						lblMessage.setForeground(new Color(128, 0, 0));
+					} else {
+						lblMessage.setForeground(new Color(0, 128, 0));
+					}
+					lblMessage.setText(message);
+					list.setListData(AccountListController.getAccountList(clientId).toArray(new Account[0]));
+					revalidate();
+				}
 			}
 		});
 		
@@ -232,7 +241,6 @@ public class FrmAccountList extends JFrame {
 		// Clic sur le bouton "Retour" :
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO vers liste des clients
 				setVisible(false);
 				new ClientsList();
 			}
