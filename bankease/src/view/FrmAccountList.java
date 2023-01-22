@@ -146,7 +146,7 @@ public class FrmAccountList extends JFrame {
 		btnOuvrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				OpnAccountView a = new OpenAccountView(clientId);
+				OpenAccountView a = new OpenAccountView(clientId);
 				a.setVisible(true);
 			}
 		});
