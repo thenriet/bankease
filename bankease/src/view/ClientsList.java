@@ -45,10 +45,11 @@ public class ClientsList extends JFrame {
 		scrollPane.setViewportView(list);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 563, 660, 39);
+		panel_1.setBounds(0, 535, 660, 39);
 		getContentPane().add(panel_1);
 
 		JButton btnModifyClient = new JButton("Modifier Client");
+		btnModifyClient.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnModifyClient.setBackground(new Color(200, 173, 167));
 		btnModifyClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -65,6 +66,7 @@ public class ClientsList extends JFrame {
 		panel_1.add(btnModifyClient);
 
 		JButton btnDeleteClient = new JButton("Supprimer Client");
+		btnDeleteClient.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnDeleteClient.setBackground(new Color(200, 173, 167));
 		btnDeleteClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,14 +89,16 @@ public class ClientsList extends JFrame {
 		panel_1.add(btnDeleteClient);
 
 		JButton btnAddClient = new JButton("Ajouter Client");
+		btnAddClient.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnAddClient.setBackground(new Color(200, 173, 167));
 		panel_1.add(btnAddClient);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(0, 618, 660, 48);
+		panel_2.setBounds(0, 589, 660, 48);
 		getContentPane().add(panel_2);
 
 		JButton btnAccounts = new JButton("Voir comptes");
+		btnAccounts.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnAccounts.setBackground(new Color(200, 173, 167));
 		btnAccounts.setEnabled(false);
 
@@ -109,7 +113,7 @@ public class ClientsList extends JFrame {
 		panel_2.add(btnAccounts);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(100, 428, 460, 110);
+		panel_3.setBounds(100, 400, 460, 110);
 		getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 
