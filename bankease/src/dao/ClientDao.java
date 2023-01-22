@@ -40,30 +40,30 @@ public class ClientDao {
 		return allClients;
 	}
 
-	public static Client getOneClient(int id) {
-		ResultSet rs = null;
-		Client oneClient = null;
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		try {
-			String query ="SELECT * FROM CLIENT WHERE client_id =?";
-			conn = Connect.getConnection();
-			stmt = conn.prepareStatement(query);
-		    stmt.setInt(1, id);
-		    rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				oneClient = new Client(rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5));
-			}
-			conn.close();
-		}
-
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return oneClient;
-
-	}
+//	public static Client getOneClient(int id) {
+//		ResultSet rs = null;
+//		Client oneClient = null;
+//		Connection conn = null;
+//		PreparedStatement stmt = null;
+//		try {
+//			String query = "SELECT * FROM CLIENT WHERE client_id =?";
+//			conn = Connect.getConnection();
+//			stmt = conn.prepareStatement(query);
+//			stmt.setInt(1, id);
+//			rs = stmt.executeQuery();
+//
+//			while (rs.next()) {
+//				oneClient = new Client(rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5));
+//			}
+//			conn.close();
+//		}
+//
+//		catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return oneClient;
+//
+//	}
 
 	public static void createClient(Client client) {
 
@@ -71,7 +71,7 @@ public class ClientDao {
 		PreparedStatement stmt = null;
 
 		try {
-			// 
+			//
 			String query = "INSERT INTO CLIENT (client_description, birth_date, address, phone) VALUES(?, ?, ?, ?)";
 			conn = Connect.getConnection();
 			stmt = conn.prepareStatement(query);
@@ -87,12 +87,12 @@ public class ClientDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void deleteClient(int id) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
-		try { 
+		try {
 			String query = "DELETE FROM CLIENT WHERE client_id=?";
 			conn = Connect.getConnection();
 			stmt = conn.prepareStatement(query);
@@ -104,6 +104,31 @@ public class ClientDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
+	}
+
+	public static void updateClient(Client client) {
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+
+			String query = "UPDATE CLIENT SET client_description = ?, birth_date = ?, address = ?, phone = ? WHERE client_id = ?";
+
+			conn = Connect.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, client.getClientDescription());
+			stmt.setDate(2, client.getClientBirthdate());
+			stmt.setString(3, client.getClientAddress());
+			stmt.setString(4, client.getClientPhone());
+			stmt.setInt(5, client.getClientId());
+
+			stmt.executeUpdate();
+
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

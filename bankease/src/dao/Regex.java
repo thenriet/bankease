@@ -2,7 +2,7 @@ package dao;
 
 import java.util.regex.Pattern;
 
-public class Regex implements DateMatcher {
+public class Regex {
 
     private static Pattern DATE_PATTERN = Pattern.compile(
       "^((2000|2400|2800|(19|2[0-9])(0[48]|[2468][048]|[13579][26]))-02-29)$" 
@@ -12,7 +12,7 @@ public class Regex implements DateMatcher {
     
     private static Pattern PHONE_PATTERN = Pattern.compile("^\\d{10}$");
  
-    @Override
+    
     public boolean matches(String date) {
         return DATE_PATTERN.matcher(date).matches();
     }

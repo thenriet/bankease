@@ -9,13 +9,6 @@ public class Client {
 	private String clientAddress;
 	private String clientPhone;
 
-	public Client(String clientDescription, Date clientBirthdate, String clientAddress, String clientPhone) {
-		this.clientDescription = clientDescription;
-		this.clientBirthdate = clientBirthdate;
-		this.clientAddress = clientAddress;
-		this.clientPhone = clientPhone;
-	}
-	
 	public Client() {
 	}
 
@@ -25,7 +18,7 @@ public class Client {
 		this.clientAddress = (String) clientAddress;
 		this.clientPhone = (String) clientPhone;
 	}
-	
+
 	public String toString() {
 		return this.clientDescription;
 	}
