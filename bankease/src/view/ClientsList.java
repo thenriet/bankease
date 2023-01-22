@@ -83,34 +83,41 @@ public class ClientsList extends JFrame {
 				}
 			}
 		});
+		
+				JButton btnAccounts = new JButton("Voir comptes");
+				panel_1.add(btnAccounts);
+				btnAccounts.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				btnAccounts.setBackground(new Color(200, 173, 167));
+				btnAccounts.setEnabled(false);
+				
+						btnAccounts.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								setVisible(false);
+								Client selectedClient = list.getSelectedValue();
+								int selectedClientId = selectedClient.getClientId();
+								new FrmAccountList(selectedClientId, "");
+							}
+						});
 
 		btnDeleteClient.setSize(100, 30);
 		btnDeleteClient.setEnabled(false);
 		panel_1.add(btnDeleteClient);
 
-		JButton btnAddClient = new JButton("Ajouter Client");
-		btnAddClient.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAddClient.setBackground(new Color(200, 173, 167));
-		panel_1.add(btnAddClient);
-
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(0, 589, 660, 48);
 		getContentPane().add(panel_2);
-
-		JButton btnAccounts = new JButton("Voir comptes");
-		btnAccounts.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAccounts.setBackground(new Color(200, 173, 167));
-		btnAccounts.setEnabled(false);
-
-		btnAccounts.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				Client selectedClient = list.getSelectedValue();
-				int selectedClientId = selectedClient.getClientId();
-				new FrmAccountList(selectedClientId, "");
-			}
-		});
-		panel_2.add(btnAccounts);
+		
+				JButton btnAddClient = new JButton("Ajouter Client");
+				panel_2.add(btnAddClient);
+				btnAddClient.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				btnAddClient.setBackground(new Color(200, 173, 167));
+				
+						btnAddClient.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								setVisible(false);
+								new ClientCreate();
+							}
+						});
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(100, 400, 460, 110);
@@ -170,13 +177,6 @@ public class ClientsList extends JFrame {
 		clientSelect.setBounds(236, 109, 189, 13);
 		getContentPane().add(clientSelect);
 		clientPhoneLabel.setVisible(false);
-
-		btnAddClient.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				new ClientCreate();
-			}
-		});
 
 		list.addListSelectionListener(new ListSelectionListener() {
 

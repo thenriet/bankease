@@ -31,25 +31,25 @@ public class ClientCreate extends JFrame {
 		setSize(660, 700);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
+		setTitle("Bankease - Ajouter un nouveau client");
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 660, 27);
+		panel.setBackground(new Color(200, 173, 167));
+		panel.setBounds(0, 0, 660, 77);
 		getContentPane().add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		JLabel clientCreationLabel = new JLabel("Création d'un nouveau client");
-		clientCreationLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(clientCreationLabel);
+		panel.setLayout(null);
 
 		JPanel btnReturn = new JPanel();
-		btnReturn.setBounds(0, 416, 660, 60);
+		btnReturn.setBounds(0, 504, 660, 60);
 		getContentPane().add(btnReturn);
 
 		JButton btnValidate = new JButton("Valider");
+		btnValidate.setBackground(new Color(200, 173, 167));
 		btnReturn.add(btnValidate);
 		btnValidate.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.setBackground(new Color(200, 173, 167));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -60,7 +60,7 @@ public class ClientCreate extends JFrame {
 		btnReturn.add(btnNewButton);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(0, 39, 660, 37);
+		panel_3.setBounds(0, 139, 660, 37);
 		getContentPane().add(panel_3);
 
 		JTextField clientDescription = new JTextField();
@@ -79,7 +79,7 @@ public class ClientCreate extends JFrame {
 
 		JLabel clientLabel = new JLabel("Identifiant Client");
 		clientLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		clientLabel.setBounds(40, 10, 106, 16);
+		clientLabel.setBounds(40, 10, 150, 16);
 		panel_3.add(clientLabel);
 		panel_3.add(clientDescription);
 		clientDescription.setFont(new Font("Tahoma", Font.ITALIC, 14));
@@ -94,7 +94,7 @@ public class ClientCreate extends JFrame {
 		panel_3.add(errorDescription);
 
 		JPanel panel_3_1 = new JPanel();
-		panel_3_1.setBounds(0, 137, 660, 37);
+		panel_3_1.setBounds(0, 237, 660, 37);
 		getContentPane().add(panel_3_1);
 
 		JTextField clientAdress = new JTextField();
@@ -112,7 +112,7 @@ public class ClientCreate extends JFrame {
 		panel_3_1.setLayout(null);
 
 		JLabel adressLabel = new JLabel("Adresse");
-		adressLabel.setBounds(40, 10, 47, 17);
+		adressLabel.setBounds(40, 10, 119, 17);
 		adressLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_3_1.add(adressLabel);
 		clientAdress.setText("96 Rue de la Chaussée");
@@ -122,12 +122,12 @@ public class ClientCreate extends JFrame {
 		panel_3_1.add(clientAdress);
 
 		JPanel panel_3_1_1 = new JPanel();
-		panel_3_1_1.setBounds(0, 87, 660, 37);
+		panel_3_1_1.setBounds(0, 187, 660, 37);
 		getContentPane().add(panel_3_1_1);
 		panel_3_1_1.setLayout(null);
 
 		JLabel birthLabel = new JLabel("Date de naissance");
-		birthLabel.setBounds(40, 10, 109, 17);
+		birthLabel.setBounds(40, 10, 150, 17);
 		birthLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_3_1_1.add(birthLabel);
 
@@ -147,7 +147,7 @@ public class ClientCreate extends JFrame {
 		panel_3_1_1.add(errorBirth);
 
 		JPanel panel_3_1_2 = new JPanel();
-		panel_3_1_2.setBounds(0, 186, 660, 37);
+		panel_3_1_2.setBounds(0, 286, 660, 37);
 		getContentPane().add(panel_3_1_2);
 
 		JTextField phoneClient = new JTextField();
@@ -158,7 +158,7 @@ public class ClientCreate extends JFrame {
 		panel_3_1_2.setLayout(null);
 
 		JLabel phoneLabel = new JLabel("Téléphone");
-		phoneLabel.setBounds(40, 10, 64, 17);
+		phoneLabel.setBounds(40, 10, 126, 17);
 		phoneLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_3_1_2.add(phoneLabel);
 		phoneClient.setText("0771963255");
@@ -177,7 +177,7 @@ public class ClientCreate extends JFrame {
 		errorEmpty.setForeground(new Color(153, 43, 56));
 		errorEmpty.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		errorEmpty.setVisible(false);
-		errorEmpty.setBounds(232, 258, 270, 16);
+		errorEmpty.setBounds(232, 358, 270, 16);
 		getContentPane().add(errorEmpty);
 		btnValidate.addActionListener(new ActionListener() {
 
