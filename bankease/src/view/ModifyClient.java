@@ -30,25 +30,20 @@ public class ModifyClient extends JFrame {
 		setSize(660, 700);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 660, 27);
-		getContentPane().add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		JLabel modifClientLabel = new JLabel("Modification d'un client");
-		modifClientLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(modifClientLabel);
+		setResizable(false);
+		setTitle("Bankease - Modifier un client");
 
 		JPanel panelButtons = new JPanel();
 		panelButtons.setBounds(0, 416, 660, 60);
 		getContentPane().add(panelButtons);
 
 		JButton btnValidate = new JButton("Valider");
+		btnValidate.setBackground(new Color(200, 173, 167));
 		panelButtons.add(btnValidate);
 		btnValidate.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		JButton btnReturn = new JButton("Retour");
+		btnReturn.setBackground(new Color(200, 173, 167));
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -59,11 +54,11 @@ public class ModifyClient extends JFrame {
 		panelButtons.add(btnReturn);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(0, 39, 660, 37);
+		panel_3.setBounds(0, 134, 660, 37);
 		getContentPane().add(panel_3);
 
 		JTextField clientDescription = new JTextField();
-		clientDescription.setBounds(200, 5, 251, 27);
+		clientDescription.setBounds(200, 5, 205, 27);
 		clientDescription.setForeground(new Color(153, 153, 153));
 		clientDescription.addFocusListener(new FocusAdapter() {
 			@Override
@@ -78,7 +73,7 @@ public class ModifyClient extends JFrame {
 
 		JLabel clientLabel = new JLabel("Identifiant Client");
 		clientLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		clientLabel.setBounds(40, 10, 106, 16);
+		clientLabel.setBounds(40, 10, 150, 16);
 		panel_3.add(clientLabel);
 		panel_3.add(clientDescription);
 		clientDescription.setFont(new Font("Tahoma", Font.ITALIC, 14));
@@ -88,16 +83,16 @@ public class ModifyClient extends JFrame {
 
 		JLabel errorDescription = new JLabel("Entre 2 et 100 caractères");
 		errorDescription.setForeground(new Color(153, 43, 56));
-		errorDescription.setBounds(463, 11, 161, 16);
+		errorDescription.setBounds(415, 12, 171, 16);
 		errorDescription.setVisible(false);
 		panel_3.add(errorDescription);
 
 		JPanel panel_3_1 = new JPanel();
-		panel_3_1.setBounds(0, 137, 660, 37);
+		panel_3_1.setBounds(0, 232, 660, 37);
 		getContentPane().add(panel_3_1);
 
 		JTextField clientAdress = new JTextField();
-		clientAdress.setBounds(200, 5, 249, 27);
+		clientAdress.setBounds(200, 5, 215, 27);
 		clientAdress.setForeground(new Color(153, 153, 153));
 		clientAdress.addFocusListener(new FocusAdapter() {
 			@Override
@@ -111,7 +106,7 @@ public class ModifyClient extends JFrame {
 		panel_3_1.setLayout(null);
 
 		JLabel adressLabel = new JLabel("Adresse");
-		adressLabel.setBounds(40, 10, 47, 17);
+		adressLabel.setBounds(40, 10, 150, 17);
 		adressLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_3_1.add(adressLabel);
 		clientAdress.setText(client.getClientAddress());
@@ -121,12 +116,12 @@ public class ModifyClient extends JFrame {
 		panel_3_1.add(clientAdress);
 
 		JPanel panel_3_1_1 = new JPanel();
-		panel_3_1_1.setBounds(0, 87, 660, 37);
+		panel_3_1_1.setBounds(0, 182, 660, 37);
 		getContentPane().add(panel_3_1_1);
 		panel_3_1_1.setLayout(null);
 
 		JLabel birthLabel = new JLabel("Date de naissance");
-		birthLabel.setBounds(40, 10, 109, 17);
+		birthLabel.setBounds(40, 10, 150, 17);
 		birthLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_3_1_1.add(birthLabel);
 
@@ -141,12 +136,12 @@ public class ModifyClient extends JFrame {
 
 		JLabel errorBirth = new JLabel("La date doit être au format YYYY-MM-DD");
 		errorBirth.setForeground(new Color(153, 43, 56));
-		errorBirth.setBounds(330, 11, 309, 16);
+		errorBirth.setBounds(303, 12, 242, 16);
 		errorBirth.setVisible(false);
 		panel_3_1_1.add(errorBirth);
 
 		JPanel panel_3_1_2 = new JPanel();
-		panel_3_1_2.setBounds(0, 186, 660, 37);
+		panel_3_1_2.setBounds(0, 281, 660, 37);
 		getContentPane().add(panel_3_1_2);
 
 		JTextField phoneClient = new JTextField();
@@ -156,7 +151,7 @@ public class ModifyClient extends JFrame {
 		panel_3_1_2.setLayout(null);
 
 		JLabel phoneLabel = new JLabel("Téléphone");
-		phoneLabel.setBounds(40, 10, 64, 17);
+		phoneLabel.setBounds(40, 10, 150, 17);
 		phoneLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_3_1_2.add(phoneLabel);
 		phoneClient.setText(client.getClientPhone());
@@ -167,16 +162,24 @@ public class ModifyClient extends JFrame {
 
 		JLabel errorPhone = new JLabel("Renseigner un numéro composé de 10 chiffres");
 		errorPhone.setForeground(new Color(153, 43, 56));
-		errorPhone.setBounds(330, 11, 298, 16);
+		errorPhone.setBounds(301, 12, 288, 16);
 		errorPhone.setVisible(false);
 		panel_3_1_2.add(errorPhone);
-
-		JLabel errorEmpty = new JLabel("Veuillez remplir TOUS les champs");
-		errorEmpty.setForeground(new Color(153, 43, 56));
-		errorEmpty.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		errorEmpty.setVisible(false);
-		errorEmpty.setBounds(232, 258, 270, 16);
-		getContentPane().add(errorEmpty);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 328, 660, 45);
+		getContentPane().add(panel_1);
+		
+				JLabel errorEmpty = new JLabel("Veuillez remplir TOUS les champs");
+				panel_1.add(errorEmpty);
+				errorEmpty.setForeground(new Color(153, 43, 56));
+				errorEmpty.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				
+				JPanel panel_2 = new JPanel();
+				panel_2.setBackground(new Color(200, 173, 167));
+				panel_2.setBounds(0, 0, 646, 76);
+				getContentPane().add(panel_2);
+				errorEmpty.setVisible(false);
 
 		btnValidate.addActionListener(new ActionListener() {
 
