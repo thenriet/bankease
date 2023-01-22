@@ -2,11 +2,17 @@ package view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import controller.AccountListController;
 import controller.ClientHandler;
+import model.Account;
 import model.Client;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
@@ -65,12 +71,15 @@ public class ClientsList extends JFrame {
 		btnDeleteClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client selectedClient = list.getSelectedValue();
-				if (selectedClient != null) {
-					ClientHandler.deleteClient(selectedClient.getClientId());
-					Client[] clientsList = ClientHandler.listOfClients();
-					list.setListData(clientsList);
-					scrollPane.setViewportView(list);
-					selectedClient = null;
+				int result = JOptionPane.showConfirmDialog(ClientsList.this, "Retirer " + selectedClient.getClientDescription() + " des clients ?", "Confirmation avant suppression", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					if (selectedClient != null) {
+						ClientHandler.deleteClient(selectedClient.getClientId());
+						Client[] clientsList = ClientHandler.listOfClients();
+						list.setListData(clientsList);
+						scrollPane.setViewportView(list);
+						selectedClient = null;
+						}
 				}
 			}
 		});
