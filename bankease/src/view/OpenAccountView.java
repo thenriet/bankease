@@ -24,15 +24,12 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 	private JTextField titulaire;
 	private int global_id;
-	private JTextField txtOuvrirUnCompte;
 	private JRadioButton Compte_courant;
 	private JRadioButton Compte_epargne;
 	ActionListener actionListener;
 	private JTextField transfer_fee;
 	private JTextField min_balance;
 	private JTextField balance;
-	private JTextField num_compte;
-	private JTextField solde_initial;
 	private JTextField interest_rate;
 	private JTextField balance_limit;
 	float transfer;
@@ -50,8 +47,10 @@ public class OpenAccountView extends JFrame implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setSize(660,700);
+		setLocationRelativeTo(null);
+
 		
-		JPanel p = new JPanel();
+		new JPanel();
 		
 		JLabel lblNewLabel_2 = new JLabel("Type de compte");
 		lblNewLabel_2.setBounds(72, 124, 96, 23);
@@ -255,15 +254,16 @@ public class OpenAccountView extends JFrame implements ActionListener {
 						else{
 	
 							CheckingAccountHandler.createCheckingAccount(0,global_id,titu,bal,
-									transfer,min_bal);}
+									transfer,min_bal);
+							setVisible(false);}
 						
 						System.out.println(global_id);
 						
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					
-					new FrmAccountList(global_id);
+					setVisible(false);
+					new FrmAccountList(global_id, " ");
 					
 				}
 				
@@ -301,8 +301,8 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-
-					new FrmAccountList(global_id);
+					new FrmAccountList(global_id," ");
+					setVisible(false);
 				}
 				
 			});
@@ -420,7 +420,8 @@ public class OpenAccountView extends JFrame implements ActionListener {
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					new FrmAccountList(global_id);
+					new FrmAccountList(global_id," ");
+					setVisible(false);
 					
 				}
 				
@@ -460,8 +461,8 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-
-					new FrmAccountList(global_id);
+					new FrmAccountList(global_id, " ");
+					setVisible(false);
 				}
 				
 			});
@@ -469,7 +470,6 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			JLabel lblNewLabel_4 = new JLabel("Solde initial");
 			lblNewLabel_4.setBounds(72, 420, 92, 14);
 			getContentPane().add(lblNewLabel_4);
-			
 			
 		}   
 		setVisible(true);

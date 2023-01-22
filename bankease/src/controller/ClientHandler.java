@@ -95,9 +95,6 @@ public class ClientHandler {
 		return arrayClients;
 	}
 
-	public static Client showOneClient(Client client) {
-		return ClientDao.getOneClient(client.getClientId());
-	}
 
 	public static void deleteClient(int id) {
 		ClientDao.deleteClient(id);
