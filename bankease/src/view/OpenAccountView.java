@@ -265,7 +265,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			getContentPane().add(lblNewLabel_2);
 
 			JLabel lblNewLabel_3 = new JLabel("Frais de transfert");
-			lblNewLabel_3.setBounds(72, 284, 95, 14);
+			lblNewLabel_3.setBounds(72, 284, 110, 14);
 			getContentPane().add(lblNewLabel_3);
 
 			Box horizontalBox_1 = Box.createHorizontalBox();
@@ -294,6 +294,8 @@ public class OpenAccountView extends JFrame implements ActionListener {
 		}
 
 		if (Compte_epargne.isSelected()) {
+
+			getContentPane().removeAll();
 
 			JLabel monMessageS = new JLabel("  ");
 			monMessageS.setFont(new Font("Tahoma", Font.PLAIN, 8));
