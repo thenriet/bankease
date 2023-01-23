@@ -110,7 +110,7 @@ public class SavingAccountView extends JFrame {
 
 					// TODO ajouter num compte et client id
 
-					if (monMessage_2S.getText() == null || monMessage_2S.getText().isEmpty()) {
+					if (interest_rate.getText() == null || interest_rate.getText().isEmpty()) {
 
 						// if
 						// (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_balance")
@@ -123,7 +123,7 @@ public class SavingAccountView extends JFrame {
 						int_rate = Float.parseFloat(interest_rate.getText());
 					}
 
-					if (monMessage_3S.getText() == null || monMessage_3S.getText().isEmpty()) {
+					if (balance_limit.getText() == null || balance_limit.getText().isEmpty()) {
 						// if
 						// (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_min_balance")
 						// {
@@ -135,7 +135,7 @@ public class SavingAccountView extends JFrame {
 						bal_lim = Float.parseFloat(balance_limit.getText());
 					}
 
-					if (monMessage_4S.getText() == null || monMessage_4S.getText().isEmpty()) {
+					if (balance.getText() == null || balance.getText().isEmpty()) {
 						// if
 						// (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_transfer_fee")
 						// {
