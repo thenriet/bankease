@@ -29,11 +29,15 @@ public class AccountListController {
 	 * @param id : client ID
 	 * @return String client description
 	 */
-	// TODO retirer après mise en commun si envoi du client dans la frame
 	public static String getAccountOwner (int id) {
 		return AccountListDAO.getAccountOwner(id);
 	}
 	
+	/**
+	 * Deletes the account from database and returns an information message
+	 * @param account : the account to delete
+	 * @return confirmation or error message
+	 */
 	public static String deleteAccount (Account account) {
 		String message = "";
 		
