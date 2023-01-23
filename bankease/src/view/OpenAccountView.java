@@ -17,13 +17,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import model.Client;
 import controller.CheckingAccountHandler;
 import controller.SavingAccountHandler;
 import dao.AccountListDAO;
 
 public class OpenAccountView extends JFrame implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
 	private JTextField titulaire;
 	private int global_id;
 	private JRadioButton Compte_courant;
@@ -437,7 +437,9 @@ public class OpenAccountView extends JFrame implements ActionListener {
 				}
 
 			});
+
 			getContentPane().add(btnValider);
+
 
 			// Affichage des titres
 
@@ -484,6 +486,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 		pack();
 		setSize(660, 700);
+
 	}
 
 }

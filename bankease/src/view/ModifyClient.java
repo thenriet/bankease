@@ -12,9 +12,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controller.ClientHandler;
+import controller.DataCheck;
 import model.Client;
 
-import java.awt.FlowLayout;
 import java.awt.Color;
 
 import javax.swing.JLabel;
@@ -197,25 +197,25 @@ public class ModifyClient extends JFrame {
 				datas.add(data4);
 
 				List<String> trimmedData = new ArrayList<>();
-				trimmedData = ClientHandler.checkEmptyAndDataTrim(datas);
+				trimmedData = DataCheck.checkEmptyAndDataTrim(datas);
 
 				if (trimmedData.size() < 4) {
 					errorEmpty.setVisible(true);
-				} else if (ClientHandler.checkDate(trimmedData) == null && ClientHandler.checkPhone(trimmedData) == null
-						&& ClientHandler.checkClientDescription(trimmedData) == null) {
+				} else if (DataCheck.checkDate(trimmedData) == null && DataCheck.checkPhone(trimmedData) == null
+						&& DataCheck.checkClientDescription(trimmedData) == null) {
 					errorBirth.setVisible(true);
 					errorPhone.setVisible(true);
 					errorDescription.setVisible(true);
-				} else if (ClientHandler.checkDate(trimmedData) == null) {
+				} else if (DataCheck.checkDate(trimmedData) == null) {
 					errorBirth.setVisible(true);
-				} else if (ClientHandler.checkPhone(trimmedData) == null) {
+				} else if (DataCheck.checkPhone(trimmedData) == null) {
 					errorPhone.setVisible(true);
-				} else if (ClientHandler.checkClientDescription(trimmedData) == null) {
+				} else if (DataCheck.checkClientDescription(trimmedData) == null) {
 					errorDescription.setVisible(true);
-				} else if ((ClientHandler.checkPhone(trimmedData) != null)
-						&& (ClientHandler.checkDate(trimmedData) != null)
-						&& (ClientHandler.checkClientDescription(trimmedData) != null)) {
-					List<Object> checkedData = ClientHandler.checkDate(trimmedData);
+				} else if ((DataCheck.checkPhone(trimmedData) != null)
+						&& (DataCheck.checkDate(trimmedData) != null)
+						&& (DataCheck.checkClientDescription(trimmedData) != null)) {
+					List<Object> checkedData = DataCheck.checkDate(trimmedData);
 					ClientHandler.updateClient(checkedData, client);
 					setVisible(false);
 					new ClientsList();
@@ -224,13 +224,6 @@ public class ModifyClient extends JFrame {
 		});
 
 		setVisible(true);
-
-//		this.addWindowListener(new WindowAdapter() {
-//			@Override 
-//			public void windowClosing(java.awt.event.WindowEvent e) {
-//				JOptionPane.showConfirmDialog(ClientCreate.this, "Etes-vous certain de vouloir quitter ?");
-//			}
-//		});
 
 	}
 }

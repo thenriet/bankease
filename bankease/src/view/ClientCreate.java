@@ -12,15 +12,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controller.ClientHandler;
+import controller.DataCheck;
+
 import java.awt.Color;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.WindowAdapter;
 
 public class ClientCreate extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +36,12 @@ public class ClientCreate extends JFrame {
 		panel.setBounds(0, 0, 660, 77);
 		getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Nouveau Client");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(225, 20, 211, 32);
+		panel.add(lblNewLabel);
 
 		JPanel btnReturn = new JPanel();
 		btnReturn.setBounds(0, 504, 660, 60);
@@ -195,31 +200,31 @@ public class ClientCreate extends JFrame {
 				datas.add(data4);
 				// Je crée une nouvelle liste de type String qui accueillera les données après qu'elles soient trimées et not empty
 				List<String> trimmedData = new ArrayList<>();
-				trimmedData = ClientHandler.checkEmptyAndDataTrim(datas);
+				trimmedData = DataCheck.checkEmptyAndDataTrim(datas);
 				// Je vérifie si la liste contient bien 4 données
 				if (trimmedData.size() < 4) {
 					errorEmpty.setVisible(true);
 				// Je vérifie si la liste contient une date invalide, un numéro de téléphone invalide et une description invalide
-				} else if (ClientHandler.checkDate(trimmedData) == null && ClientHandler.checkPhone(trimmedData) == null
-						&& ClientHandler.checkClientDescription(trimmedData) == null) {
+				} else if (DataCheck.checkDate(trimmedData) == null && DataCheck.checkPhone(trimmedData) == null
+						&& DataCheck.checkClientDescription(trimmedData) == null) {
 					errorBirth.setVisible(true);
 					errorPhone.setVisible(true);
 					errorDescription.setVisible(true);	
 				// Je vérifie si la liste contient une date invalide
-				} else if (ClientHandler.checkDate(trimmedData) == null) {
+				} else if (DataCheck.checkDate(trimmedData) == null) {
 					errorBirth.setVisible(true);
 				// Je vérifie si la liste contient un numéro de téléphone invalide
-				} else if (ClientHandler.checkPhone(trimmedData) == null) {
+				} else if (DataCheck.checkPhone(trimmedData) == null) {
 					errorPhone.setVisible(true);
 				// Je vérifie si la liste contient une description de client invalide
-				} else if (ClientHandler.checkClientDescription(trimmedData) == null) {
+				} else if (DataCheck.checkClientDescription(trimmedData) == null) {
 					errorDescription.setVisible(true);
 				// Si tout est OK niveau vérif des données, j'utilise la liste que retourne ClientHandler.checkDate(trimmedData)
 				// pour créer un nouveau client
-				} else if ((ClientHandler.checkPhone(trimmedData) != null)
-						&& (ClientHandler.checkDate(trimmedData) != null)
-						&& (ClientHandler.checkClientDescription(trimmedData) != null)) {
-					List<Object> checkedData = ClientHandler.checkDate(trimmedData);
+				} else if ((DataCheck.checkPhone(trimmedData) != null)
+						&& (DataCheck.checkDate(trimmedData) != null)
+						&& (DataCheck.checkClientDescription(trimmedData) != null)) {
+					List<Object> checkedData = DataCheck.checkDate(trimmedData);
 					ClientHandler.createClient(checkedData);
 					setVisible(false);
 					new ClientsList();
@@ -228,13 +233,5 @@ public class ClientCreate extends JFrame {
 		});
 
 		setVisible(true);
-
-		this.addWindowListener(new WindowAdapter() {
-			@Override 
-			public void windowClosing(java.awt.event.WindowEvent e) {
-				JOptionPane.showConfirmDialog(ClientCreate.this, "Etes-vous certain de vouloir quitter ?");
-			}
-		});
-
 	}
 }

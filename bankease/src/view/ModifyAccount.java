@@ -5,10 +5,12 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import java.awt.Color;
-import java.awt.FlowLayout;
 
 import controller.CheckingAccountHandler;
+import controller.DataCheck;
 import controller.SavingAccountHandler;
 import model.Account;
 import model.CheckingAccount;
@@ -19,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 public class ModifyAccount extends JFrame {
@@ -60,9 +61,9 @@ public class ModifyAccount extends JFrame {
 		lblNewLabel.setBounds(49, 28, 109, 25);
 		panel_3.add(lblNewLabel);
 
-		JTextPane clientLabelText = new JTextPane();
+		JTextField clientLabelText = new JTextField();
 		clientLabelText.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		clientLabelText.setBounds(202, 28, 184, 25);
+		clientLabelText.setBounds(202, 28, 235, 27);
 		clientLabelText.setText(account.getOwnerDescription());
 		panel_3.add(clientLabelText);
 
@@ -83,7 +84,7 @@ public class ModifyAccount extends JFrame {
 		interestRate.setBounds(46, 27, 109, 25);
 		panel_3_1.add(interestRate);
 
-		JTextPane interestRateOrTransferFeeText = new JTextPane();
+		JTextField interestRateOrTransferFeeText = new JTextField();
 		interestRateOrTransferFeeText.setText((String) null);
 		interestRateOrTransferFeeText.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		interestRateOrTransferFeeText.setBounds(204, 27, 184, 25);
@@ -91,7 +92,7 @@ public class ModifyAccount extends JFrame {
 		btnValidate.setBounds(194, 21, 107, 29);
 		btnValidate.setBackground(new Color(200, 173, 167));
 		btnValidate.setForeground(new Color(0, 0, 0));
-		
+
 		panel_3_1.add(interestRateOrTransferFeeText);
 
 		JLabel errorEmpty = new JLabel("Veillez remplir TOUS les champs");
@@ -112,7 +113,6 @@ public class ModifyAccount extends JFrame {
 		panelButtons.add(btnValidate);
 		btnValidate.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
-
 		if (account instanceof SavingAccount) {
 			interestRateOrTransferFeeText.setText(Float.toString(((SavingAccount) account).getInterestRate()));
 			btnValidate.addActionListener(new ActionListener() {
@@ -127,31 +127,31 @@ public class ModifyAccount extends JFrame {
 					datas.add(data2);
 
 					List<String> trimmedData = new ArrayList<>();
-					trimmedData = SavingAccountHandler.checkEmptyAndDataTrim(datas);
+					trimmedData = DataCheck.checkEmptyAndDataTrim(datas);
 
 					if (trimmedData.size() < 2) {
 						errorEmpty.setVisible(true);
-					} else if (SavingAccountHandler.checkClientDescription(trimmedData) == null
-							&& SavingAccountHandler.checkInterestRate(trimmedData) == null) {
+					} else if (DataCheck.checkClientDescription(trimmedData) == null
+							&& DataCheck.checkInterestRateOrTransferFee(trimmedData) == null) {
 						errorDescription.setVisible(true);
 						errorInterestRate.setVisible(true);
-					} else if (SavingAccountHandler.checkClientDescription(trimmedData) == null) {
+					} else if (DataCheck.checkClientDescription(trimmedData) == null) {
 						errorDescription.setVisible(true);
-					} else if (SavingAccountHandler.checkInterestRate(trimmedData) == null) {
+					} else if (DataCheck.checkInterestRateOrTransferFee(trimmedData) == null) {
 						errorInterestRate.setVisible(true);
-					} else if ((SavingAccountHandler.checkClientDescription(trimmedData) != null)
-							&& (SavingAccountHandler.checkInterestRate(trimmedData) != null)) {
-						List<Object> checkedData = SavingAccountHandler.checkInterestRate(trimmedData);
-						SavingAccountHandler.updateSavingAccount(checkedData, (SavingAccount) account );
+					} else if ((DataCheck.checkClientDescription(trimmedData) != null)
+							&& (DataCheck.checkInterestRateOrTransferFee(trimmedData) != null)) {
+						List<Object> checkedData = DataCheck.checkInterestRateOrTransferFee(trimmedData);
+						SavingAccountHandler.updateSavingAccount(checkedData, (SavingAccount) account);
 						setVisible(false);
 						new FrmAccountList(account.getClientId(), "");
 					}
 				}
 			});
 		}
-		
+
 		if (account instanceof CheckingAccount) {
-			
+
 			interestRate.setText("Frais de transfert");
 			interestRateOrTransferFeeText.setText(Float.toString(((CheckingAccount) account).getTransferFee()));
 			btnValidate.addActionListener(new ActionListener() {
@@ -166,29 +166,29 @@ public class ModifyAccount extends JFrame {
 					datas.add(data2);
 
 					List<String> trimmedData = new ArrayList<>();
-					trimmedData = CheckingAccountHandler.checkEmptyAndDataTrim(datas);
+					trimmedData = DataCheck.checkEmptyAndDataTrim(datas);
 
 					if (trimmedData.size() < 2) {
 						errorEmpty.setVisible(true);
-					} else if (CheckingAccountHandler.checkClientDescription(trimmedData) == null
-							&& CheckingAccountHandler.checkTransferFee(trimmedData) == null) {
+					} else if (DataCheck.checkClientDescription(trimmedData) == null
+							&& DataCheck.checkInterestRateOrTransferFee(trimmedData) == null) {
 						errorDescription.setVisible(true);
 						errorInterestRate.setVisible(true);
-					} else if (CheckingAccountHandler.checkClientDescription(trimmedData) == null) {
+					} else if (DataCheck.checkClientDescription(trimmedData) == null) {
 						errorDescription.setVisible(true);
-					} else if (CheckingAccountHandler.checkTransferFee(trimmedData) == null) {
+					} else if (DataCheck.checkInterestRateOrTransferFee(trimmedData) == null) {
 						errorInterestRate.setVisible(true);
-					} else if ((CheckingAccountHandler.checkClientDescription(trimmedData) != null)
-							&& (CheckingAccountHandler.checkTransferFee(trimmedData) != null)) {
-						List<Object> checkedData = CheckingAccountHandler.checkTransferFee(trimmedData);
-						CheckingAccountHandler.updateCheckingAccount(checkedData, (CheckingAccount) account );
+					} else if ((DataCheck.checkClientDescription(trimmedData) != null)
+							&& (DataCheck.checkInterestRateOrTransferFee(trimmedData) != null)) {
+						List<Object> checkedData = DataCheck.checkInterestRateOrTransferFee(trimmedData);
+						CheckingAccountHandler.updateCheckingAccount(checkedData, (CheckingAccount) account);
 						setVisible(false);
 						new FrmAccountList(account.getClientId(), "");
 					}
 				}
 			});
 		}
-		
+
 		setVisible(true);
 
 		JButton btnReturn = new JButton("Retour");
