@@ -10,8 +10,16 @@ import java.util.List;
 
 import model.Client;
 
+/**
+ * 
+ * @author tomhe
+ *
+ */
 public class ClientDao {
 
+	/**
+	 * @return get every client in the db and add them into a List of Clients
+	 */
 	public static List<Client> getAllClients() {
 		List<Client> allClients = new ArrayList<>();
 
@@ -39,31 +47,6 @@ public class ClientDao {
 		}
 		return allClients;
 	}
-
-//	public static Client getOneClient(int id) {
-//		ResultSet rs = null;
-//		Client oneClient = null;
-//		Connection conn = null;
-//		PreparedStatement stmt = null;
-//		try {
-//			String query = "SELECT * FROM CLIENT WHERE client_id =?";
-//			conn = Connect.getConnection();
-//			stmt = conn.prepareStatement(query);
-//			stmt.setInt(1, id);
-//			rs = stmt.executeQuery();
-//
-//			while (rs.next()) {
-//				oneClient = new Client(rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5));
-//			}
-//			conn.close();
-//		}
-//
-//		catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return oneClient;
-//
-//	}
 
 	public static void createClient(Client client) {
 
