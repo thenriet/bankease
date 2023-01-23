@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import model.Client;
 import controller.CheckingAccountHandler;
 import controller.SavingAccountHandler;
+import dao.AccountListDAO;
 
 public class OpenAccountView extends JFrame implements ActionListener {
 
@@ -113,6 +114,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			Compte_courant = new JRadioButton("Courant");
 			Compte_courant.setBounds(217, 104, 111, 23);
 			getContentPane().add(Compte_courant);
+			Compte_courant.setSelected(true);
 
 			Compte_epargne = new JRadioButton("Epargne");
 			Compte_epargne.setBounds(217, 144, 111, 23);
@@ -127,7 +129,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 			setVisible(true);
 
-			titulaire = new JTextField();
+			titulaire = new JTextField(AccountListDAO.getAccountOwner(global_id));
 			titulaire.setBounds(197, 222, 309, 30);
 			getContentPane().add(titulaire);
 			titulaire.setColumns(10);
@@ -158,7 +160,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			JLabel monMessage = new JLabel("  ");
 			monMessage.setFont(new Font("Tahoma", Font.PLAIN, 8));
 			monMessage.setForeground(new Color(255, 0, 0));
-			monMessage.setBounds(197, 240, 184, 14);
+			monMessage.setBounds(197, 250, 184, 14);
 			getContentPane().add(monMessage);
 
 			JLabel monMessage_5 = new JLabel("  ");
@@ -170,19 +172,19 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			JLabel monMessage_2 = new JLabel("   ");
 			monMessage_2.setForeground(new Color(255, 0, 0));
 			monMessage_2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-			monMessage_2.setBounds(197, 297, 108, 14);
+			monMessage_2.setBounds(197, 307, 108, 14);
 			getContentPane().add(monMessage_2);
 
 			JLabel monMessage_3 = new JLabel("  ");
 			monMessage_3.setForeground(Color.RED);
 			monMessage_3.setFont(new Font("Tahoma", Font.PLAIN, 8));
-			monMessage_3.setBounds(197, 367, 108, 14);
+			monMessage_3.setBounds(197, 377, 108, 14);
 			getContentPane().add(monMessage_3);
 
 			JLabel monMessage_4 = new JLabel("  ");
 			monMessage_4.setForeground(Color.RED);
 			monMessage_4.setFont(new Font("Tahoma", Font.PLAIN, 8));
-			monMessage_4.setBounds(197, 436, 108, 14);
+			monMessage_4.setBounds(197, 446, 108, 14);
 			getContentPane().add(monMessage_4);
 
 			// Récupérer ce qui est rentré dans les zones de texte
@@ -228,16 +230,14 @@ public class OpenAccountView extends JFrame implements ActionListener {
 							min_bal = Float.parseFloat(min_balance.getText());
 							bal = Float.parseFloat(balance.getText());
 
-							if (bal < min_bal) {
-								monMessage_5.setText("Le solde initial doit être supérieur au solde minimum");
-								setVisible(true);
-							}
-
-							if (bal > min_bal) {
+							if (bal >= min_bal) {
 								CheckingAccountHandler.createCheckingAccount(0, global_id, titu, bal, transfer,
 										min_bal);
 								setVisible(false);
 								new FrmAccountList(global_id, " ");
+							} else {
+								monMessage_5.setText("Le solde initial doit être supérieur au solde minimum");
+								setVisible(true);
 							}
 
 						}
@@ -300,25 +300,25 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			JLabel monMessageS = new JLabel("  ");
 			monMessageS.setFont(new Font("Tahoma", Font.PLAIN, 8));
 			monMessageS.setForeground(new Color(255, 0, 0));
-			monMessageS.setBounds(197, 240, 184, 14);
+			monMessageS.setBounds(197, 250, 184, 14);
 			getContentPane().add(monMessageS);
 
 			JLabel monMessage_2S = new JLabel("   ");
 			monMessage_2S.setForeground(new Color(255, 0, 0));
 			monMessage_2S.setFont(new Font("Tahoma", Font.PLAIN, 8));
-			monMessage_2S.setBounds(197, 297, 108, 14);
+			monMessage_2S.setBounds(197, 307, 108, 14);
 			getContentPane().add(monMessage_2S);
 
 			JLabel monMessage_3S = new JLabel("  ");
 			monMessage_3S.setForeground(Color.RED);
 			monMessage_3S.setFont(new Font("Tahoma", Font.PLAIN, 8));
-			monMessage_3S.setBounds(197, 367, 108, 14);
+			monMessage_3S.setBounds(197, 377, 108, 14);
 			getContentPane().add(monMessage_3S);
 
 			JLabel monMessage_4S = new JLabel("  ");
 			monMessage_4S.setForeground(Color.RED);
 			monMessage_4S.setFont(new Font("Tahoma", Font.PLAIN, 8));
-			monMessage_4S.setBounds(197, 436, 108, 14);
+			monMessage_4S.setBounds(197, 446, 108, 14);
 			getContentPane().add(monMessage_4S);
 
 			JLabel monMessage_5S = new JLabel("  ");
@@ -334,6 +334,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			Compte_epargne = new JRadioButton("Epargne");
 			Compte_epargne.setBounds(217, 144, 111, 23);
 			getContentPane().add(Compte_epargne);
+			Compte_epargne.setSelected(true);
 
 			ButtonGroup group = new ButtonGroup();
 			group.add(Compte_courant);
@@ -344,7 +345,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 			setVisible(true);
 
-			titulaire = new JTextField();
+			titulaire = new JTextField(AccountListDAO.getAccountOwner(global_id));
 			titulaire.setBounds(197, 222, 309, 30);
 			getContentPane().add(titulaire);
 			titulaire.setColumns(10);
@@ -411,11 +412,6 @@ public class OpenAccountView extends JFrame implements ActionListener {
 							setVisible(true);
 						}
 
-						if (bal > bal_lim) {
-							monMessage_5S.setText("Le solde initial doit être inférieur au plafond");
-							setVisible(true);
-						}
-
 						if ((interest_rate.getText().length() != 0) && (balance_limit.getText().length() != 0)
 								&& (balance.getText().length() != 0) && (titu.length() < 100)) {
 
@@ -423,10 +419,13 @@ public class OpenAccountView extends JFrame implements ActionListener {
 							bal_lim = Float.parseFloat(balance_limit.getText());
 							bal = Float.parseFloat(balance.getText());
 
-							if (bal < bal_lim) {
+							if (bal <= bal_lim) {
 								SavingAccountHandler.createSavingAccount(0, global_id, titu, bal, int_rate, bal_lim);
 								setVisible(false);
 								new FrmAccountList(global_id, " ");
+							} else {
+								monMessage_5S.setText("Le solde initial doit être inférieur au plafond");
+								setVisible(true);
 							}
 
 						}
