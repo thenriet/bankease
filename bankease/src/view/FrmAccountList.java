@@ -9,7 +9,6 @@ import javax.swing.event.ListSelectionListener;
 import controller.AccountListController;
 import model.Account;
 import java.awt.Color;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import java.awt.Font;
@@ -53,7 +52,7 @@ public class FrmAccountList extends JFrame {
 	public FrmAccountList(int clientId, String message) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 700, 660);
+		setBounds(0, 0, 660, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -62,12 +61,12 @@ public class FrmAccountList extends JFrame {
 		contentPane.setLayout(null);
 
 		// Affichage du libellé du client en titre :
-		JTextField txtTitle = new JTextField(AccountListController.getAccountOwner(clientId));
+		JLabel txtTitle = new JLabel(AccountListController.getAccountOwner(clientId));
 		txtTitle.setBackground(new Color(200, 173, 167));
 		txtTitle.setOpaque(true);
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
-		txtTitle.setBounds(0, 0, 686, 77);
+		txtTitle.setBounds(0, 0, 646, 77);
 		contentPane.add(txtTitle);
 
 		// Affichage du message après transfert d'argent :
@@ -79,11 +78,11 @@ public class FrmAccountList extends JFrame {
 		} else {
 			lblMessage.setForeground(new Color(0, 128, 0));
 		}
-		lblMessage.setBounds(20, 98, 650, 30);
+		lblMessage.setBounds(20, 98, 610, 30);
 		contentPane.add(lblMessage);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 150, 650, 230);
+		scrollPane.setBounds(20, 150, 610, 230);
 		contentPane.add(scrollPane);
 
 		// Récupération de la liste des comptes du client 
@@ -121,25 +120,25 @@ public class FrmAccountList extends JFrame {
 		lblInfosCompte = new JLabel();
 		lblInfosCompte.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInfosCompte.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblInfosCompte.setBounds(191, 391, 300, 20);
+		lblInfosCompte.setBounds(20, 391, 610, 20);
 		contentPane.add(lblInfosCompte);
 		
 		lblInfo1 = new JLabel();
 		lblInfo1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInfo1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblInfo1.setBounds(191, 422, 300, 20);
+		lblInfo1.setBounds(20, 422, 610, 20);
 		contentPane.add(lblInfo1);
 		
 		lblInfo2 = new JLabel();
 		lblInfo2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInfo2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblInfo2.setBounds(191, 453, 300, 20);
+		lblInfo2.setBounds(20, 453, 610, 20);
 		contentPane.add(lblInfo2);
 
 		
 		btnOuvrir = new JButton("Ouvrir");
 		btnOuvrir.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnOuvrir.setBounds(127, 506, 100, 30);
+		btnOuvrir.setBounds(80, 520, 100, 30);
 		contentPane.add(btnOuvrir);
 		
 		// Clic sur le bouton "Ouvrir" :
@@ -154,7 +153,7 @@ public class FrmAccountList extends JFrame {
 		btnModifier = new JButton("Modifier");
 		btnModifier.setEnabled(false);
 		btnModifier.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnModifier.setBounds(237, 506, 100, 30);
+		btnModifier.setBounds(190, 520, 100, 30);
 		contentPane.add(btnModifier);
 		
 		// Clic sur le bouton "Modifier" :
@@ -168,7 +167,7 @@ public class FrmAccountList extends JFrame {
 		btnCloturer = new JButton("Clôturer");
 		btnCloturer.setEnabled(false);
 		btnCloturer.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCloturer.setBounds(347, 506, 100, 30);
+		btnCloturer.setBounds(300, 520, 100, 30);
 		contentPane.add(btnCloturer);
 		
 		// Clic sur le bouton "Clôturer" :
@@ -192,7 +191,7 @@ public class FrmAccountList extends JFrame {
 		btnCrediter = new JButton("Créditer");
 		btnCrediter.setEnabled(false);
 		btnCrediter.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCrediter.setBounds(127, 547, 100, 30);
+		btnCrediter.setBounds(80, 561, 100, 30);
 		contentPane.add(btnCrediter);
 		
 		// Clic sur le bouton "Créditer" :
@@ -206,7 +205,7 @@ public class FrmAccountList extends JFrame {
 		btnTransferer = new JButton("Transférer");
 		btnTransferer.setEnabled(false);
 		btnTransferer.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnTransferer.setBounds(237, 547, 100, 30);
+		btnTransferer.setBounds(190, 561, 100, 30);
 		contentPane.add(btnTransferer);
 		
 		// Clic sur le bouton "Transférer" :
@@ -220,7 +219,7 @@ public class FrmAccountList extends JFrame {
 		btnDebiter = new JButton("Débiter");
 		btnDebiter.setEnabled(false);
 		btnDebiter.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnDebiter.setBounds(347, 547, 100, 30);
+		btnDebiter.setBounds(300, 561, 100, 30);
 		contentPane.add(btnDebiter);
 		
 		// Clic sur le bouton "Débiter" :
@@ -235,7 +234,7 @@ public class FrmAccountList extends JFrame {
 		btnRetour.setBackground(new Color(200, 173, 167));
 		btnRetour.repaint();
 		btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnRetour.setBounds(490, 519, 100, 45);
+		btnRetour.setBounds(443, 533, 100, 45);
 		contentPane.add(btnRetour);
 		
 		JLabel label = new JLabel("New label");
