@@ -98,7 +98,7 @@ public class FrmCreditDebit extends JFrame {
 			
 		// Affichage différent selon si compte épargne ou courant
 		if (account instanceof SavingAccount) {
-			lblInfos1.setText("Taux d'intrêt : " + ((SavingAccount) account).getInterestRate() + "%");
+			lblInfos1.setText("Taux d'intérêt : " + ((SavingAccount) account).getInterestRate() + "%");
 			lblInfos2.setText("Plafond : " + ((SavingAccount) account).getBalanceLimit() + " €");
 		} else {
 			lblInfos1.setText("Frais de transfert : " + ((CheckingAccount) account).getTransferFee() + "%");

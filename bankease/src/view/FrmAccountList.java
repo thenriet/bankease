@@ -237,10 +237,6 @@ public class FrmAccountList extends JFrame {
 		btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRetour.setBounds(443, 533, 100, 45);
 		contentPane.add(btnRetour);
-		
-		JLabel label = new JLabel("New label");
-		label.setBounds(120, 36, 45, 13);
-		contentPane.add(label);
 
 		// Clic sur le bouton "Retour" :
 		btnRetour.addActionListener(new ActionListener() {
