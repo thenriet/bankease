@@ -3,9 +3,7 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import controller.AccountListController;
 import controller.ClientHandler;
-import model.Account;
 import model.Client;
 import javax.swing.JLabel;
 
@@ -71,7 +69,9 @@ public class ClientsList extends JFrame {
 		btnDeleteClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client selectedClient = list.getSelectedValue();
-				int result = JOptionPane.showConfirmDialog(ClientsList.this, "Retirer " + selectedClient.getClientDescription() + " des clients ?", "Confirmation avant suppression", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(ClientsList.this,
+						"Retirer " + selectedClient.getClientDescription() + " des clients ?",
+						"Confirmation avant suppression", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					if (selectedClient != null) {
 						ClientHandler.deleteClient(selectedClient.getClientId());
@@ -79,25 +79,25 @@ public class ClientsList extends JFrame {
 						list.setListData(clientsList);
 						scrollPane.setViewportView(list);
 						selectedClient = null;
-						}
+					}
 				}
 			}
 		});
-		
-				JButton btnAccounts = new JButton("Voir comptes");
-				panel_1.add(btnAccounts);
-				btnAccounts.setFont(new Font("Tahoma", Font.PLAIN, 16));
-				btnAccounts.setBackground(new Color(200, 173, 167));
-				btnAccounts.setEnabled(false);
-				
-						btnAccounts.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								setVisible(false);
-								Client selectedClient = list.getSelectedValue();
-								int selectedClientId = selectedClient.getClientId();
-								new FrmAccountList(selectedClientId, "");
-							}
-						});
+
+		JButton btnAccounts = new JButton("Voir comptes");
+		panel_1.add(btnAccounts);
+		btnAccounts.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnAccounts.setBackground(new Color(200, 173, 167));
+		btnAccounts.setEnabled(false);
+
+		btnAccounts.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Client selectedClient = list.getSelectedValue();
+				int selectedClientId = selectedClient.getClientId();
+				new FrmAccountList(selectedClientId, "");
+			}
+		});
 
 		btnDeleteClient.setSize(100, 30);
 		btnDeleteClient.setEnabled(false);
@@ -106,18 +106,18 @@ public class ClientsList extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(0, 605, 660, 48);
 		getContentPane().add(panel_2);
-		
-				JButton btnAddClient = new JButton("Ajouter Client");
-				panel_2.add(btnAddClient);
-				btnAddClient.setFont(new Font("Tahoma", Font.PLAIN, 16));
-				btnAddClient.setBackground(new Color(200, 173, 167));
-				
-						btnAddClient.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								setVisible(false);
-								new ClientCreate();
-							}
-						});
+
+		JButton btnAddClient = new JButton("Ajouter Client");
+		panel_2.add(btnAddClient);
+		btnAddClient.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnAddClient.setBackground(new Color(200, 173, 167));
+
+		btnAddClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new ClientCreate();
+			}
+		});
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(100, 400, 460, 110);
@@ -158,19 +158,19 @@ public class ClientsList extends JFrame {
 		clientPhoneLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		clientPhoneLabel.setBounds(10, 78, 186, 24);
 		panel_3.add(clientPhoneLabel);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(200, 173, 167));
 		panel.setBounds(0, 0, 660, 77);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel welcomeLabel = new JLabel("Bienvenue sur Bankease");
 		welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		welcomeLabel.setBounds(101, 23, 460, 30);
 		panel.add(welcomeLabel);
-		
+
 		JLabel clientSelect = new JLabel("Sélectionnez un client");
 		clientSelect.setHorizontalAlignment(SwingConstants.CENTER);
 		clientSelect.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -206,7 +206,7 @@ public class ClientsList extends JFrame {
 						clientAddressLabel.setVisible(false);
 						clientAddress.setVisible(false);
 						clientPhoneLabel.setVisible(false);
-						clientPhone.setVisible(false);						
+						clientPhone.setVisible(false);
 					}
 
 				}

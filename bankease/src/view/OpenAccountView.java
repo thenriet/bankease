@@ -16,12 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import model.Client;
 import controller.CheckingAccountHandler;
 import controller.SavingAccountHandler;
 
 public class OpenAccountView extends JFrame implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
 	private JTextField titulaire;
 	private int global_id;
 	private JRadioButton Compte_courant;
@@ -219,66 +219,10 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 						}
 
-						// TODO ajouter num compte et client id
-
-//						if (transfer_fee.getText() == null || transfer_fee.getText().isEmpty()) {
-//
-//							// if
-//							// (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_balance")
-//							// {
-//							monMessage_2.setText("Entrer un chiffre valide");
-//						}
-//
-//						else {
-//							transfer = Float.parseFloat(transfer_fee.getText());
-//						}
-//
-//						if (min_balance.getText() == null || min_balance.getText().isEmpty()) {
-//							// if
-//							// (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_min_balance")
-//							// {
-//							monMessage_3.setText("Entrer un chiffre valide");
-//							setVisible(true);
-//						}
-//
-//						else {
-//							min_bal = Float.parseFloat(min_balance.getText());
-//						}
-//
-//						if (balance.getText() == null || balance.getText().isEmpty()) {
-//							// if
-//							// (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_transfer_fee")
-//							// {
-//							monMessage_4.setText("Entrer un chiffre valide");
-//							setVisible(true);
-//						}
-//
-//						else {
-//							bal = Float.parseFloat(balance.getText());
-//						}
-//
-//						if (titu.length() > 100) {
-//							monMessage.setText("100 caractères maximum");
-//							setVisible(true);
-//						}
-//
-//						if (bal < min_bal) {
-//							monMessage_5.setText("Le solde initial doit être supérieur au solde minimum");
-//							setVisible(true);
-//						}
-//
-//						else {
-//
-//							CheckingAccountHandler.createCheckingAccount(0, global_id, titu, bal, transfer, min_bal);
-//							setVisible(false);
-//							new FrmAccountList(global_id, " ");
-//						}
-
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
 
-					// setVisible(true);
 				}
 
 			});
@@ -326,6 +270,8 @@ public class OpenAccountView extends JFrame implements ActionListener {
 		}
 
 		if (Compte_epargne.isSelected()) {
+
+			getContentPane().removeAll();
 
 			JLabel monMessageS = new JLabel("  ");
 			monMessageS.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -456,57 +402,14 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 						}
 
-//						if (interest_rate.getText()==null || interest_rate.getText().isEmpty()) {
-//													
-//							monMessage_2S.setText("Entrer un chiffre valide");
-//							setVisible(true);
-//							System.out.println("lll");
-//						}
-//						
-//
-//						else {int_rate= Float.parseFloat(interest_rate.getText());}
-//												
-//						if (balance_limit.getText()==null || balance_limit.getText().isEmpty()) {
-//							monMessage_3S.setText("Entrer un chiffre valide");
-//							setVisible(true);
-//						}
-//						
-//						else {bal_lim= Float.parseFloat(balance_limit.getText());}
-//						
-//						if (balance.getText()==null || balance.getText().isEmpty()) {
-//							monMessage_4S.setText("Entrer un chiffre valide");
-//							setVisible(true);
-//							
-//						}
-//						
-//						else {bal=Float.parseFloat(balance.getText());}
-//						
-//													
-//						if (titu.length()>100) {
-//							monMessageS.setText("100 caractères maximum");
-//							setVisible(true);
-//						}
-//													
-//						if(bal>bal_lim) {
-//							monMessage_5S.setText("Le solde initial doit être inférieur au plafond");
-//							setVisible(true);
-//						}
-//						
-//						else{
-//	
-//							SavingAccountHandler.createSavingAccount(0,global_id,titu,bal,int_rate,bal_lim);
-//							setVisible(false);
-//							new FrmAccountList(global_id," ");}
-
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
 
-					// setVisible(true);
-
 				}
 
 			});
+
 			btnNewButton.setBounds(142, 545, 89, 23);
 			getContentPane().add(btnNewButton);
 
@@ -553,6 +456,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 		pack();
 		setSize(660, 700);
+
 	}
 
 }

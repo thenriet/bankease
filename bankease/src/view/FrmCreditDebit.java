@@ -34,8 +34,6 @@ public class FrmCreditDebit extends JFrame {
 	private JLabel lblTitulaire;
 	private JLabel lblTypeCompte;
 	private JLabel lblSolde;
-	private JLabel lblMinSolde;
-	private JLabel lblFraisTransfert;
 	private JLabel lblInfos1;
 	private JLabel lblInfos2;
 	private JLabel lblErrorMessage;

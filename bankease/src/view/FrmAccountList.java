@@ -61,7 +61,7 @@ public class FrmAccountList extends JFrame {
 		contentPane.setLayout(null);
 
 		// Affichage du libellé du client en titre :
-		JLabel txtTitle = new JLabel(AccountListController.getAccountOwner(clientId));
+		JLabel txtTitle = new JLabel("Comptes de "+AccountListController.getAccountOwner(clientId));
 		txtTitle.setBackground(new Color(200, 173, 167));
 		txtTitle.setOpaque(true);
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
