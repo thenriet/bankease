@@ -57,6 +57,7 @@ public class FrmTransfer extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmTransfer(Account sourceAccount) {
+		setTitle("BankEase - Transférer de l'argent");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 660, 700);

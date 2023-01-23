@@ -45,6 +45,7 @@ public class FrmCreditDebit extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmCreditDebit(Account account, String action) {
+		setTitle("BankEase - " + action.substring(0,1).toUpperCase() + action.substring(1) + "er un compte");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 660, 700);
