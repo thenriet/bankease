@@ -5,11 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import model.SavingAccount;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 public class SavingAccountDAO {
@@ -46,19 +43,17 @@ public class SavingAccountDAO {
 	
 	public static void CreateSavingAccount(SavingAccount savingaccount) {
 		
-		String sql = "INSERT INTO SAVING_ACCOUNT (owner_description,interest_rate,balance_limit,balance) VALUES('"+ savingaccount.getOwnerDescription()+"','"+ savingaccount.getInterestRate() +"','"+savingaccount.getBalanceLimit()+"','"+savingaccount.getBalance()+"')";
+		String sql = "INSERT INTO SAVING_ACCOUNT (owner_description,client_id,interest_rate,balance_limit,balance) VALUES('"+ savingaccount.getOwnerDescription()+"','" + savingaccount.getClientId() +"','"+ savingaccount.getInterestRate() +"','"+savingaccount.getBalanceLimit()+"','"+savingaccount.getBalance()+"')";
 				
 		try {
 
-			Connection conn = DriverManager.getConnection(
-			"jdbc:mysql://localhost:3306/gestion_database","root","9D7896N6");
+			Connection conn = Connect.getConnection();
 			Statement st = conn.createStatement();
 			st.executeUpdate(sql);
           
 			conn.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -67,8 +62,7 @@ public class SavingAccountDAO {
 
 		try {
 			String query = "DELETE FROM SAVING_ACCOUNT WHERE account_id=?";
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_database", "root",
-					"9D7896N6");
+			Connection conn = Connect.getConnection();
 
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setInt(1, id);
@@ -81,6 +75,29 @@ public class SavingAccountDAO {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static void UpdateSavingAccount(SavingAccount savingAccount) {
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+
+			String query = "UPDATE SAVING_ACCOUNT SET owner_description = ?, interest_rate = ? WHERE account_id = ?";
+
+			conn = Connect.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, savingAccount.getOwnerDescription());
+			stmt.setFloat(2, savingAccount.getInterestRate());
+			stmt.setInt(3, savingAccount.getAccountId());
+
+			stmt.executeUpdate();
+
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

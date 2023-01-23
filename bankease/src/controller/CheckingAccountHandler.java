@@ -1,10 +1,10 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import dao.CheckingAccountDAO;
 import model.CheckingAccount;
-import view.CheckingAccountView;
 
 public class CheckingAccountHandler {
 
@@ -14,22 +14,20 @@ public class CheckingAccountHandler {
 		if (ownerDescription.length() > 100) {
 			return "caractere_depasse";
 		}
-		
-		if (balance != (int) balance && balance != (float) balance ) {
-			//return "type_balance";
-			
+
+		if (balance != (int) balance && balance != (float) balance) {
 			System.out.println("e");
 		}
-		
-		if (minBalance != (int) minBalance && minBalance != (float) minBalance ) {
+
+		if (minBalance != (int) minBalance && minBalance != (float) minBalance) {
 			return "type_min_balance";
 		}
-		
-		if (transferFee != (int) transferFee && transferFee != (float) transferFee ) {
+
+		if (transferFee != (int) transferFee && transferFee != (float) transferFee) {
 			return "type_transfer_fee";
 		}
-		
-		if(balance<minBalance) {
+
+		if (balance < minBalance) {
 			return "min_balance";
 		}
 
@@ -41,6 +39,21 @@ public class CheckingAccountHandler {
 			return newAccount;
 
 		}
-
 	}
+
+	/**
+	 * 
+	 * @param checkedData
+	 * @param updatedAccount
+	 */
+	public static void updateCheckingAccount(List<Object> checkedData, CheckingAccount updatedAccount) {
+
+		if (checkedData != null) {
+			updatedAccount.setOwnerDescription((String) checkedData.get(0));
+			updatedAccount.setTransferFee(Float.parseFloat((String) checkedData.get(1)));
+
+			CheckingAccountDAO.UpdateCheckingAccount(updatedAccount);
+		}
+	}
+
 }
