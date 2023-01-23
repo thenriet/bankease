@@ -57,6 +57,7 @@ public class FrmTransfer extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmTransfer(Account sourceAccount) {
+		setTitle("BankEase - Transférer de l'argent");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 660, 700);
@@ -237,7 +238,7 @@ public class FrmTransfer extends JFrame {
 		String lbl2 = null;
 		
 		if (account instanceof SavingAccount) {
-			lbl1 = "Taux d'intrêt : " + ((SavingAccount) account).getInterestRate() + "%";
+			lbl1 = "Taux d'intérêt : " + ((SavingAccount) account).getInterestRate() + "%";
 			lbl2 = "Plafond : " + String.format("%,.2f", ((SavingAccount) account).getBalanceLimit()) + " €";
 		} else if (account instanceof CheckingAccount) {
 			lbl1 = "Frais de transfert : " + ((CheckingAccount) account).getTransferFee() + "%";
