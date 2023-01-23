@@ -47,7 +47,7 @@ public class FrmCreditDebit extends JFrame {
 	public FrmCreditDebit(Account account, String action) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 700, 660);
+		setBounds(0, 0, 660, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -61,25 +61,25 @@ public class FrmCreditDebit extends JFrame {
 		txtTitle.setOpaque(true);
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
-		txtTitle.setBounds(0, 0, 686, 77);
+		txtTitle.setBounds(0, 0, 646, 77);
 		contentPane.add(txtTitle);
 		
 		JLabel lblNewLabel = new JLabel("Informations sur le compte :");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(30, 130, 600, 30);
+		lblNewLabel.setBounds(20, 130, 610, 30);
 		contentPane.add(lblNewLabel);
 		
 		lblTitulaire = new JLabel("Titulaire : " + account.getOwnerDescription());
 		lblTitulaire.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulaire.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblTitulaire.setBounds(30, 171, 600, 25);
+		lblTitulaire.setBounds(20, 171, 610, 25);
 		contentPane.add(lblTitulaire);
 		
 		lblTypeCompte = new JLabel("Type de compte : " + account.getAccountType());
 		lblTypeCompte.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTypeCompte.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblTypeCompte.setBounds(30, 207, 600, 25);
+		lblTypeCompte.setBounds(20, 207, 610, 25);
 		contentPane.add(lblTypeCompte);
 		
 		if (account instanceof SavingAccount) {
@@ -87,13 +87,13 @@ public class FrmCreditDebit extends JFrame {
 			lblTauxInteret = new JLabel("Taux d'intrêt : " + ((SavingAccount) account).getInterestRate() + "%");
 			lblTauxInteret.setHorizontalAlignment(SwingConstants.CENTER);
 			lblTauxInteret.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblTauxInteret.setBounds(30, 243, 600, 25);
+			lblTauxInteret.setBounds(20, 243, 610, 25);
 			contentPane.add(lblTauxInteret);
 			
 			lblPlafond = new JLabel("Plafond : " + ((SavingAccount) account).getBalanceLimit() + " €");
 			lblPlafond.setHorizontalAlignment(SwingConstants.CENTER);
 			lblPlafond.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblPlafond.setBounds(30, 279, 600, 25);
+			lblPlafond.setBounds(20, 279, 610, 25);
 			contentPane.add(lblPlafond);
 			
 		} else {
@@ -101,13 +101,13 @@ public class FrmCreditDebit extends JFrame {
 			lblFraisTransfert = new JLabel("Frais de transfert : " + ((CheckingAccount) account).getTransferFee() + "%");
 			lblFraisTransfert.setHorizontalAlignment(SwingConstants.CENTER);
 			lblFraisTransfert.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblFraisTransfert.setBounds(30, 243, 600, 25);
+			lblFraisTransfert.setBounds(20, 243, 610, 25);
 			contentPane.add(lblFraisTransfert);
 			
 			lblMinSolde = new JLabel("Solde minimum : " + ((CheckingAccount) account).getMinBalance() + " €");
 			lblMinSolde.setHorizontalAlignment(SwingConstants.CENTER);
 			lblMinSolde.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblMinSolde.setBounds(30, 279, 600, 25);
+			lblMinSolde.setBounds(20, 279, 610, 25);
 			contentPane.add(lblMinSolde);
 		}
 
@@ -115,7 +115,7 @@ public class FrmCreditDebit extends JFrame {
 		lblSolde = new JLabel("Solde actuel : " + account.getBalance());
 		lblSolde.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSolde.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblSolde.setBounds(30, 335, 600, 30);
+		lblSolde.setBounds(20, 335, 610, 30);
 		contentPane.add(lblSolde);
 		
 		txtMontant = new JTextField();
@@ -127,7 +127,7 @@ public class FrmCreditDebit extends JFrame {
 		JLabel lblMontant = new JLabel("Somme à " + action + "er :");
 		lblMontant.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblMontant.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblMontant.setBounds(30, 416, 291, 30);
+		lblMontant.setBounds(20, 416, 301, 30);
 		contentPane.add(lblMontant);
 		
 		// Affichage du message d'erreur :
@@ -135,14 +135,14 @@ public class FrmCreditDebit extends JFrame {
 		lblErrorMessage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblErrorMessage.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblErrorMessage.setForeground(new Color(128, 0, 0));;
-		lblErrorMessage.setBounds(40, 460, 600, 50);
+		lblErrorMessage.setBounds(20, 460, 610, 50);
 		contentPane.add(lblErrorMessage);
 		
 		btnValider = new JButton("Valider");
 		btnValider.setBackground(new Color(128, 255, 128));
 		btnValider.repaint();
 		btnValider.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnValider.setBounds(172, 530, 100, 45);
+		btnValider.setBounds(170, 550, 100, 45);
 		contentPane.add(btnValider);
 		
 		// Clic sur le bouton "Valider" :
@@ -164,7 +164,7 @@ public class FrmCreditDebit extends JFrame {
 		btnAnnuler.setBackground(new Color(255, 128, 128));
 		btnAnnuler.repaint();
 		btnAnnuler.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAnnuler.setBounds(381, 530, 100, 45);
+		btnAnnuler.setBounds(370, 550, 100, 45);
 		contentPane.add(btnAnnuler);
 		
 		
