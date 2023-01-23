@@ -214,7 +214,7 @@ public class ClientCreate extends JFrame {
 				// Je vérifie si la liste contient une description de client invalide
 				} else if (ClientHandler.checkClientDescription(trimmedData) == null) {
 					errorDescription.setVisible(true);
-				// Si tout est OK niveau vérif des données, utilise la liste que retourne ClientHandler.checkDate(trimmedData)
+				// Si tout est OK niveau vérif des données, j'utilise la liste que retourne ClientHandler.checkDate(trimmedData)
 				// pour créer un nouveau client
 				} else if ((ClientHandler.checkPhone(trimmedData) != null)
 						&& (ClientHandler.checkDate(trimmedData) != null)
