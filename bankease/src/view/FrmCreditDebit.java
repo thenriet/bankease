@@ -36,8 +36,8 @@ public class FrmCreditDebit extends JFrame {
 	private JLabel lblSolde;
 	private JLabel lblMinSolde;
 	private JLabel lblFraisTransfert;
-	private JLabel lblTauxInteret;
-	private JLabel lblPlafond;
+	private JLabel lblInfos1;
+	private JLabel lblInfos2;
 	private JLabel lblErrorMessage;
 
 
@@ -69,7 +69,8 @@ public class FrmCreditDebit extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setBounds(20, 130, 610, 30);
 		contentPane.add(lblNewLabel);
-		
+
+		// Affichage des informations du compte
 		lblTitulaire = new JLabel("Titulaire : " + account.getOwnerDescription());
 		lblTitulaire.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulaire.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -82,36 +83,28 @@ public class FrmCreditDebit extends JFrame {
 		lblTypeCompte.setBounds(20, 207, 610, 25);
 		contentPane.add(lblTypeCompte);
 		
+		lblInfos1 = new JLabel();
+		lblInfos1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInfos1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblInfos1.setBounds(20, 243, 610, 25);
+		contentPane.add(lblInfos1);
+		
+		lblInfos2 = new JLabel();
+		lblInfos2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInfos2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblInfos2.setBounds(20, 279, 610, 25);
+		contentPane.add(lblInfos2);
+			
+		// Affichage différent selon si compte épargne ou courant
 		if (account instanceof SavingAccount) {
-		
-			lblTauxInteret = new JLabel("Taux d'intrêt : " + ((SavingAccount) account).getInterestRate() + "%");
-			lblTauxInteret.setHorizontalAlignment(SwingConstants.CENTER);
-			lblTauxInteret.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblTauxInteret.setBounds(20, 243, 610, 25);
-			contentPane.add(lblTauxInteret);
-			
-			lblPlafond = new JLabel("Plafond : " + ((SavingAccount) account).getBalanceLimit() + " €");
-			lblPlafond.setHorizontalAlignment(SwingConstants.CENTER);
-			lblPlafond.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblPlafond.setBounds(20, 279, 610, 25);
-			contentPane.add(lblPlafond);
-			
+			lblInfos1.setText("Taux d'intrêt : " + ((SavingAccount) account).getInterestRate() + "%");
+			lblInfos2.setText("Plafond : " + ((SavingAccount) account).getBalanceLimit() + " €");
 		} else {
-		
-			lblFraisTransfert = new JLabel("Frais de transfert : " + ((CheckingAccount) account).getTransferFee() + "%");
-			lblFraisTransfert.setHorizontalAlignment(SwingConstants.CENTER);
-			lblFraisTransfert.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblFraisTransfert.setBounds(20, 243, 610, 25);
-			contentPane.add(lblFraisTransfert);
-			
-			lblMinSolde = new JLabel("Solde minimum : " + ((CheckingAccount) account).getMinBalance() + " €");
-			lblMinSolde.setHorizontalAlignment(SwingConstants.CENTER);
-			lblMinSolde.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblMinSolde.setBounds(20, 279, 610, 25);
-			contentPane.add(lblMinSolde);
+			lblInfos1.setText("Frais de transfert : " + ((CheckingAccount) account).getTransferFee() + "%");
+			lblInfos2.setText("Solde minimum : " + ((CheckingAccount) account).getMinBalance() + " €");
 		}
-
 		
+		// Champ à remplir
 		lblSolde = new JLabel("Solde actuel : " + account.getBalance());
 		lblSolde.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSolde.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -175,6 +168,7 @@ public class FrmCreditDebit extends JFrame {
 				new FrmAccountList(account.getClientId(), "");
 			}
 		});
+		
 		this.setVisible(true);
 	}
 }

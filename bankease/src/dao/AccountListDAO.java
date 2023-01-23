@@ -64,13 +64,17 @@ public class AccountListDAO {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		return accountList;
 	}
 	
+	/**
+	 * Deletes account from database
+	 * @param account to delete
+	 * @return rows affected
+	 */
 	public static int DeleteAccount(Account account) {
 		String query;
 		int rows = 0;
@@ -99,7 +103,6 @@ public class AccountListDAO {
 	 * @param id : client ID
 	 * @return client description as String
 	 */
-	// TODO retirer si plus utilisé après mise en commun (récupération du Client dans la frame)
 	public static String getAccountOwner(int id) {
 		String clientDesc = null;
 		try (Connection conn = Connect.getConnection()) {
@@ -111,7 +114,6 @@ public class AccountListDAO {
 			clientDesc = rs.getString(1);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return clientDesc;

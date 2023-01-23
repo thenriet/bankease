@@ -94,7 +94,7 @@ public class TransferController {
 	/**
 	 * Sends account to appropriate validator
 	 * @param account : Account object
-	 * @param amount : amount to add/substract from account balance
+	 * @param amount : amount to add/subtract from account balance
 	 * @return validator result (error message or empty string)
 	 */
 	public static String validateAction(Account account, float amount) {
@@ -109,7 +109,7 @@ public class TransferController {
 	/**
 	 * Checks if the account's new balance conforms to limit values
 	 * @param account : CheckingAccount object
-	 * @param amount : float amount to add/substract to the account's balance
+	 * @param amount : float amount to add/subtract to the account's balance
 	 * @return empty String if OK, or error message
 	 */
 	public static String validateCheckingAccount(CheckingAccount account, float amount) {

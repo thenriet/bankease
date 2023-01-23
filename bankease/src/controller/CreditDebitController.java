@@ -102,7 +102,7 @@ public class CreditDebitController {
 	/**
 	 * Checks if the account's new balance conforms to limit values
 	 * @param account : CheckingAccount object
-	 * @param amount : float amount to add/substract to the account's balance
+	 * @param amount : float amount to add/subtract to the account's balance
 	 * @return empty String if OK, or error message
 	 */
 	public static String validateCheckingAccount(CheckingAccount account, float amount) {
@@ -118,7 +118,7 @@ public class CreditDebitController {
 	/**
 	 * Checks if the account's new balance conforms to limit values
 	 * @param account : SavingAccount object
-	 * @param amount : float amount to add/substract to the account's balance
+	 * @param amount : float amount to add/subtract to the account's balance
 	 * @return empty String if OK, or error message
 	 */
 	public static String validateSavingAccount(SavingAccount account, float amount) {
