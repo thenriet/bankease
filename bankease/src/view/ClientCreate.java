@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controller.ClientHandler;
-import java.awt.FlowLayout;
 import java.awt.Color;
 
 import javax.swing.JLabel;
@@ -183,33 +182,40 @@ public class ClientCreate extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// J'enregistre les données entrées dans les champs par le banquier
 				String data1 = clientDescription.getText();
 				String data2 = birthClient.getText();
 				String data3 = clientAdress.getText();
 				String data4 = phoneClient.getText();
-
+				// Je les stocke dans une liste
 				List<String> datas = new ArrayList<>();
 				datas.add(data1);
 				datas.add(data2);
 				datas.add(data3);
 				datas.add(data4);
-
+				// Je crée une nouvelle liste de type String qui accueillera les données après qu'elles soient trimées et not empty
 				List<String> trimmedData = new ArrayList<>();
 				trimmedData = ClientHandler.checkEmptyAndDataTrim(datas);
-
+				// Je vérifie si la liste contient bien 4 données
 				if (trimmedData.size() < 4) {
 					errorEmpty.setVisible(true);
+				// Je vérifie si la liste contient une date invalide, un numéro de téléphone invalide et une description invalide
 				} else if (ClientHandler.checkDate(trimmedData) == null && ClientHandler.checkPhone(trimmedData) == null
 						&& ClientHandler.checkClientDescription(trimmedData) == null) {
 					errorBirth.setVisible(true);
 					errorPhone.setVisible(true);
 					errorDescription.setVisible(true);	
+				// Je vérifie si la liste contient une date invalide
 				} else if (ClientHandler.checkDate(trimmedData) == null) {
 					errorBirth.setVisible(true);
+				// Je vérifie si la liste contient un numéro de téléphone invalide
 				} else if (ClientHandler.checkPhone(trimmedData) == null) {
 					errorPhone.setVisible(true);
+				// Je vérifie si la liste contient une description de client invalide
 				} else if (ClientHandler.checkClientDescription(trimmedData) == null) {
 					errorDescription.setVisible(true);
+				// Si tout est OK niveau vérif des données, j'utilise la liste que retourne ClientHandler.checkDate(trimmedData)
+				// pour créer un nouveau client
 				} else if ((ClientHandler.checkPhone(trimmedData) != null)
 						&& (ClientHandler.checkDate(trimmedData) != null)
 						&& (ClientHandler.checkClientDescription(trimmedData) != null)) {

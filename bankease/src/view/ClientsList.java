@@ -104,7 +104,7 @@ public class ClientsList extends JFrame {
 		panel_1.add(btnDeleteClient);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(0, 589, 660, 48);
+		panel_2.setBounds(0, 605, 660, 48);
 		getContentPane().add(panel_2);
 		
 				JButton btnAddClient = new JButton("Ajouter Client");

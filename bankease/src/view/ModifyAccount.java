@@ -20,13 +20,10 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 
 public class ModifyAccount extends JFrame {
 	private static final long serialVersionUID = 1L;
-	ActionListener actionListener;
-	float int_rate;
-	float bal_lim;
-	float bal;
 
 	public ModifyAccount(Account account) {
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -37,22 +34,24 @@ public class ModifyAccount extends JFrame {
 		setResizable(false);
 		setTitle("Bankease - Modifier un compte");
 
-
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 660, 27);
+		panel.setBackground(new Color(200, 173, 167));
+		panel.setBounds(0, 0, 660, 77);
 		getContentPane().add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel.setLayout(null);
 
 		JLabel modifClientLabel = new JLabel("Modification d'un compte");
-		modifClientLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		modifClientLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		modifClientLabel.setBounds(203, 23, 265, 31);
+		modifClientLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panel.add(modifClientLabel);
 
 		JPanel panelButtons = new JPanel();
-		panelButtons.setBounds(0, 416, 660, 60);
+		panelButtons.setBounds(0, 335, 660, 60);
 		getContentPane().add(panelButtons);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(0, 39, 660, 74);
+		panel_3.setBounds(0, 87, 660, 74);
 		getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 
@@ -75,7 +74,7 @@ public class ModifyAccount extends JFrame {
 		panel_3.add(errorDescription);
 
 		JPanel panel_3_1 = new JPanel();
-		panel_3_1.setBounds(0, 150, 660, 74);
+		panel_3_1.setBounds(0, 171, 660, 74);
 		getContentPane().add(panel_3_1);
 		panel_3_1.setLayout(null);
 
@@ -89,13 +88,16 @@ public class ModifyAccount extends JFrame {
 		interestRateOrTransferFeeText.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		interestRateOrTransferFeeText.setBounds(204, 27, 184, 25);
 		JButton btnValidate = new JButton("Valider");
+		btnValidate.setBounds(194, 21, 107, 29);
+		btnValidate.setBackground(new Color(200, 173, 167));
+		btnValidate.setForeground(new Color(0, 0, 0));
 		
 		panel_3_1.add(interestRateOrTransferFeeText);
 
 		JLabel errorEmpty = new JLabel("Veillez remplir TOUS les champs");
 		errorEmpty.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		errorEmpty.setForeground(new Color(143, 36, 29));
-		errorEmpty.setBounds(212, 307, 267, 16);
+		errorEmpty.setBounds(196, 280, 267, 16);
 		errorEmpty.setVisible(false);
 		getContentPane().add(errorEmpty);
 
@@ -105,6 +107,7 @@ public class ModifyAccount extends JFrame {
 		errorInterestRate.setBounds(447, 27, 161, 25);
 		errorInterestRate.setVisible(false);
 		panel_3_1.add(errorInterestRate);
+		panelButtons.setLayout(null);
 
 		panelButtons.add(btnValidate);
 		btnValidate.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -189,13 +192,15 @@ public class ModifyAccount extends JFrame {
 		setVisible(true);
 
 		JButton btnReturn = new JButton("Retour");
+		btnReturn.setBounds(349, 21, 115, 29);
+		btnReturn.setBackground(new Color(200, 173, 167));
 		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panelButtons.add(btnReturn);
 
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new ClientsList();
+				new FrmAccountList(account.getClientId(), "");
 			}
 		});
 		setVisible(true);

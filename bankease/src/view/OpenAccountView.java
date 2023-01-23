@@ -97,11 +97,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 		monMessage.setBounds(197, 240, 184, 14);
 		getContentPane().add(monMessage);
 		
-		JLabel monMessage_2 = new JLabel("   ");
-		monMessage_2.setForeground(new Color(255, 0, 0));
-		monMessage_2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		monMessage_2.setBounds(197, 297, 108, 14);
-		getContentPane().add(monMessage_2);
+		
 		
 		JLabel monMessage_3 = new JLabel("  ");
 		monMessage_3.setForeground(Color.RED);
@@ -199,6 +195,12 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			getContentPane().add(panel_1);
 			panel_1.setLayout(null);
 			
+			JLabel monMessage_2 = new JLabel("   ");
+			monMessage_2.setForeground(new Color(255, 0, 0));
+			monMessage_2.setFont(new Font("Tahoma", Font.PLAIN, 8));
+			monMessage_2.setBounds(197, 297, 108, 14);
+			getContentPane().add(monMessage_2);
+			
 			
 			
 			// Récupérer ce qui est rentré dans les zones de texte
@@ -216,16 +218,15 @@ public class OpenAccountView extends JFrame implements ActionListener {
 						
 						// TODO ajouter num compte et client id
 
-						if (monMessage_2.getText()==null || monMessage_2.getText().isEmpty()) {
+						if (transfer_fee.getText()!= null || transfer_fee.getText().isEmpty()) {
 													
 						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_balance") {
 							monMessage_2.setText("Entrer un chiffre valide");
-							setVisible(true);
 						}
 						
 						else {transfer= Float.parseFloat(transfer_fee.getText());}
 						
-						if (monMessage_3.getText()==null || monMessage_3.getText().isEmpty()) {
+						if (min_balance.getText()==null || min_balance.getText().isEmpty()) {
 						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_min_balance") {
 							monMessage_3.setText("Entrer un chiffre valide");
 							setVisible(true);
@@ -233,7 +234,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 						
 						else {min_bal= Float.parseFloat(min_balance.getText());}
 						
-						if (monMessage_4.getText()==null || monMessage_4.getText().isEmpty()) {
+						if (balance.getText()==null || balance.getText().isEmpty()) {
 						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_transfer_fee") {
 							monMessage_4.setText("Entrer un chiffre valide");
 							setVisible(true);
@@ -262,8 +263,8 @@ public class OpenAccountView extends JFrame implements ActionListener {
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					setVisible(false);
-					new FrmAccountList(global_id, " ");
+					//setVisible(false);
+					//new FrmAccountList(global_id, " ");
 					
 				}
 				
@@ -377,7 +378,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 						
 						// TODO ajouter num compte et client id
 
-						if (monMessage_2S.getText()==null || monMessage_2S.getText().isEmpty()) {
+						if (interest_rate.getText()==null || interest_rate.getText().isEmpty()) {
 													
 						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_balance") {
 							monMessage_2S.setText("Entrer un chiffre valide");
@@ -386,7 +387,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 						
 						else {int_rate= Float.parseFloat(interest_rate.getText());}
 						
-						if (monMessage_3S.getText()==null || monMessage_3S.getText().isEmpty()) {
+						if (balance_limit.getText()==null || balance_limit.getText().isEmpty()) {
 						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_min_balance") {
 							monMessage_3S.setText("Entrer un chiffre valide");
 							setVisible(true);
@@ -394,7 +395,7 @@ public class OpenAccountView extends JFrame implements ActionListener {
 						
 						else {bal_lim= Float.parseFloat(balance_limit.getText());}
 						
-						if (monMessage_4S.getText()==null || monMessage_4S.getText().isEmpty()) {
+						if (balance.getText()==null || balance.getText().isEmpty()) {
 						//if (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_transfer_fee") {
 							monMessage_4S.setText("Entrer un chiffre valide");
 							setVisible(true);
