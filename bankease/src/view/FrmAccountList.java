@@ -50,6 +50,7 @@ public class FrmAccountList extends JFrame {
 	 * Create the frame for account selection
 	 */
 	public FrmAccountList(int clientId, String message) {
+		setTitle("BankEase - Liste des comptes");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 660, 700);
@@ -61,7 +62,7 @@ public class FrmAccountList extends JFrame {
 		contentPane.setLayout(null);
 
 		// Affichage du libellé du client en titre :
-		JLabel txtTitle = new JLabel(AccountListController.getAccountOwner(clientId));
+		JLabel txtTitle = new JLabel("Comptes de " + AccountListController.getAccountOwner(clientId));
 		txtTitle.setBackground(new Color(200, 173, 167));
 		txtTitle.setOpaque(true);
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -236,10 +237,6 @@ public class FrmAccountList extends JFrame {
 		btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRetour.setBounds(443, 533, 100, 45);
 		contentPane.add(btnRetour);
-		
-		JLabel label = new JLabel("New label");
-		label.setBounds(120, 36, 45, 13);
-		contentPane.add(label);
 
 		// Clic sur le bouton "Retour" :
 		btnRetour.addActionListener(new ActionListener() {

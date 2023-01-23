@@ -45,6 +45,7 @@ public class FrmCreditDebit extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmCreditDebit(Account account, String action) {
+		setTitle("BankEase - " + action.substring(0,1).toUpperCase() + action.substring(1) + "er un compte");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 660, 700);
@@ -97,7 +98,7 @@ public class FrmCreditDebit extends JFrame {
 			
 		// Affichage différent selon si compte épargne ou courant
 		if (account instanceof SavingAccount) {
-			lblInfos1.setText("Taux d'intrêt : " + ((SavingAccount) account).getInterestRate() + "%");
+			lblInfos1.setText("Taux d'intérêt : " + ((SavingAccount) account).getInterestRate() + "%");
 			lblInfos2.setText("Plafond : " + ((SavingAccount) account).getBalanceLimit() + " €");
 		} else {
 			lblInfos1.setText("Frais de transfert : " + ((CheckingAccount) account).getTransferFee() + "%");

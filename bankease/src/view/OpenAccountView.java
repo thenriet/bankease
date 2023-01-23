@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import model.Client;
 import controller.CheckingAccountHandler;
@@ -58,11 +59,13 @@ public class OpenAccountView extends JFrame implements ActionListener {
 		horizontalBox_1.setBounds(102, 436, 1, 1);
 		getContentPane().add(horizontalBox_1);
 
-		Panel panel_1 = new Panel();
-		panel_1.setBackground(new Color(255, 128, 128));
-		panel_1.setBounds(0, 0, 646, 68);
-		getContentPane().add(panel_1);
-		panel_1.setLayout(null);
+		JLabel txtTitle = new JLabel("Ouverture d'un compte de la page");
+		txtTitle.setBackground(new Color(200, 173, 167));
+		txtTitle.setOpaque(true);
+		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtTitle.setBounds(0, 0, 646, 77);
+		getContentPane().add(txtTitle);
 
 		// Choisir compte courant ou compte épargne
 
@@ -80,6 +83,21 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 		Compte_epargne.addActionListener(this);
 		Compte_courant.addActionListener(this);
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.setBackground(new Color(200, 173, 167));
+		btnRetour.repaint();
+		btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnRetour.setBounds(370, 550, 100, 45);
+		getContentPane().add(btnRetour);
+
+		btnRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new FrmAccountList(global_id, " ");
+				setVisible(false);
+			}
+
+		});
 
 		setVisible(true);
 
@@ -110,30 +128,32 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			setVisible(true);
 
 			titulaire = new JTextField();
-			titulaire.setBounds(197, 222, 309, 20);
+			titulaire.setBounds(197, 222, 309, 30);
 			getContentPane().add(titulaire);
 			titulaire.setColumns(10);
 
 			transfer_fee = new JTextField();
 			transfer_fee.setColumns(10);
-			transfer_fee.setBounds(197, 281, 309, 20);
+			transfer_fee.setBounds(197, 281, 309, 30);
 			getContentPane().add(transfer_fee);
 
 			min_balance = new JTextField();
 			min_balance.setColumns(10);
-			min_balance.setBounds(197, 347, 309, 20);
+			min_balance.setBounds(197, 347, 309, 30);
 			getContentPane().add(min_balance);
 
 			balance = new JTextField();
 			balance.setColumns(10);
-			balance.setBounds(197, 417, 309, 20);
+			balance.setBounds(197, 417, 309, 30);
 			getContentPane().add(balance);
-
-			Panel panel_1 = new Panel();
-			panel_1.setBackground(new Color(255, 128, 128));
-			panel_1.setBounds(0, 0, 646, 68);
-			getContentPane().add(panel_1);
-			panel_1.setLayout(null);
+			
+			JLabel txtTitle = new JLabel("Ouverture d'un compte");
+			txtTitle.setBackground(new Color(200, 173, 167));
+			txtTitle.setOpaque(true);
+			txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
+			txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
+			txtTitle.setBounds(0, 0, 646, 77);
+			getContentPane().add(txtTitle);
 
 			JLabel monMessage = new JLabel("  ");
 			monMessage.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -167,9 +187,12 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 			// Récupérer ce qui est rentré dans les zones de texte
 
-			JButton btnNewButton = new JButton("Valider");
-			btnNewButton.setBackground(new Color(255, 128, 192));
-			btnNewButton.addActionListener(new ActionListener() {
+			JButton btnValider = new JButton("Valider");
+			btnValider.setBackground(new Color(128, 255, 128));
+			btnValider.repaint();
+			btnValider.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			btnValider.setBounds(170, 550, 100, 45);
+			btnValider.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
 					String titu = titulaire.getText();
@@ -219,71 +242,14 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 						}
 
-						// TODO ajouter num compte et client id
-
-//						if (transfer_fee.getText() == null || transfer_fee.getText().isEmpty()) {
-//
-//							// if
-//							// (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_balance")
-//							// {
-//							monMessage_2.setText("Entrer un chiffre valide");
-//						}
-//
-//						else {
-//							transfer = Float.parseFloat(transfer_fee.getText());
-//						}
-//
-//						if (min_balance.getText() == null || min_balance.getText().isEmpty()) {
-//							// if
-//							// (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_min_balance")
-//							// {
-//							monMessage_3.setText("Entrer un chiffre valide");
-//							setVisible(true);
-//						}
-//
-//						else {
-//							min_bal = Float.parseFloat(min_balance.getText());
-//						}
-//
-//						if (balance.getText() == null || balance.getText().isEmpty()) {
-//							// if
-//							// (CheckingAccountHandler.createCheckingAccount(44,444444,titu,bal,transfer,min_bal)=="type_transfer_fee")
-//							// {
-//							monMessage_4.setText("Entrer un chiffre valide");
-//							setVisible(true);
-//						}
-//
-//						else {
-//							bal = Float.parseFloat(balance.getText());
-//						}
-//
-//						if (titu.length() > 100) {
-//							monMessage.setText("100 caractères maximum");
-//							setVisible(true);
-//						}
-//
-//						if (bal < min_bal) {
-//							monMessage_5.setText("Le solde initial doit être supérieur au solde minimum");
-//							setVisible(true);
-//						}
-//
-//						else {
-//
-//							CheckingAccountHandler.createCheckingAccount(0, global_id, titu, bal, transfer, min_bal);
-//							setVisible(false);
-//							new FrmAccountList(global_id, " ");
-//						}
-
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
 
-					// setVisible(true);
 				}
 
 			});
-			btnNewButton.setBounds(142, 545, 89, 23);
-			getContentPane().add(btnNewButton);
+			getContentPane().add(btnValider);
 
 			// Affichage des titres
 
@@ -299,19 +265,21 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			getContentPane().add(lblNewLabel_2);
 
 			JLabel lblNewLabel_3 = new JLabel("Frais de transfert");
-			lblNewLabel_3.setBounds(72, 284, 95, 14);
+			lblNewLabel_3.setBounds(72, 284, 110, 14);
 			getContentPane().add(lblNewLabel_3);
 
 			Box horizontalBox_1 = Box.createHorizontalBox();
 			horizontalBox_1.setBounds(102, 436, 1, 1);
 			getContentPane().add(horizontalBox_1);
 
-			JButton btnNewButton_1 = new JButton("Retour");
-			btnNewButton_1.setBackground(new Color(255, 128, 192));
-			btnNewButton_1.setBounds(392, 545, 89, 23);
-			getContentPane().add(btnNewButton_1);
+			JButton btnRetour = new JButton("Retour");
+			btnRetour.setBackground(new Color(200, 173, 167));
+			btnRetour.repaint();
+			btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			btnRetour.setBounds(370, 550, 100, 45);
+			getContentPane().add(btnRetour);
 
-			btnNewButton_1.addActionListener(new ActionListener() {
+			btnRetour.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new FrmAccountList(global_id, " ");
 					setVisible(false);
@@ -326,6 +294,8 @@ public class OpenAccountView extends JFrame implements ActionListener {
 		}
 
 		if (Compte_epargne.isSelected()) {
+
+			getContentPane().removeAll();
 
 			JLabel monMessageS = new JLabel("  ");
 			monMessageS.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -375,36 +345,41 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			setVisible(true);
 
 			titulaire = new JTextField();
-			titulaire.setBounds(197, 222, 309, 20);
+			titulaire.setBounds(197, 222, 309, 30);
 			getContentPane().add(titulaire);
 			titulaire.setColumns(10);
 
 			interest_rate = new JTextField();
 			interest_rate.setColumns(10);
-			interest_rate.setBounds(197, 281, 309, 20);
+			interest_rate.setBounds(197, 281, 309, 30);
 			getContentPane().add(interest_rate);
 
 			balance_limit = new JTextField();
 			balance_limit.setColumns(10);
-			balance_limit.setBounds(197, 347, 309, 20);
+			balance_limit.setBounds(197, 347, 309, 30);
 			getContentPane().add(balance_limit);
 
 			balance = new JTextField();
 			balance.setColumns(10);
-			balance.setBounds(197, 417, 309, 20);
+			balance.setBounds(197, 417, 309, 30);
 			getContentPane().add(balance);
 
-			Panel panel_1 = new Panel();
-			panel_1.setBackground(new Color(255, 128, 128));
-			panel_1.setBounds(0, 0, 646, 68);
-			getContentPane().add(panel_1);
-			panel_1.setLayout(null);
+			JLabel txtTitle = new JLabel("Ouverture d'un compte");
+			txtTitle.setBackground(new Color(200, 173, 167));
+			txtTitle.setOpaque(true);
+			txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
+			txtTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
+			txtTitle.setBounds(0, 0, 646, 77);
+			getContentPane().add(txtTitle);
 
 			// Récupérer ce qui est rentré dans les zones de texte
 
-			JButton btnNewButton = new JButton("Valider");
-			btnNewButton.setBackground(new Color(255, 128, 192));
-			btnNewButton.addActionListener(new ActionListener() {
+			JButton btnValider = new JButton("Valider");
+			btnValider.setBackground(new Color(128, 255, 128));
+			btnValider.repaint();
+			btnValider.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			btnValider.setBounds(170, 550, 100, 45);
+			btnValider.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
 
@@ -456,59 +431,14 @@ public class OpenAccountView extends JFrame implements ActionListener {
 
 						}
 
-//						if (interest_rate.getText()==null || interest_rate.getText().isEmpty()) {
-//													
-//							monMessage_2S.setText("Entrer un chiffre valide");
-//							setVisible(true);
-//							System.out.println("lll");
-//						}
-//						
-//
-//						else {int_rate= Float.parseFloat(interest_rate.getText());}
-//												
-//						if (balance_limit.getText()==null || balance_limit.getText().isEmpty()) {
-//							monMessage_3S.setText("Entrer un chiffre valide");
-//							setVisible(true);
-//						}
-//						
-//						else {bal_lim= Float.parseFloat(balance_limit.getText());}
-//						
-//						if (balance.getText()==null || balance.getText().isEmpty()) {
-//							monMessage_4S.setText("Entrer un chiffre valide");
-//							setVisible(true);
-//							
-//						}
-//						
-//						else {bal=Float.parseFloat(balance.getText());}
-//						
-//													
-//						if (titu.length()>100) {
-//							monMessageS.setText("100 caractères maximum");
-//							setVisible(true);
-//						}
-//													
-//						if(bal>bal_lim) {
-//							monMessage_5S.setText("Le solde initial doit être inférieur au plafond");
-//							setVisible(true);
-//						}
-//						
-//						else{
-//	
-//							SavingAccountHandler.createSavingAccount(0,global_id,titu,bal,int_rate,bal_lim);
-//							setVisible(false);
-//							new FrmAccountList(global_id," ");}
-
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
 
-					// setVisible(true);
-
 				}
 
 			});
-			btnNewButton.setBounds(142, 545, 89, 23);
-			getContentPane().add(btnNewButton);
+			getContentPane().add(btnValider);
 
 			// Affichage des titres
 
@@ -531,12 +461,14 @@ public class OpenAccountView extends JFrame implements ActionListener {
 			horizontalBox_1.setBounds(102, 436, 1, 1);
 			getContentPane().add(horizontalBox_1);
 
-			JButton btnNewButton_1 = new JButton("Retour");
-			btnNewButton_1.setBackground(new Color(255, 128, 192));
-			btnNewButton_1.setBounds(392, 545, 89, 23);
-			getContentPane().add(btnNewButton_1);
+			JButton btnRetour = new JButton("Retour");
+			btnRetour.setBackground(new Color(200, 173, 167));
+			btnRetour.repaint();
+			btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			btnRetour.setBounds(370, 550, 100, 45);
+			getContentPane().add(btnRetour);
 
-			btnNewButton_1.addActionListener(new ActionListener() {
+			btnRetour.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new FrmAccountList(global_id, " ");
 					setVisible(false);
